@@ -10,8 +10,10 @@ Sphinx Quick Start Guide
 7) Create your docs
 8) To create your html files ``./make.bat html``
 9) To clean up your builds before git push ``./make.bat clean``
-10) Push your docs to your git (make sure you do a ``pip freeze > requirements.txt`` because readthedocs might fail for using the incorrect version)
-11) Setup your commit hock with readthedocs (login to readthedocs, add your github project, then build)
+10) Push your docs to your git (make sure you do a ``pip freeze > requirements.txt`` because readthedocs might fail for
+    using the incorrect version)
+11) Setup your commit hock with readthedocs (login to readthedocs, add your github project, then build).
+    After your build is complete, each git push will auto-trigger a webhock to readthedocs
 
 
 Text Manipulations
@@ -20,9 +22,10 @@ Ref Sphinx rst docs:
 - `Link1 <http://www.sphinx-doc.org/en/master/usage/restructuredtext/index.html>`_
 - `Link2 <https://www.sphinx-doc.org/en/master/usage/restructuredtext/directives.html?highlight=code-block#showing-code-examples>`_
 
-- To itilosize text: ``*text*``
+- To italicize text: ``*text*``
 - To bold text: ``**text**``
 - Subscript/Superscript: ``:sub:`yourtext``` or ``:sup:`yourtext```
+- Bullets: numbered "1)" dashed "-" (note that next line text of the same bullet must align with the text above!)
 - To in-text code highlight: ````text````
 - Important messages: ``.. note::`` ``.. warning::`` ``.. deprecated::`` ``.. seealso::``
 - Internal Links: ``:doc:`filename```
@@ -32,8 +35,10 @@ Ref Sphinx rst docs:
 
 Sphinx toctree
 --------------
-1) The ``.. toctree::`` must be present in your top level index.rst file. The links will show up on both your page and on the left quickbar
-2) The sub-folder trees also need to have a index.rst with ``.. toctree::`` to properly get nested tree reference links, see example below:
+1) The ``.. toctree::`` must be present in your top level index.rst file. The links will show up on both your page and
+   on the left quickbar
+2) The sub-folder trees also need to have a index.rst with ``.. toctree::`` to properly get nested tree reference links,
+   see example below:
 
 .. code-block:: text
 
