@@ -7,3 +7,4 @@ Python Guide
 
     virtualenv
     sphinx
+    functions
