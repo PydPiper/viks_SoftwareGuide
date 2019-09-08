@@ -118,4 +118,40 @@ Function dundur
     foo.__code__.co_varnames
     >>> ('arg1', 'arg2')
 
+Trick - Clean Function Piping
+-----------------------------
+Ever need to rip through a bunch of "if" statements to call the function you want? Try combing a piping dictionary with
+function calls.
+
+.. code-block:: python
+    :linenos:
+
+    def func_one(a,b):
+        return a+b
+
+    def func_two(a,b):
+        return a-b
+
+    def func_three(a,b):
+        return a*b
+
+
+    def math(val1: float=0.0, val2: float=0.0, condition: str="one") -> float:
+        """
+        Takes a value and multiplies it by a string amount
+
+        :param (float) val: input value
+        :param (str) multi: multiplier in string
+        :return (float): multiplied input value
+        """
+
+        piper = {"one": func_one,
+                 "two": func_two,
+                 "three": func_three,}
+
+        try:
+            # instead of coding up a bunch of if condition == something, you can make use of a dict's keyword arguments to pipe for you
+            return piper[condition](val1, val2)
+        except KeyError:
+            raise UserWarning(f"Incorrect input value for condition={condition}")
 
