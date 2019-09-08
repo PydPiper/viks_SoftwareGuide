@@ -10,8 +10,8 @@ Sphinx Quick Start Guide
 7) Create your docs
 8) To create your html files ``./make.bat html``
 9) To clean up your builds before git push ``./make.bat clean``
-10) Push your docs to your git
-11) Setup your commit hock with readthedocs
+10) Push your docs to your git (make sure you do a ``pip freeze > requirements.txt`` because readthedocs might fail for using the incorrect version)
+11) Setup your commit hock with readthedocs (login to readthedocs, add your github project, then build)
 
 
 Text Manipulations
