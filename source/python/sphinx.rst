@@ -1,5 +1,5 @@
-Sphinx Quick Start Guide
-========================
+package - Sphinx (code documentation)
+====================================
 
 1) Create a virtualenv, see :doc:`virtualenv`
 2) Active virtualenv and add sphinx ``pip install sphinx``
@@ -30,6 +30,10 @@ Ref Sphinx rst docs:
 - Important messages: ``.. note::`` ``.. warning::`` ``.. deprecated::`` ``.. seealso::``
 - Internal Links: ``:doc:`filename```
 - External Links: ```linktext <https://google.com>`_``
+- Section Links within the same doc
+
+    1) put a ``.. _ref1:`` above the header you want to ref (make sure there is an empty line between the header and _ref1)
+    2) call the link by: ``:ref:`ref1```
 - Today's date in text ``|today|``
 - Section underline: Section:``====``, Sub-Section ``----``, Sub-Sub-Section ``^^^^``
 

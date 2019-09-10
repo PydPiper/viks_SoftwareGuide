@@ -8,3 +8,4 @@ Python Guide
     virtualenv
     sphinx
     functions
+    git

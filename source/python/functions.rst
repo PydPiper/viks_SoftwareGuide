@@ -1,5 +1,11 @@
-Functions Quick User Guide
-==========================
+builtin - functions
+===================
+.. note:: Note that all functions in python end with a return, even when a ``return`` is not explicitly typed out in your code
+          (of course this is only true if an exception is not raise within the function). When a ``return`` is not present within
+          a function, the function will simply ``return None``.
+
+.. note:: Note that local variable data will only be stored in memory while the code is within the function loop. Meaning,
+          a variable within a function can only be called within the function. See :ref:`ref1`
 
 Syntax
 ------
@@ -62,6 +68,12 @@ All about variables
     mydict = {"arg2":"2, "arg1": 1}
     foo(**mydict)
     >>> 3
+
+.. _ref1:
+
+Common pitfall - Locals vs Globals
+----------------------------------
+
 
 Call function by its string name
 --------------------------------

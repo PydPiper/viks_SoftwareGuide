@@ -1,5 +1,5 @@
-Getting started with virtualenv
-===============================
+package - virtualenv
+====================
 
 1) pip install virtualenv (version 16.1.0 for win10 build compatibility)
 
