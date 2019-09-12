@@ -10,6 +10,7 @@ package - virtualenv
 2) This will create you a folder with bear minimum python packages (this is nice if you would like to
 pyinstaller package up your work that ONLY use the packages required for your project). The folder created
 has a bunch of folders.
+
  - *Lib/Site-Package*: has your packages installed, if you want to manually add a module - this is where you would place it
  - *Scripts*: has your activate/deactive, and all your run files like python.exe, pip etc.
 
