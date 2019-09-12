@@ -17,8 +17,10 @@ Syntax
     def foo(arg1, arg2):
         return arg1 + int(arg2)
 
-    # python version 3.5+ added type-hints that improves your editors inline error handling, testing, linters, etc.
-    # to be explicit: everything on line 7 is type-hints. Lines 8-14 is your docstring (for when you call help(foo), or autodoc)
+    # python version 3.5+ added type-hints that improves your editors inline error handling,
+    #  testing, linters, etc.
+    # to be explicit: everything on line 7 is type-hints. Lines 8-14 is your docstring
+    #  (for when you call help(foo), or autodoc)
     def foo(arg1: int, arg2: str="0") -> int:
         """
         Simple add function
@@ -71,9 +73,56 @@ All about variables
 
 .. _ref1:
 
-Common pitfall - Locals vs Globals
-----------------------------------
+Common pitfall - Global vs Local vs NonLocal
+--------------------------------------------
 
+.. code-block:: python
+    :linenos:
+
+    # global variable
+    x = 5
+
+    def func():
+        print(x)
+
+    # by default, a function will only be able to access argument variable or variable defined
+    #  within the function
+    func()
+    >>> UnboundLocalError: local variable 'x' referenced before assignment
+
+    def func(y):
+        z = 15
+        print(y,z)
+
+    # now both variable y and z are accessible, so there are no errors
+    func(y=10)
+    >>> 10 15
+
+    # to access global variable defined outside of the function
+    def func():
+        global x
+        print(x)
+        x = 500
+
+    # using "global" we can allow our function to reach outside the local variables and
+    #  grab the variable "x"
+    x = 5
+    func()
+    >>> 5
+    # notice no error this time, but be careful, the function also altered the value of "x"
+    # note that "x" in the function is no longer a "local" variable, x is now globally redefined!
+    x
+    >>> 500
+
+    # alternatively we can access variables from nested functions via "nonlocal"
+    def func():
+        y = 5
+        def func2():
+            nonlocal y
+            print(y)
+
+    func()
+    >>> 5
 
 Call function by its string name
 --------------------------------
@@ -162,7 +211,8 @@ function calls.
                  "three": func_three,}
 
         try:
-            # instead of coding up a bunch of if condition == something, you can make use of a dict's keyword arguments to pipe for you
+            # instead of coding up a bunch of if condition == something, you can make use of a
+            #  dict's keyword arguments to pipe for you
             return piper[condition](val1, val2)
         except KeyError:
             raise UserWarning(f"Incorrect input value for condition={condition}")

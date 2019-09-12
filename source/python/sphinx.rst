@@ -1,5 +1,5 @@
 package - Sphinx (code documentation)
-====================================
+=====================================
 
 1) Create a virtualenv, see :doc:`virtualenv`
 2) Active virtualenv and add sphinx ``pip install sphinx``

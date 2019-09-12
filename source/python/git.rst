@@ -71,3 +71,11 @@ Branch
 
 - To create a branch: ``git branch branch_name``
 - To work/change your current branch: ``git checkout branch_name``
+
+Common Issues
+-------------
+- "failed to push some refs to repo, tip of your current branch is behind"
+
+    - Cause: there were changes to the remote repo that you dont have (this could be file or history log change)
+    - Fix: run a ``git pull`` and resolve the conflicts
+
