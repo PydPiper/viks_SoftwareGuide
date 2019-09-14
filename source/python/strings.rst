@@ -1,4 +1,4 @@
-bulitin - strings
+builtin - strings
 =================
 
 Syntax
@@ -65,3 +65,95 @@ String Arguments and Formatting
 
     # % "modulo operator"
     "x is equal to %(x1)d" % {"x1": x}
+
+Formatting the argument injections
+
+- {:5.2} 5 in this case is the str-length,and 2 is number of significant digits
+  note significant digits overrule:
+  {:3.5} will have a str-len of 6 chars for a positive number (5 digits and a ".")
+  {:3.5} will have a str-len of 7 chars for a negative number (5 digits a "-" and ".")
+
+.. code-block:: python
+
+    f"{1:4}"
+    >>> '   1'
+    f"{1.11111:4}"
+    >>> '1.11111' # not what you would expect str-len is not 4
+    f"{1.11111:4.2}"
+    >>> ' 1.1'
+    f"{1.11111:2.4}"
+    >>> '1.111' # note that sigfig wins vs str-len
+
+- < > = ^: left, right, padding of characters, center rules
+
+.. code-block:: python
+
+    f"{1:<4}"
+    >>> '1   '
+    f"{1:>4}"
+    >>> '   1'
+    f"{1:0=4}"
+    # note padding only works on int or float
+    >>> '0001'
+    f"{1:^4}"
+    >>> ' 1  '
+
+- "+" "-" "space": use sign for both pos/neg values (ie: "+5" and "-5"), sign for neg only ("5" "-5"),
+  use sign for neg only but leave space for positive (" 5" "-5")
+
+.. code-block:: python
+
+    f"{1:+}|{-1:+}|{1:-}|{-1:-}|{1: }|{-1: }"
+    >>> '+1|-1|1|-1| 1|-1|'
+
+- d: int
+
+.. code-block:: python
+
+    f"{123:d}"
+    >>> '123' # note that this does not convert a float to a int or str to int
+
+- f: float (by default 6 decimals)
+
+.. code-block:: python
+
+    f"{1:f}"
+    >>> '1.000000' # note flag f does convert a int to a float but NOT str->float
+
+- e and E: exponent with small "e" or large "E" (default 6 decimals)
+
+.. code-block:: python
+
+    f"{1:e}"
+    >>> '1.000000e+00' # similar to float conversion
+
+- g: The precise rules are as follows: suppose that the result formatted with presentation type
+  'e' and precision p-1 would have exponent exp. Then if -4 <= exp < p, the number is formatted
+  with presentation type 'f' and precision p-1-exp. Otherwise, the number is formatted with
+  presentation type 'e' and precision p-1. In both cases insignificant trailing zeros are removed
+  from the significand, and the decimal point is also removed if there are no remaining digits
+  following it.
+  Positive and negative infinity, positive and negative zero, and nans, are formatted as inf,
+  -inf, 0, -0 and nan respectively, regardless of the precision.
+  A precision of 0 is treated as equivalent to a precision of 1. The default precision is 6.
+
+- %: percentage. Multiplies the value by 100 and uses (f) format followed by a percent sign
+
+.. code-block:: python
+
+    f"{1:%}"
+    >>> '100.000000%' # similar to float conversion
+
+- ,: to separate every 1000 by a comma
+
+.. code-block:: python
+
+    f"{1000:,}"
+    >>> '1,000'
+
+- positional arg call:
+
+.. code-block:: python
+
+    "pos0={0}, pos2={2}, pos0={0}".format(*[10,20,30])
+    >>> 'pos0=10, pos2=30, pos0=10'

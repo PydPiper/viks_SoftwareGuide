@@ -2,11 +2,11 @@ Python Guide
 ============
 
 .. toctree::
-    :maxdepth: 5
+    :maxdepth: 2
     :titlesonly:
 
+    strings
+    functions
     virtualenv
     sphinx
-    functions
     git
-    strings

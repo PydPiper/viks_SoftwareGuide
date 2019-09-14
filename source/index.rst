@@ -11,7 +11,7 @@ The objective is to layout concepts and examples step by step in a clear and con
 
 .. toctree::
     :numbered:
-    :maxdepth: 5
+    :maxdepth: 2
 
 
     python/index
