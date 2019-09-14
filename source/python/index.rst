@@ -9,3 +9,4 @@ Python Guide
     sphinx
     functions
     git
+    strings
