@@ -7,6 +7,7 @@ Python Guide
 
     strings
     functions
+    logic_loops
     virtualenv
     sphinx
     git
