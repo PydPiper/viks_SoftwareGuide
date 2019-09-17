@@ -114,6 +114,26 @@ for loop
 List Comprehensions (alt for loops)
 -----------------------------------
 
+.. code-block:: python
+
+    # a simple for loop
+    vals = []
+    for value in colletion:
+        if condition:
+            vals.append(expression)
+    # can be written in 1 line with list comprehension
+    vals = [expression for value in collection if condition]
+
+    # example:
+    vals = []
+    for value in [1,2,3]:
+        if value%2 == 1:
+            vals.append(value + 10)
+    vals >>> [11,13]
+    # now with list comprehension
+    vals = [value + 10 for value in [1,2,3] if value%2 == 1]
+    vals >>> [11,13]
+
 
 
 while loop
