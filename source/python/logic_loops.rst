@@ -77,7 +77,6 @@ for loop
     # iterate through strings by char
     for char in "this":
         print(char)
-
     >>> 't'
     >>> 'h'
     >>> 'i'
@@ -92,7 +91,6 @@ for loop
     # iterate through sets, tuples, lists
     for value in [10,20,30]:
         print(value)
-
     >>> '10'
     >>> '20'
     >>> '30'
@@ -107,14 +105,39 @@ for loop
     # iterate through dicts (iterate on keys, values, or items)
     for key, value in {'key1':1, 'key2':2}.items():
         print(key, value)
-
     >>> 'key1 1'
     >>> 'key2 2'
+
+    # for loop on multiple same same iterators
+    for val1, val2 in zip([1,2,3],[10,20,30]):
+        print(val1,val2)
+    >>> '1 10'
+    >>> '2 20'
+    >>> '3 30'
+
+    # use break to jump out of a for loop early
+    for val in [1,2,3]:
+        if val == 2:
+            break
+        print(val)
+    >>> '1'
+    # but never gets to printing 2 or 3
+
+    # use continue to jump ahead of the current iteration (same as a __next__() call)
+    for val in [1,2,3]:
+        if val == 2:
+            continue
+        print(val)
+    >>> '1'
+    >>> '3'
+    # note how 2 was skipped
+
 
 List Comprehensions (alt for loops)
 -----------------------------------
 
 .. code-block:: python
+    :linenos:
 
     # a simple for loop
     vals = []
@@ -133,14 +156,63 @@ List Comprehensions (alt for loops)
     # now with list comprehension
     vals = [value + 10 for value in [1,2,3] if value%2 == 1]
     vals >>> [11,13]
-
+    # similarly dictionaries can also be handled with list comprehensions
+    vals = ["/".join(key, str(value)) for key, value in {'one': 1, 'two': 2}.items()]
+    vals >>> ['one/1', 'two/2']
+    # or dict comprehension
+    vals = {k: 2*v for k, v in {'one': 1, 'two': 2}.items()}
+    vals >>> {'one': 2, 'two': 4}
 
 
 while loop
 ----------
 
+.. code-block:: python
+    :linenos:
+
+    i == 0
+    while i < 3:
+        print(i)
+        i += 1
+    else:
+        'while loop finished without a break'
+    >>> '1'
+    >>> '2'
+    >>> '3'
+    >>> 'while loop finished without a break'
+
+    i == 0
+    while i < 3:
+        print(i)
+        if i == 2:
+            print('while loop finished early with a break')
+            break
+        i += 1
+    else:
+        'while loop finished without a break'
+    >>> '1'
+    >>> '2'
+    >>> 'while loop finished early with a break'
 
 
 try/except/pass
 ---------------
+See full list of exception at `Link <https://docs.python.org/3/library/exceptions.html#bltin-exceptions>`_
+
+.. code-block:: python
+
+    try:
+        # somecode to test for exceptions
+    except NameError:
+        # somecode raised a NameError, do something
+    except (ValueError,KeyError):
+        # samecode did not raise a NameError, but it did raise either
+        # a ValueError or KeyError, do something
+    except:
+        # catch all other errors, this is lazy coding - try to not use this
+        # the owner should understand what exceptions occur and handles it appropriately
+    else:
+        # no exception were raised, do something
+    finally:
+        # run code lastly before exiting try loop, no matter if an exception was or not
 
