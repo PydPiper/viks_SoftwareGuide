@@ -179,6 +179,36 @@ Function dundur
     foo.__code__.co_varnames
     >>> ('arg1', 'arg2')
 
+
+functional programming: map, filter, and reduce
+-----------------------------------------------
+
+.. code-block:: python
+
+    # map works-on multiple iterables at the same time
+    # take the following 2 lists and a simple add function for instance
+    a = [1,2,3]
+    b = [4,5,6]
+    def add(x,y):
+        return x + y
+    list(map(add, a, b))
+    >>> [5, 7, 9] # 1+4, 2+5, 3+6
+
+    # use filter to narrow down a iterable with a custom true/false function
+    a = [1,2,3]
+    def test_odd(x):
+        return x % 2 # returns 0 for even (same as true), 1 for odd (same as false)
+    list(filter(test_odd, a))
+    >>> [1, 3]
+
+    # use reduce to narrow down a iterable to a single value
+    a = [1,2,3]
+    def multiply(x,y):
+        return x*y
+    reduce(multiply, a)
+    >>> 6
+
+
 Trick - Clean Function Piping
 -----------------------------
 Ever need to rip through a bunch of "if" statements to call the function you want? Try combing a piping dictionary with
