@@ -184,6 +184,7 @@ functional programming: map, filter, and reduce
 -----------------------------------------------
 
 .. code-block:: python
+    :linenos:
 
     # map works-on multiple iterables at the same time
     # take the following 2 lists and a simple add function for instance
