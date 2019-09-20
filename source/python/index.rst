@@ -3,9 +3,9 @@ Python Guide
 
 .. toctree::
     :maxdepth: 3
-    :titlesonly:
 
     strings
+    containers
     functions
     logic_loops
     virtualenv
