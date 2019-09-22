@@ -10,6 +10,7 @@ let's set a common ground for definitions:
     - list, set, dict
 
 .. code-block:: python
+    :linenos:
 
     a = [1,2,3]
     id(a)
@@ -23,6 +24,7 @@ let's set a common ground for definitions:
     - bool, int, float, str, tuple, frozenset
 
 .. code-block:: python
+    :linenos:
 
     # same ID every time you call id on a bool, int, float, str
     id(123)
@@ -65,6 +67,7 @@ Lists
 -----
 
 .. code-block:: python
+    :linenos:
 
     # syntax
     a = [1,2,3]
@@ -88,7 +91,7 @@ Lists
     >>> [4,]
 
 List - Copy
------------
+^^^^^^^^^^^
 
 .. code-block:: python
     :linenos:
@@ -130,6 +133,43 @@ List - Copy
 
 Sets
 ----
+
+.. code-block:: python
+    :linenos:
+
+    # sets are great to use over lists when the user does not want to keep duplicates
+    a = {1,2,10}
+
+    # to add
+    a.add(2) # this is duplicate and will not be added
+    a
+    >>> {1,2,10}
+    a.add(4) # this is not a duplicate, therefore it is added
+    a
+    >>> {1,2,10,4}
+
+    # to remove
+    a.remove(10)
+    a
+    >>>{1,2,4}
+
+    # find the overlaps between 2 sets
+    a = {1,2,4}
+    b = {2,3,4}
+    a.intersection(b)
+    >>> {2,4}
+
+    # find the difference between 2 sets
+    a = {1,2,4}
+    b = {2,3,4}
+    a.difference(b)
+    >>> {1,3}
+
+    # get the combined - non duplicate of 2 sets
+    a = {1,2,4}
+    b = {2,3,4}
+    a.union(b)
+    >>> {1,2,3,4}
 
 
 Dictionaries
