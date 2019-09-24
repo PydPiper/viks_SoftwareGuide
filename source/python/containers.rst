@@ -174,3 +174,17 @@ Sets
 
 Dictionaries
 ------------
+
+.. code-block:: python
+    :linenos:
+
+    # syntax
+    a = {"key1": "value1", "key2": "value2"}
+    a["key1"] # access value via keys
+    >>> "value1"
+
+    # iterate through keys and values
+    for k, v in a.items():
+        print(k, v)
+    >>> "key1 value1"
+    >>> "key2 value2"
