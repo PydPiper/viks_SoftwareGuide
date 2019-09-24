@@ -209,6 +209,11 @@ functional programming: map, filter, and reduce
     reduce(multiply, a)
     >>> 6
 
+functional programming - closures
+---------------------------------
+
+functional programming - factory
+--------------------------------
 
 Trick - Clean Function Piping
 -----------------------------

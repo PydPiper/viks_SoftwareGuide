@@ -157,3 +157,25 @@ Formatting the argument injections
 
     "pos0={0}, pos2={2}, pos0={0}".format(*[10,20,30])
     >>> 'pos0=10, pos2=30, pos0=10'
+
+
+Trick - Hide print statements (closure)
+---------------------------------------
+See :closures:`functions.rst` under functional programming for more information about closures.
+
+.. code-block:: python
+
+    import os, sys
+
+    class HiddenPrints:
+        def __enter__(self):
+            # log the original stdout setting
+            self._original_stdout = sys.stdout
+            # buffer stdout into an empty path
+            sys.stdout = open(os.devnull, "w")
+
+        def __exit__(self, exc_type, exc_val, exc_tb):
+            # close the buffer
+            sys.stdout.close()
+            # reset stdout setting to original
+            sys.stdout = self._original_stdout
