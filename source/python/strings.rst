@@ -161,7 +161,7 @@ Formatting the argument injections
 
 Trick - Hide print statements (closure)
 ---------------------------------------
-See :closures:`functions.rst` under functional programming for more information about closures.
+See :closures:`functions` under functional programming for more information about closures.
 
 .. code-block:: python
 

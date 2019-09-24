@@ -200,6 +200,7 @@ try/except/pass
 See full list of exception at `Link <https://docs.python.org/3/library/exceptions.html#bltin-exceptions>`_
 
 .. code-block:: python
+    :linenos:
 
     try:
         # somecode to test for exceptions
