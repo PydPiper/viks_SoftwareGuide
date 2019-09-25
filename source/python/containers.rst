@@ -131,6 +131,17 @@ List - Copy
     b
     >>> [[1,2],3,4] # nested is no longer linked in a deepcopy to list "b"
 
+List Trick - Split a list into equal bits
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+.. code-block:: python
+    :linenos:
+
+    a = [1,2,3,4,5,6,7,8,9]
+    list(zip(*[iter(a)]*3))
+    # make a list of ( create a single tuple from ( 3 iterators of a ) )
+    >>> [(1, 2, 3), (4, 5, 6), (7, 8, 9)]
+
 Sets
 ----
 
@@ -188,3 +199,4 @@ Dictionaries
         print(k, v)
     >>> "key1 value1"
     >>> "key2 value2"
+
