@@ -65,6 +65,7 @@ Tuples
 
 Lists
 -----
+For see :logic loops:`logic_loops` for list comprehensions.
 
 .. code-block:: python
     :linenos:
@@ -141,6 +142,14 @@ List Trick - Split a list into equal bits
     list(zip(*[iter(a)]*3))
     # make a list of ( create a single tuple from ( 3 iterators of a ) )
     >>> [(1, 2, 3), (4, 5, 6), (7, 8, 9)]
+    # iter(a)*3 -> 3 iterators are created with the same ID
+    # for explanation lets call these iter1.1, iter1.2, iter1.3
+    # zip(* (iter1.1, iter1.2, iter1.3)) unpacks the iterator with "next"
+    # (next(iter1.1 pos0), next(iter1.2 pos1), (next(iter1.3 pos3)), (next(iter1.1 pos4), ...so on
+    # since the iters are all identical objects, they share the "next" counter
+    # zip takes the 3 subdivided iters one value at a time and creates a tuple out of 3x next calls
+    # this step repeats until a StopIteration is hit
+    # the last step is to convert a zip object to a list via: list(zip...)
 
 Sets
 ----
@@ -185,6 +194,7 @@ Sets
 
 Dictionaries
 ------------
+For see :logic loops:`logic_loops` for dictionary comprehensions.
 
 .. code-block:: python
     :linenos:
@@ -194,9 +204,42 @@ Dictionaries
     a["key1"] # access value via keys
     >>> "value1"
 
+    # report out a default value if a key does not exist with "get" instead of raising a KeyError
+    a.get("key3", "not on record")
+    >>> "not on record"
+
     # iterate through keys and values
     for k, v in a.items():
         print(k, v)
     >>> "key1 value1"
     >>> "key2 value2"
 
+
+Dict Trick - Handling nested dicts
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+.. code-block:: python
+    :linenos:
+
+    # pulling out a sub-dict from sub-dict values
+    database = {1:{'name': 'bob', 'color': 'blue'},
+                2:{'name': 'jay', 'color': 'green'},
+                3:{'name': 'kai', 'color': 'blue'},}
+    # lets pull out a sub-dict database for all color=blue people
+    subdb = {ID: subdict for ID, subdict in database.items() if subdict['color'] == 'blue'}
+
+Dict Trick - Merging 2 dicts (shallow copy)
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+Note that a shallow copy will create a new dict ID but the key and value objects will still
+be the same object ID as the originals. (this is only an issue if the original dicts are defined
+via mutable variables). The example below will not have any issues since strings and integers are
+immutable.
+
+.. code-block:: python
+    :linenos:
+
+    x = {'a': 1, 'b': 2}
+    y = {'b': 3, 'c': 4}
+
+    z = {**x, **y}
+    >>> {'c': 4, 'a': 1, 'b': 3}
