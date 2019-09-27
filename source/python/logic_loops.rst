@@ -1,4 +1,4 @@
-builtin - logic loops
+builtin - Logic Loops
 =====================
 - There are infinite ways to write code but it is important to highlight
   the wise words from The Zen of Python: "Flat is better than nested" in

@@ -1,4 +1,4 @@
-builtin - strings
+builtin - Strings
 =================
 
 Syntax

@@ -1,4 +1,4 @@
-builtin - functions
+builtin - Functions
 ===================
 .. note:: Note that all functions in python end with a return, even when a ``return`` is not explicitly typed out in your code
           (of course this is only true if an exception is not raise within the function). When a ``return`` is not present within

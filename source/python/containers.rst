@@ -212,7 +212,7 @@ For see :logic loops:`logic_loops` for dictionary comprehensions.
     a = {"key1": "value1"}
     a["key2"] = "value2"
     # or with "update"
-    a["key3"] = "value3"
+    a.update({"key3": "value3"})
     # the same syntax can be used to update an existing key/value pair
 
     # iterate through keys and values
