@@ -208,6 +208,13 @@ For see :logic loops:`logic_loops` for dictionary comprehensions.
     a.get("key3", "not on record")
     >>> "not on record"
 
+    # add to dict
+    a = {"key1": "value1"}
+    a["key2"] = "value2"
+    # or with "update"
+    a["key3"] = "value3"
+    # the same syntax can be used to update an existing key/value pair
+
     # iterate through keys and values
     for k, v in a.items():
         print(k, v)
