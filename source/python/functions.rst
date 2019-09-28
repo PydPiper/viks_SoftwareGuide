@@ -209,11 +209,81 @@ functional programming: map, filter, and reduce
     reduce(multiply, a)
     >>> 6
 
-functional programming - closures
----------------------------------
+functional programming - factory/closures/currying
+--------------------------------------------------
+Factory - A function that keeps its own internal state (see example below)
+Closure - A "Factory" assigned to a variable
+Currying - Similar to a "Closure" but input arguments changes the functionality of the Closure
 
-functional programming - factory
---------------------------------
+.. code-block:: python
+    :linenos:
+
+    # the following function is not a "factory" because its state is not internal
+    # meaning, that each instance of a function will carry the same state, see demo below:
+    counter = 0 # some global initial state
+    def incrementer():
+        global counter # allow access to global variable "counter" within the function
+        counter += 1 # increment the "state", but note that counter is linked to a global state
+        return counter
+    incro1 = incrementer() # if incrementer was a "factory", incro1 would be called a "Closure"
+    incro2 = incrementer()
+    # it doesnt matter that we have 2 instances of the function,
+    # their "state" is linked to a global variable
+    incro1 # note that "incro1" was assigned as a function, therefore calling the function doesnt require another "()"
+    >>> 1
+    # we would expect that incro2 would also return 1 but their "state" is linked
+    incro2
+    >>> 2
+
+    # this is what makes factories unique from regular functions,
+    # their internal state unique to each instance
+    def incrementer():
+        counter = 0 # internal state set
+        def return_func():
+            nonlocal counter # allow access to one level higher variable; ie. "counter"
+            counter += 1 # change the internal state
+            return counter # this is whats ultimately returned when called by a "Closure"
+        # this is the tricky part...
+        # when incrementer is initially defined, it runs through the code inside the function
+        # sets initial "counter" state to 0
+        # setups up a function "return_func()" but does nothing with it
+        # then! the "Closure" variable is actually == the "return_func"
+        # this is why counter = 0 is never reset after initialized, because
+        # calling the "Closure" variable is actually calling "return_func"
+        return return_func
+
+    # lets see this in practice...
+    incro1 = incrementer() # incro1 is a "Closure" that sets counter = 0 and returns incro1=return_func
+    incro2 = incrementer() # lets make a second copy to demonstrate that "state" is unique
+
+    # note that in this case we have to put "()" since incro=return_func,
+    # and to call return_func we need: return_func()
+    incro1()
+    >>> 1
+    incro2()
+    >>> 1
+    incro2()
+    >>> 2
+    incro2()
+    >>> 3
+    incro1()
+    >>> 2 # indeed state is unique to each instance!
+
+    # Currying: special "Closure"
+    # now is the best time to show a builtin - library shortcut from "functools" called "partial"
+    # "partial" creates a "Closure" for you
+    from functools import partial
+
+    def multiply(x, n=1):
+        return x * n
+
+    times3 = partial(multiply, n=3) # times3 is a unique "Closure" created from a "Factory" of multiply
+    times5 = partial(multiply, n=5) # another unique "Closure" built from the same "Factory" but with different function
+
+    times3(2)
+    >>> 6
+    times5(2)
+    >>> 10
 
 Trick - Clean Function Piping
 -----------------------------
