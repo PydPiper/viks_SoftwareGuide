@@ -52,6 +52,7 @@ String Arguments and Formatting
 -------------------------------
 
 .. code-block:: python
+    :linenos:
 
     # f-strings (python3+)
     f"x is equal to {x}"
@@ -164,6 +165,7 @@ Trick - Hide print statements (closure)
 See :closures:`functions` under functional programming for more information about closures.
 
 .. code-block:: python
+    :linenos:
 
     import os, sys
 

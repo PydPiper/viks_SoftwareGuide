@@ -39,21 +39,38 @@ let's set a common ground for definitions:
 Tuples
 ------
 
+- Syntax
+
 .. code-block:: python
     :linenos:
 
-    # syntax
     a = (1,2,3)
-    # add to tuple
-    a += (4,)
-    a
-    >>> (1,2,3,4)
     # index an item
     a[0]
     >>> 1 # note first item of any container start at 0
-    # get a subset of a tuple
+
+- Add to a Tuple
+
+.. code-block:: python
+    :linenos:
+
+    a += (4,)
+    a
+    >>> (1,2,3,4)
+
+- Get a subset of a tuple
+
+.. code-block:: python
+    :linenos:
+
     a[2:]
     >>> (3,4)
+
+- Method of Tuple: "count" occurence of an item
+- Method of Tuple: "index" finds the index for a given value
+
+.. code-block:: python
+    :linenos:
 
     # there are 2 methods available on a tuple
     # count: count occurrence of a item within a tuple
