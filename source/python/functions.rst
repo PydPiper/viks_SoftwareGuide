@@ -76,6 +76,8 @@ All about variables
 Common pitfall - Global vs Local vs NonLocal
 --------------------------------------------
 
+- General Global variable
+
 .. code-block:: python
     :linenos:
 
@@ -98,6 +100,11 @@ Common pitfall - Global vs Local vs NonLocal
     func(y=10)
     >>> 10 15
 
+- Accessing a Global Variable
+
+.. code-block:: python
+    :linenos:
+
     # to access global variable defined outside of the function
     def func():
         global x
@@ -113,6 +120,11 @@ Common pitfall - Global vs Local vs NonLocal
     # note that "x" in the function is no longer a "local" variable, x is now globally redefined!
     x
     >>> 500
+
+- Accessing a Nonlocal Variable (nested functions or loops within a function)
+
+.. code-block:: python
+    :linenos:
 
     # alternatively we can access variables from nested functions via "nonlocal"
     def func():
@@ -215,6 +227,8 @@ Factory - A function that keeps its own internal state (see example below)
 Closure - A "Factory" assigned to a variable
 Currying - Similar to a "Closure" but input arguments changes the functionality of the Closure
 
+- Simple Function (NOT A FACTORY example to stage set)
+
 .. code-block:: python
     :linenos:
 
@@ -234,6 +248,11 @@ Currying - Similar to a "Closure" but input arguments changes the functionality 
     # we would expect that incro2 would also return 1 but their "state" is linked
     incro2
     >>> 2
+
+- Factory Function
+
+.. code-block:: python
+    :linenos:
 
     # this is what makes factories unique from regular functions,
     # their internal state unique to each instance
@@ -268,6 +287,11 @@ Currying - Similar to a "Closure" but input arguments changes the functionality 
     >>> 3
     incro1()
     >>> 2 # indeed state is unique to each instance!
+
+- Currying Function (special Closure)
+
+.. code-block:: python
+    :linenos:
 
     # Currying: special "Closure"
     # now is the best time to show a builtin - library shortcut from "functools" called "partial"

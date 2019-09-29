@@ -14,6 +14,26 @@ Syntax
     # benefit for double quotes: ability to use the apostrophe (')
     "it's a nice day"
 
+.. code-block:: python
+    :linenos:
+
+    # multi-line string
+    '''
+    This
+    is
+    on
+    multi-lines
+    '''
+    >>> '\nThis\nis\non\nmulti-lines\n'
+
+    # Careful! This is not the same!
+    '''This
+       is
+       on
+       multi-lines'''
+    >>> 'This\n   is\n   on\n   multi-lines'
+
+
 
 Common String Tools
 -------------------
@@ -162,7 +182,6 @@ Formatting the argument injections
 
 Trick - Hide print statements (closure)
 ---------------------------------------
-See :closures:`functions` under functional programming for more information about closures.
 
 .. code-block:: python
     :linenos:

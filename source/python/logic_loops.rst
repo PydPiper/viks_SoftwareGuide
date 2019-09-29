@@ -133,6 +133,8 @@ for loop
     # note how 2 was skipped
 
 
+.. _logic_loops_list_comprehensions:
+
 List Comprehensions (alt for loops)
 -----------------------------------
 
