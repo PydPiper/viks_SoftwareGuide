@@ -68,6 +68,7 @@ Common String Tools
 - To add a tab: ``"this\t"``
 - To check if a string contains all digits: ``"1234".isdigit()`` >>> True, Note however ``"-1234".isdigit()`` >>> False
   because the negative sign is not a digit.
+- To check what a string start with or ends with: ``"this".startswith("t")`` >>> True
 
 
 String Arguments and Formatting
