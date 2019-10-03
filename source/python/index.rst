@@ -12,6 +12,7 @@ Python Guide
     logic_loops
     user_inputs
     IO
+    context_manager
     virtualenv
     sphinx
     git

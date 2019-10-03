@@ -9,6 +9,7 @@ A Context Manager has an Enter and an Exit protocol that handles event. In terms
 always closed done once the code is done streaming it.
 
 .. code-block:: python
+    :linenos:
 
     with open("filename.txt", "r") as f:
         while True:
