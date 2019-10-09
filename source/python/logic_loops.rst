@@ -219,3 +219,14 @@ See full list of exception at `Link <https://docs.python.org/3/library/exception
     finally:
         # run code lastly before exiting try loop, no matter if an exception was or not
 
+Trick - Type check multiple variables at the same time
+------------------------------------------------------
+
+.. code-block:: python
+
+    # "all" is a check that all argument are True inside
+    # isinstance checks if an object is made of some parent object (ie, isinstance("this", str) == True)
+    # the rest is a list comprehension to cycle through multiple objects on the same line
+    if not all(isinstance(variable, (int, float) for variable in [a, b, c, d])):
+        raise TypeError("Incorrect variable type entry, a,b,c,d must be either int or float")
+
