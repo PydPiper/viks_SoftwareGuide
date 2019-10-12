@@ -1,6 +1,50 @@
 builtin - Class (Object Oriented Programming)
 =============================================
 
+General
+-------
+
+- Class object versus Class object instance
+
+.. code-block:: python
+
+    # to define a class
+    class Circle():
+        # to set initialization parameters (these are unique attributes to each instance of the Circle class)
+        def __init__(self, radius):
+            # self.radius is called a INSTANCE ATTRIBUTE
+            self.radius = radius
+        # to define a METHOD (unique name to classes, same concept as a function)
+        def area(self):
+            return 3.14 * self.radius ** 2
+
+    # common mistake #1: AttributeError: type object 'Circle' has no attribute 'radius'
+    Circle.radius
+    >>> AttributeError: type object 'Circle' has no attribute 'radius'
+    # this occurs because we did not initialize an instance of Circle, fix:
+    Circle(radius=10).radius
+    >>> 10
+    # we can also save an instance of Circle as a variable (how its commonly used)
+    circle1 = Circle(10)
+    circle2 = Circle(20)
+    circle1.radius
+    >>> 10
+    circle2.radius
+    >>> 20
+
+
+    # common mistake #2: TypeError: area() missing 1 required positional argument: 'self'
+    Circle.area()
+    >>> TypeError: area() missing 1 required positional argument: 'self'
+    # same as above, this occurs because we did not initialize an instance of Circle, fix:
+    Circle(radius=10).area()
+    >>> 314.0
+    # assigned to a variable:
+    circle1 = Circle(10)
+    circle1.area()
+    >>> 314.0
+
+
 
 Trick - Access a class's attribute by its string name
 -----------------------------------------------------
@@ -14,8 +58,8 @@ Trick - Access a class's attribute by its string name
     getattr(A,'attr1')
 
 
-Trick - Class method return a new initial definition of the same class
-----------------------------------------------------------------------
+Trick - Create multiple instances of a class based on initial input
+-------------------------------------------------------------------
 This is really useful when a class __init__ is setup to take a single value input (like an ID, but instead a
 range of IDs were given) and we would like to create multiple unique classes out of each ID separately.
 
