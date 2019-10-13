@@ -44,6 +44,67 @@ General
     circle1.area()
     >>> 314.0
 
+- Class Attribute vs. Instance Attribute
+
+.. code-block:: python
+    :linenos:
+
+    # class are great with their simple dot completion attributes,
+    # results can be very different than expected depending on the attribute type
+
+    class Circle():
+        # CLASS ATTRIBUTE: same for all instances of the class
+        PI = 3.14
+        classlist = [1,]
+
+        def __init__(self, radius):
+            # INSTANCE ATTRIBUTE: unique to each instance of the class
+            self.radius = radius
+
+    circle1 = Circle(5)
+    circle2 = Circle(10)
+
+    # note that circle1 and 2 both have a CLASS ATTRIBUTE .PI that is the same but their INSTANCE ATTRIBUTE is unique
+    circle1.PI
+    >>> 3.14
+    circle1.radius
+    >>> 5
+    circle2.PI
+    >>> 3.14
+    circle2.radius
+    >>> 10
+
+    # although you are able redefine CLASS ATTRIBUTES on runtime.. DONT! Kittens will die!
+    # CLASS ATTRIBUTES are meant to be the same for all instances of a class
+    # and changing them at runtime does not propagate to other instances of the class:
+    # (this is true for all immutable CLASS ATTRIBUTES)
+    id(circle1.PI)
+    >>> 72539584
+    id(circle2.PI)
+    >>> 72539584
+    # now note that changing it on runtime does not update the CLASS ATTRIBUTE,
+    # instead it overwrite it to be INSTANCE ATTRIBUTE
+    circle1.PI = 3
+    id(circle1.PI)
+    >>> 1865210064
+    # now note circle2 is still unchanged, the change did not propagate
+    circle2.PI
+    >>> 3.14
+
+    # now lets see what happens with a mutable CLASS ATTRIBUTE
+    id(circle1.classlist)
+    >>> 71716696
+    id(circle2.classlist)
+    >>> 71716696
+    # similar to PI, classlist shares the same ID between classes, but now updating one also updates all
+    # because the ID stays the same for mutable objects
+    circle1.classlist += [2]
+    circle1.classlist
+    >>> [1,2]
+    circle2.classlist
+    >>> [1,2] # circle2 instance was also updated!
+
+
 
 
 Trick - Access a class's attribute by its string name
