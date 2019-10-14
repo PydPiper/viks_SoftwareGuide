@@ -13,6 +13,9 @@ General
         # to set initialization parameters (these are unique attributes to each instance of the Circle class)
         def __init__(self, radius):
             # self.radius is called a INSTANCE ATTRIBUTE
+            # WHAT IS "SELF": think of self as the instance of the class; ex:
+            # at runtime: circle1 = Circle(5), the class instance "circle1" is self
+            # this is why we are able to call circle1.radius which is analogous to self.radius of that class instance
             self.radius = radius
         # to define a METHOD (unique name to classes, same concept as a function)
         def area(self):
@@ -105,6 +108,51 @@ General
     >>> [1,2] # circle2 instance was also updated!
 
 
+- Class Methods (method, staticmethod, classmethod)
+
+.. code-block:: python
+    :linenos:
+
+    # class methods are analogous to function definitions, except they are tied to a class
+    class Circle():
+        def __init__(self, radius):
+            self.radius = radius
+
+        # This is a simple METHOD: methods take at least 1 argument "self" and does something with it
+        def area(self):
+            return 3.14 * self.radius ** 2
+
+        # This is a STATICMETHOD: a static method does not depend on "self"...
+        # or more explicitly stating, any unique definition of the class instance)
+        @staticmethod
+        def color(color='black'):
+            return 'the color of the circle is: ' + color
+
+        # This is a CLASSMETHOD: a class method takes at least 1 argument "cls" and...
+        # it usually returns a new altered instance of the class
+        # What is really special about a class method is that the...
+        # user is able to call it without instancing the class (see example below)
+        @classmethod
+        def from_dia(cls, diameter):
+            # cls under the hood actually calls Circle.__new__() that creates a new instance of the class Circle
+            # with new __init__ definition that is: diameter/2
+            return cls(diameter / 2)
+
+        circle1 = Circle(radius=5)
+        # call a regular METHOD via
+        circle1.area()
+        >>> 78.5
+        # call a STATICMETHOD
+        circle1.color()
+        >>> 'the color of the circle is: black'
+
+        # define a Circle by diameter (note that the class is never instanced, ie: "Circle()")
+        circle2 = Circle.from_dia(diameter=10)
+        # circle2 is now a instanced via CLASSMETHOD, and all of the regular functionality is avaliable
+        circle2.radius
+        >>> 5.0
+        circle.area()
+        >>> 78.5
 
 
 Trick - Access a class's attribute by its string name
