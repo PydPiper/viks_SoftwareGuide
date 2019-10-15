@@ -155,6 +155,43 @@ General
         >>> 78.5
 
 
+- double underscore methods (dunder)
+
+.. code-block:: python
+    :linenos:
+
+    class Circle():
+        # INIT: initialize a class instance with parameters
+        def __init__(self, radius):
+            self.radius = radius
+
+        # REPR: string representation of a class (instead of the default "Circle object at 0x23423423"
+        def __repr__(self):
+            return "Circle Class"
+
+        # CALL: returns call to the class instance
+        def __call__(self, *args, **kwargs):
+            print(args)
+            args = args if args else ("",)
+            print(args)
+            return "this is a call on the class, " + len(args)*"{},".format(*args)
+
+    # INIT call/use
+    circle1 = Circle(radius=5)
+    # REPR call/use
+    circle1
+    >>> "Circle Class"
+    # REPR call/use
+    str(circle1)
+    >>> "Circle Class"
+    # CALL call/use
+    circle()
+    >>> "this is a call on the class, ,"
+    circle(1,2)
+    >>> "this is a call on the class, 1,2"
+
+
+
 Trick - Access a class's attribute by its string name
 -----------------------------------------------------
 
