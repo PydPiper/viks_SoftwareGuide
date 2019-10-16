@@ -190,6 +190,42 @@ General
     circle(1,2)
     >>> "this is a call on the class, 1,2"
 
+- Subclass to extend functionality of a class
+
+.. code-block:: python
+    :linenos:
+
+    # take Circle class for instance, it has a method to calculate area
+    # now lets say Circle is locked down as a class by another coder and we cannot change it
+    # we dont want to start from scratch and rebuild Circle, but we do want to add functionality
+    # we can do this with subclassing
+
+    # here is the original Circle Class
+    class Circle():
+        def __init__(self, radius):
+            self.radius = radius
+
+        # This is a simple METHOD: methods take at least 1 argument "self" and does something with it
+        def area(self):
+            return 3.14 * self.radius ** 2
+
+    # now lets create a custom Class that inherits functionality from Circle
+    class CustomCircle(Circle):
+        def halfarea(self):
+            # note that we depend on Circle having a method called area()
+            # but the method itself is not defined here in CustomCircle
+            # it is inherited
+            return self.area() / 2
+
+    # to call create it and use it:
+    circle1 = CustomCircle(radius=10)
+    # we still have access to methods from Circle
+    circle1.area()
+    >>> 314.0
+    # but we also have new custom functions from CustomCircle
+    circle1.halfarea()
+    >>> 157.0
+
 
 
 Trick - Access a class's attribute by its string name
