@@ -227,6 +227,44 @@ General
     >>> 157.0
 
 
+Trick - Print the docstring of a class/method
+---------------------------------------------
+
+.. code-block:: python
+    :linenos:
+
+    class Circle():
+        """
+        Class docs
+        """
+
+        def __init__(self):
+            """
+            Instance docs
+            """
+            pass
+
+        def func(self):
+            """
+            Method docs
+            """
+            pass
+
+    Circle.__doc__
+    >>> "Class docs"
+    Circle.__init__.__doc__
+    >>> "Instance docs"
+    Circle.func.__doc__
+    >>> "Method docs"
+
+
+Trick - Testing that a class has a method (compile time)
+--------------------------------------------------------
+
+.. code-block:: python
+
+    assert hasattr(Circle, "area"), "The class Circle doesnt have required method area"
+
 
 Trick - Access a class's attribute by its string name
 -----------------------------------------------------
