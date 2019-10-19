@@ -1,7 +1,7 @@
-package - Sphinx (code documentation)
+lib - Sphinx (code documentation)
 =====================================
 
-1) Create a virtualenv, see :doc:`virtualenv`
+1) Create a virtualenv, see :doc:`lib_virtualenv`
 2) Active virtualenv and add sphinx ``pip install sphinx``
 3) Change dir to your 00_project folder
 4) Run sphinx-quickstart (you will want to separate source and build for a cleaner structure)

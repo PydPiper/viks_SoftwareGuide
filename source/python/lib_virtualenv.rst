@@ -1,4 +1,4 @@
-package - virtualenv
+lib - virtualenv
 ====================
 
 1) pip install virtualenv (version 16.1.0 for win10 build compatibility)
@@ -7,7 +7,13 @@ package - virtualenv
 
     pip install virtualenv==16.1.0
 
-2) This will create you a folder with bear minimum python packages (this is nice if you would like to
+2) Create your virtualenv from terminal:
+
+.. code-block:: shell
+
+    python -m virtualenv foldername --no-site-packages
+
+This will create you a folder with bear minimum python packages (this is nice if you would like to
 pyinstaller package up your work that ONLY use the packages required for your project). The folder created
 has a bunch of folders.
 
@@ -26,4 +32,18 @@ has a bunch of folders.
 
     deactivate
 
-5) As a convention, place a 00_project folder within the virtualenv, and this is where you would git initialize
+5) As a convention, place a 00_project folder within the virtualenv, and this is where you would git initialize.
+To create a .gitignore (from terminal: ``touch .gitignore`` and you will most likely want the following in it:
+
+::
+
+    Include
+    Lib
+    Scripts
+    tcl
+
+    __pycache__
+    *.pyc
+
+    build
+    dist

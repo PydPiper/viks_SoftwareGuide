@@ -4,21 +4,28 @@ Python Guide
 .. toctree::
     :maxdepth: 3
 
-    class
-    containers
-    context_manager
-    copy
-    functions
-    git
-    IO
-    logic_loops
-    mutable
-    pip
-    pycharm
-    pytest
-    sphinx
-    strings
-    subprocess
-    user_inputs
-    virtualenv
+    builtin_class
+    builtin_containers
+    builtin_context_manager
+    builtin_copy
+    builtin_functions
+    builtin_IO
+    builtin_logic_loops
+    builtin_mutable
+    builtin_strings
+    builtin_user_inputs
+    lib_pyqt
+    lib_pytest
+    lib_sphinx
+    lib_subprocess
+    lib_virtualenv
+    tool_git
+    tool_pip
+    tool_pycharm
+
+
+
+
+
+
 

@@ -1,4 +1,4 @@
-package - Subprocess
+lib - Subprocess
 ====================
 
 To run another python script within another python script
