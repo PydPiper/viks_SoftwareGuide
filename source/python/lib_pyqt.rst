@@ -20,4 +20,6 @@ The tool (and all other pyqt .exe) will be placed in:
 
 .. code-block:: shell
 
-    pyuic5.exe -o outputfilename.py designerfilename.ui
+    # -x to make it executable (creates __name__ == "__main__")
+    # -o to specify output filename
+    pyuic5.exe -x -o outputfilename.py designerfilename.ui
