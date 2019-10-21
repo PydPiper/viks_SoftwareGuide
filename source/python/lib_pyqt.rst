@@ -82,6 +82,25 @@ Tables
                     # to get the actual value stored we have to call .text() on the current cell
                     self.table.item(r,c).text()
 
+Path File Browser
+-----------------
+TBD
+
+MessageBox Popup
+----------------
+TBD
+
+PyInstaller Packing TroubleShooting
+-----------------------------------
+TBD.
+
+Dealing with "ImportError: unable to find QtCore.dll on PATH"
+Run on pyinstaller 3.5 and PyQt5 5.12.3
+Create spec file via (pyi-makespec filename.py)
+`PyInstaller Link <https://pyinstaller.readthedocs.io/en/stable/man/pyi-makespec.html>`_
+Add to gui.spec datas=[('fullpath/site-packages/PyQt5/Qt/bin/*','PyQt5/Qt/bin')]
+then run pyinstaller gui.spec --onefile
+
 GUI Lockup - Multithreading
 ---------------------------
-TBD. response = Dialog.exce_() # execute a second window without locking up the first. Or multi-tread
+TBD. QWidgets.QApplication.processEvents() # execute a second window without locking up the first. Or multi-tread
