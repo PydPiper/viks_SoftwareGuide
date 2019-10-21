@@ -86,6 +86,16 @@ See :ref:`logic_loops_list_comprehensions` for list comprehensions.
     a[2:]
     >>> [4,]
 
+    # define multiple variables on same line
+    mylist = [1,2,3]
+    a, b, c = mylist
+    a
+    >>> 1
+    b
+    >>> 2
+    # also good for initializing variables
+    a, b, c = [""]*3 # will all be empty strings
+
 .. _list_copy:
 
 List - Copy
