@@ -347,3 +347,13 @@ function calls.
         except KeyError:
             raise UserWarning(f"Incorrect input value for condition={condition}")
 
+
+Trick - Define function via text
+--------------------------------
+
+.. code-block:: python
+
+    # use exec() to execute text and add it to the global variables
+    exec("def f(x): return x*2", globals())
+    f(5)
+    >>> 10

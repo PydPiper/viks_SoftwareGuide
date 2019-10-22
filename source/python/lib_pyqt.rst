@@ -71,6 +71,22 @@ Tables
 
 .. code-block:: python
 
+    # NOTE: this is another method to the example shown above under "Designer to Python code setup"
+
+    # set cell value
+    def mycellsetter(self, value):
+        # input value must be a string
+        row = 0
+        col = 0
+        self.table.setItem(row,col,QtWidgets.QTableWidgetItem(str(value)))
+
+    # to get cell value
+    def mycellgetter(self):
+        row = 0
+        col = 0
+        # return values will always be strings
+        return self.table.item(row, col).text()
+
     # to iterate through a tableWidget
     def tableiter(self):
         maxcol = self.table.model().columnCount()
@@ -84,11 +100,30 @@ Tables
 
 Path File Browser
 -----------------
-TBD
+
+.. code-block:: python
+
+    # NOTE: this is another method to the example shown above under "Designer to Python code setup"
+
+    def getpath(self):
+        path = QtWidgets.QFileDialog.getExistingDirectory(self, 'Select Directory')
+        return path
+
 
 MessageBox Popup
 ----------------
-TBD
+
+.. code-block:: python
+
+    # NOTE: this is another method to the example shown above under "Designer to Python code setup"
+
+    # the following is useful as error handling popup
+    try:
+        # some code
+    except Exception as e:
+        msgbox = QtWidgets.QErrorMessage(self)
+        msgbox.showMessage(str(e))
+
 
 PyInstaller Packing TroubleShooting
 -----------------------------------
