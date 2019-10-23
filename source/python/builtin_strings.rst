@@ -183,6 +183,16 @@ Formatting the argument injections
     >>> 'pos0=10, pos2=30, pos0=10'
 
 
+Trick - Replace multiple spaces with single space
+-------------------------------------------------
+
+.. code-block:: python
+
+    text = "this   is   spaced odd       but it's     okay"
+    " ".join(text.split())
+    >>> "this is spaced odd but it's okay"
+
+
 Trick - Hide print statements (closure)
 ---------------------------------------
 
