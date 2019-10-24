@@ -125,10 +125,21 @@ MessageBox Popup
         msgbox.showMessage(str(e))
 
 
+tabWidget Indexing
+------------------
+
+.. code-block:: python
+
+    def tabpiper(self):
+        if self.yourtabwidgetname.currentIndex() == 0:
+            print('you are on the first tab')
+        elif self.yourtabwidgetname.currentIndex() == 1:
+            print('you are on the second tab')
+
+
+
 PyInstaller Packing TroubleShooting
 -----------------------------------
-TBD.
-
 Dealing with "ImportError: unable to find QtCore.dll on PATH"
 Run on pyinstaller 3.5 and PyQt5 5.12.3
 Create spec file via (pyi-makespec filename.py)
