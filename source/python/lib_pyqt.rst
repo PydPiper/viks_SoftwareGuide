@@ -98,6 +98,49 @@ Tables
                     # to get the actual value stored we have to call .text() on the current cell
                     self.table.item(r,c).text()
 
+    # to copy from table
+    def copySelection(self):
+        # note this is tablename specific (table name = "table")
+        selection = self.table.selectedIndexes()
+        if selection:
+            rows = sorted(index.row()) for index in selection)
+            columns = sorted(index.column() for index in selection)
+            rowcount = rows[-1] - row[0] + 1
+            colcount = columns[-1] - columns[0] + 1
+            table = [[''] * colcount for _ in range(rowcount)]
+            for index in selection:
+                row = index.row() - rows[0]
+                column = index.coumn() - columns[0]
+                table[row][column] = index.data()
+            stream = io.StringIO()
+            csv.writer(stream, delimiter='\t').writerows(table)
+            QtWidgets.qApp.clipboard().setText(stream.getvalue())
+
+    # to paste to table
+    def pasteSelection(self):
+        # notethis is tablename specific (table name = "table")
+        selection = self.table.selectedIndexes()
+        model = self.table.model()
+
+        if selection:
+            buffer = QtWidgets.qApp.clipboard().text()
+            rows = sorted(index.row() for index in selection)
+            columns = sorted(index.column() for index in selection)
+            reader = csv.reader(io.StringIO(buffer), delimiter='\t')
+            if len(rows) == 1 and len(columns) == 1:
+                for i, line in enumerate(reader):
+                    for j, cell in enumerate(line):
+                        model.setData(model.index(row[0] + 1, columns[0] + j), cell)
+            else:
+                arr = [[cell for cell in row] for row in reader]
+                for index in selection:
+                    row = index.row() - rows[0]
+                    column = index.column() - columns[0]
+                    model.setData(model.index(index.row(), index.column()), arr[row][column])
+
+
+
+
 Path File Browser
 -----------------
 
