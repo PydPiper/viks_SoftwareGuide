@@ -14,6 +14,7 @@ Python Guide
     builtin_mutable
     builtin_strings
     builtin_user_inputs
+    lib_pyinstaller
     lib_pyqt
     lib_pytest
     lib_sphinx
