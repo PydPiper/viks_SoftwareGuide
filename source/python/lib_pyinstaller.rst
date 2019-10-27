@@ -18,11 +18,14 @@ Usage
 2) install necessary python packages for the project
 3) complete the project
 4) run pyinstaller
+
 4.1) pyinstaller does not need to be locally installed within your project for it package up your project,
 however it does help to keep a stable working version locked with your project. If your global python path is
 setup (you are able to type ``python`` in your terminal), then ``pyinstaller`` should also work if it is installed.
 Normally pyinstaller will be in the Scripts folder
+
 4.2) running pyinstaller: ``pyinstaller yourmodule.py --onefile``
+
 4.3) if everything goes well this will create 3 items:
 
 - build folder: contains compiled parts of your package and log files
@@ -46,4 +49,4 @@ it is usually an import error or version incompatability.
     ...
 
 - then compile your project via .spec file ``pyinstaller project.spec``. If you dont have a spec file,
-create one via ``pyi-makespec project --onefile``
+ create one via ``pyi-makespec project --onefile``

@@ -31,6 +31,6 @@ File > Settings > Tools > Terminal > Start directory
 
 - To configure a custom terminal emulator (like gitbash) inside pycharm terminal tab:
 
-File > Settings > Tools > Terminal > Shell path: C:\Program Files\Git\bin\sh.exe
+File > Settings > Tools > Terminal > Shell path: ``"C:\Program Files\Git\bin\sh.exe" --login``
 
 

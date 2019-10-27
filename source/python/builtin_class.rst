@@ -7,6 +7,7 @@ General
 - Class object versus Class object instance
 
 .. code-block:: python
+    :linenos:
 
     # to define a class
     class Circle():
@@ -77,7 +78,20 @@ General
     circle2.radius
     >>> 10
 
-    # although you are able redefine CLASS ATTRIBUTES on runtime.. DONT! Kittens will die!
+    # CLASS ATTRIBUTES are connected to all instances of that class, we can change all of them at once
+    # by modifying the master CLASS ATTRIBUTE (do not modify a CLASS ATTRIBUTE from an instance, see next example)
+    circle1.PI
+    >>> 3.14
+    circle2.PI
+    >>> 3.14
+    # now lets update both from the master CLASS
+    Circle.PI = 50
+    circle1.PI
+    >>> 50
+    circle2.PI
+    >>> 50
+
+    # although you are able redefine CLASS ATTRIBUTES on runtime.. DONT! Puppies will die!
     # CLASS ATTRIBUTES are meant to be the same for all instances of a class
     # and changing them at runtime does not propagate to other instances of the class:
     # (this is true for all immutable CLASS ATTRIBUTES)
