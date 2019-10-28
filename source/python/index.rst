@@ -4,6 +4,7 @@ Python Guide
 .. toctree::
     :maxdepth: 3
 
+    10min_python_starters_kit
     builtin_class
     builtin_containers
     builtin_context_manager
