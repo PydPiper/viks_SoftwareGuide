@@ -1,6 +1,6 @@
 10min - Python Starter Kit
 ==========================
-This starter kit was meant to readers that have never used python
+This starter kit was meant for readers that have never used python
 and have very little knowledge of programming concepts.
 
 Installation - Windows Guide Only
@@ -8,9 +8,9 @@ Installation - Windows Guide Only
 1) Download the latest version of python from `python.org <https://www.python.org/>`_
 
 2) During installation all the default selection will work, but pay attention to where python is being installed.
-   The newer versions on windows will place it under ``c/users/yourusername/AppData/Local/Programs``
+   The newer versions on windows will be place it under: ``c/users/yourusername/AppData/Local/Programs``
 
-3) Once python is installed folder browse to it, something like
+3) Once python is installed browse to folder it was installed in, something like
    ``c/users/yourusername/AppData/Local/Programs/Python38-32`` and inside you will see a ``python.exe``
 
 4) Add the python folder to your windows ``PATH`` so that you can pull up python from any terminal
@@ -28,40 +28,39 @@ Installation - Windows Guide Only
 
 5) Running python: pull up a terminal (start menu > cmd > enter) and type ``python``
 
-**Thinks you should know about**:
+**Things you should know about**:
 
-- Python is manually downloaded from python.org, there is no update button to get a newer version
+- Python is manually downloaded from python.org. There is no update button to get a newer version,
   you will have to go back to python.org and download a new version manually again.
+
 - When installing Python, you are also installing a python package installer (pip) that unlocks python's
   superpowers. Packages can be imported with a single line of a code and before you know it you are
   scraping the web, working on excel/text files or performing machine learning with only 10 lines of code.
-  Imagine building a car; you could spend a lifetime learning about combustion engines and never finish your
-  car, or you could buy a complete engine (import) a frame (import) interiors (import) and so on, then drive
-  your car in minutes and spend your efforts tweak it as you please instead.
+
 - Everything in python is about versions. Python has a version, under it your pip has a version, under that
   your packages will have versions.
 
 
 Run your first Script
 ---------------------
-You have python installed and it work. Now you can type away at a python session in a terminal but
-every time you wanted to replicate a task, you would have to retype out all of the commands. So instead we
-can write a script:
+You have python installed and it works. Now you can type away at a python session in a terminal but
+once you close the terminal, your code will also be gone. So instead we can write a script can you
+can call any number of times:
 
 1) create a script file (lets say on your desktop): Right Mouse Button > New > Text Document
 2) rename it ``myscript.py``
 3) open it with your text editor (notepad++ is a decent pick)
-4) type your code here, example:
+4) type out your python code and save, example:
 
 .. code-block:: python
 
     print("Hello World!")
 
-5) run your script by typing ``python myscript.py`` (your terminal has to be in the same folder)
-   Start Menu > type "cmd" > enter > then in the terminal ``cd Desktop``
+5) run your script by typing ``python myscript.py`` in your terminal(your terminal has to be in the same folder).
+   Start Menu > type "cmd" > enter > then in the terminal ``cd Desktop`` then try ``python myscript.py``
 
-Shotgun of starter python concepts
-----------------------------------
+Python Highlevel Concepts
+-------------------------
 
 .. note:: ">>>" is not part of any code, it is simply shown here to distinguish between code written
           and its output results. (ie. do not copy/write lines containing ">>>")
@@ -112,6 +111,17 @@ What can I do with strings
     >>> 'thiS iS a String'
 
 
+    # add two strings
+    a = 'this'
+    b = 'that'
+    c = a + b
+    c
+    >>> "thisthat'
+    # or use join, note items have to be in square brackets
+    d = ' '.join([a,b]) # join "a" and "b" with a " " space
+    >>> 'this that'
+
+
     # sub-strings (slicing)
     a = 'this is a string'
     a[0] # index to a character (python indexing start at 0)
@@ -150,14 +160,17 @@ What can I do with lists
     myarray[1][0] # what is the x-coordinate of point 2
     >>> 20
     myarray[1][1] # what is the y-coordinate of point 2
-
+    >>> 50
 
 How to write logic loops (if, for, while)
 +++++++++++++++++++++++++++++++++++++++++
 
 .. code-block:: python
 
-    # if statements, equal: "==", not equal: "!=", and: "and", or: "or"
+    # equal: "==", not equal: "!=", and: "and", or: "or"
+
+
+    # if statements
     if 1 == 1 and 1 == 2:
         print('1 is equal to 1 and also equal to 2')
     elif 1 != 1:
@@ -190,12 +203,12 @@ How to write functions
 .. code-block:: python
 
     # define function with 2 inputs
-    def func1(input1, input2):
+    def myfunc(input1, input2):
         result = intput1 + input2 + 10
         return result
 
     # call a function with inputs 1,2
-    func1(1,2)
+    func(1,2)
     >>> 13
 
 How do I read/write files
