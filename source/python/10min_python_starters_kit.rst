@@ -95,23 +95,29 @@ What can I do with integers/floats (math)
 What can I do with strings
 ++++++++++++++++++++++++++
 
+- split up text
+
 .. code-block:: python
 
-    # split up text
     a = 'this is a string'
     b = a.split(" ") # split text base on " " single spaces
     b
     >>> ['this', 'is', 'a', 'string']
 
+- replace characters
 
-    # replace characters
+.. code-block:: python
+
     a = 'this is a string'
     b = a.replace('s','S')
     b
     >>> 'thiS iS a String'
 
 
-    # add two strings
+- add two strings
+
+.. code-block:: python
+
     a = 'this'
     b = 'that'
     c = a + b
@@ -121,8 +127,10 @@ What can I do with strings
     d = ' '.join([a,b]) # join "a" and "b" with a " " space
     >>> 'this that'
 
+- sub-strings (slicing)
 
-    # sub-strings (slicing)
+.. code-block:: python
+
     a = 'this is a string'
     a[0] # index to a character (python indexing start at 0)
     >>> 't'
@@ -133,23 +141,30 @@ What can I do with strings
 What can I do with lists
 ++++++++++++++++++++++++
 
+- indexing
+
 .. code-block:: python
 
-    # indexing
     a = [10,20,30]
     a[0] # python indexing starts at 0
     >>> 10
     a[0:2] # from index 0=10, to right before index 2=30 so that's 20
     >>> [10,20]
 
-    # add to list
+- add to a list
+
+.. code-block:: python
+
     a = [] # empty list
     a.append(10) # append one at a time
     a += [20,30] # add another list to it
     a
     >>> [10,20,30]
 
-    # 2D array (really just a nested list)
+- 2D array (really just a nested list)
+
+.. code-block:: python
+
     x = [10,20,30] # 3 x-coordinates
     y = [40,50,60] # 3 y-coordinates
     myarray = list(zip(x,y))
@@ -164,13 +179,12 @@ What can I do with lists
 
 How to write logic loops (if, for, while)
 +++++++++++++++++++++++++++++++++++++++++
+equal: ``==``, not equal: ``!=``, and: ``and``, or: ``or``
+
+- if statements
 
 .. code-block:: python
 
-    # equal: "==", not equal: "!=", and: "and", or: "or"
-
-
-    # if statements
     if 1 == 1 and 1 == 2:
         print('1 is equal to 1 and also equal to 2')
     elif 1 != 1:
@@ -178,8 +192,10 @@ How to write logic loops (if, for, while)
     else:
         print('none of the conditions were true')
 
+- for loop
 
-    # for loop
+.. code-block:: python
+
     mylist = [10,20,30]
     for item in mylist:
         print(item)
@@ -187,8 +203,10 @@ How to write logic loops (if, for, while)
     >>> 20
     >>> 30
 
+- while loop
 
-    # while loop
+.. code-block:: python
+
     i = 0
     while i < 3:
         print(i)
@@ -214,6 +232,8 @@ How to write functions
 How do I read/write files
 +++++++++++++++++++++++++
 
+- read a file
+
 .. code-block:: python
 
     # container for lines of text out of our file
@@ -231,6 +251,9 @@ How do I read/write files
             if not line:
                 break
 
+- write a file
+
+.. code-block:: python
 
     # writing is very similar, except we "w" for write
     with open('test2.txt', 'w') as f:

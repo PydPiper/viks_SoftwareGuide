@@ -6,8 +6,8 @@ that work best for different objectives.
 
 Tuples
 ------
-Tuples are immutable (once a value is added, its ID cannot be changed). These are
-great for ensuring that values stay consistent through your code. Note that there is
+Tuples are immutable (once a value is added, its ID cannot be changed), see :doc:`builtin_mutable`.
+These are great for ensuring that values stay consistent throughout your code. Note that there is
 a subtlety here though; a tuple ``test=(1,[2,3])`` cannot change its IDs, however there
 is a list within the tuple that can change its internal values (therefore the tuple is not,
 truely immutable when it contains mutable objects).
@@ -15,17 +15,17 @@ truely immutable when it contains mutable objects).
 - Syntax
 
 .. code-block:: python
-    :linenos:
 
     a = (1,2,3)
     # index an item
     a[0]
-    >>> 1 # note first item of any container start at 0
+    >>> 1 # note first item of any container in python starts at 0
+    a[-1] # negative indexing is from the end
+    >>> 3
 
 - Add to a Tuple
 
 .. code-block:: python
-    :linenos:
 
     a += (4,)
     a
@@ -34,16 +34,14 @@ truely immutable when it contains mutable objects).
 - Get a subset of a tuple
 
 .. code-block:: python
-    :linenos:
 
     a[2:]
     >>> (3,4)
 
-- Method of Tuple: "count" occurence of an item
+- Method of Tuple: "count" occurrence of an item
 - Method of Tuple: "index" finds the index for a given value
 
 .. code-block:: python
-    :linenos:
 
     # there are 2 methods available on a tuple
     # count: count occurrence of a item within a tuple
@@ -55,17 +53,30 @@ truely immutable when it contains mutable objects).
 
 Lists
 -----
-List are extremely useful because you can change them on the fly (mutable object). However,
-there is a fine line between when a List should be used over Dictionaries. You can just about do
-everything with a Dictionary that you can do on a List, and when Lists start to look double, triple +
-nested - a Dictionary should be looked at for code readability/use.
+Lists are extremely useful because you can change them on the fly (mutable object, see more on
+:doc:`builtin_mutable`). However, there is a fine line between when a List should be used over
+Dictionaries. You can just about do everything with a Dictionary that you can do with a List, and
+when Lists start to look double, triple+ nested - a Dictionary should be looked at for code
+readability/use.
 
-See :ref:`logic_loops_list_comprehensions` for list comprehensions.
+See :ref:`logic_loops_list_comprehensions` for list comprehensions, a 1-liner code that replaces a simple
+for loop with an optional if statement.
+
+- Syntax
 
 .. code-block:: python
-    :linenos:
 
-    # syntax
+    a = [1,2,3]
+    # index on item
+    a[0] # note first item of any container in python starts at 0
+    >>> 1
+    a[-1] # negative indexing is from the end
+    >>> 3
+
+- add/remove to a list
+
+.. code-block:: python
+
     a = [1,2,3]
     # add to list
     a += [4,]
@@ -82,9 +93,28 @@ See :ref:`logic_loops_list_comprehensions` for list comprehensions.
     >>> 5
     a
     >>> [1,2,4]
+
+- create a subset of a list (or reverse a list)
+
+.. code-block:: python
+
+    a = [1,2,3,4,5]
     # get a subset of a list
-    a[2:]
-    >>> [4,]
+    a[2:]   # this reads, [from starting index item included, to end index item NOT included]
+    # by not specifying the end index, we get from index 2 all the way to the end of the list
+    >>> [3,4,5]
+
+    # negative indexing
+    a[:-2]  # give me everything from start to 2 indexes before the end
+    >>> [1,2,3]
+
+    # reverse order
+    a[::-1]
+    >>> [5,4,3,2,1]
+
+- define multiple variables on 1 line
+
+.. code-block:: python
 
     # define multiple variables on same line
     mylist = [1,2,3]
@@ -93,6 +123,7 @@ See :ref:`logic_loops_list_comprehensions` for list comprehensions.
     >>> 1
     b
     >>> 2
+
     # also good for initializing variables
     a, b, c = [""]*3 # will all be empty strings
 
@@ -100,10 +131,9 @@ See :ref:`logic_loops_list_comprehensions` for list comprehensions.
 
 List - Copy
 ^^^^^^^^^^^
-See also :doc:`copy` for more information.
+See also :doc:`builtin_copy` for more information.
 
 .. code-block:: python
-    :linenos:
 
     # true copy -> same ID, changing the index of one, changes the other
     a = [1,2,3]
@@ -133,7 +163,6 @@ See also :doc:`copy` for more information.
     >>> [[1,2,100],3,4]
 
 .. code-block:: python
-    :linenos:
 
     # deep copy -> new list ID, and new content IDs
     import copy as cp
@@ -150,7 +179,6 @@ List Trick - Split a list into equal bits
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
 .. code-block:: python
-    :linenos:
 
     a = [1,2,3,4,5,6,7,8,9]
     list(zip(*[iter(a)]*3))
@@ -176,7 +204,6 @@ otherwise require more work on a List.
 - Syntax: create, add, remove
 
 .. code-block:: python
-    :linenos:
 
     # sets are great to use over lists when the user does not want to keep duplicates
     a = {1,2,10}
@@ -197,7 +224,6 @@ otherwise require more work on a List.
 - find the overlaps between 2 sets
 
 .. code-block:: python
-    :linenos:
 
     a = {1,2,4}
     b = {2,3,4}
@@ -207,7 +233,6 @@ otherwise require more work on a List.
 - find the difference between 2 sets
 
 .. code-block:: python
-    :linenos:
 
     #
     a = {1,2,4}
@@ -218,7 +243,6 @@ otherwise require more work on a List.
 - get the combined - non duplicate of 2 sets
 
 .. code-block:: python
-    :linenos:
 
     a = {1,2,4}
     b = {2,3,4}
@@ -238,7 +262,6 @@ use case - classes should be looked at for containing data in its name-space att
 See :ref:`logic_loops_list_comprehensions` for dictionary comprehensions.
 
 .. code-block:: python
-    :linenos:
 
     # syntax
     a = {"key1": "value1", "key2": "value2"}
@@ -267,7 +290,6 @@ Dict Trick - Handling nested dicts
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
 .. code-block:: python
-    :linenos:
 
     # pulling out a sub-dict from sub-dict values
     database = {1:{'name': 'bob', 'color': 'blue'},
@@ -284,7 +306,6 @@ via mutable variables). The example below will not have any issues since strings
 immutable.
 
 .. code-block:: python
-    :linenos:
 
     x = {'a': 1, 'b': 2}
     y = {'b': 3, 'c': 4}

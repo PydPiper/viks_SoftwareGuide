@@ -4,31 +4,38 @@ builtin - Class (Object Oriented Programming)
 Class object versus Class object instance
 -----------------------------------------
 
+- define a class
+
 .. code-block:: python
 
-    # to define a class
     class Circle():
-        # to set initialization parameters (these are unique attributes to each instance of the Circle class)
+        # to set initialization parameters
+        #  (these are unique attributes to each instance of the Circle class)
         def __init__(self, radius):
             # self.radius is called a INSTANCE ATTRIBUTE
             self.radius = radius
             # WHAT IS "SELF": think of self as the instance of the class; ex:
             #   at runtime: circle1 = Circle(5), the class instance "circle1" is self
-            #   this is why we are able to call circle1.radius which is analogous to self.radius of that class instance
+            #   this is why we are able to call circle1.radius which is
+            #   analogous to self.radius of that class instance
 
 
-    # common mistake #1: AttributeError: type object 'Circle' has no attribute 'radius'
+- # common mistake #1: AttributeError: type object 'Circle' has no attribute 'radius'
+
+.. code-block:: python
+
     Circle.radius
     >>> AttributeError: type object 'Circle' has no attribute 'radius'
     # this occurs because we did not initialize an instance of Circle
-
 
     # fix:
     Circle(radius=10).radius
     >>> 10
 
+- we can also save an INSTANCE of Circle as a variable (how its commonly used)
 
-    # we can also save an instance of Circle as a variable (how its commonly used)
+.. code-block:: python
+
     circle1 = Circle(10)
     circle2 = Circle(20)
     circle1.radius
@@ -40,6 +47,8 @@ Class object versus Class object instance
 Class Method (same as a function)
 ---------------------------------
 
+- define a class with a METHOD
+
 .. code-block:: python
 
     class Circle():
@@ -50,25 +59,30 @@ Class Method (same as a function)
         def area(self):
             return 3.14 * self.radius ** 2
 
+- common mistake #2: TypeError: area() missing 1 required positional argument: 'self'
 
-    # common mistake #2: TypeError: area() missing 1 required positional argument: 'self'
+.. code-block:: python
+
     Circle.area()
     >>> TypeError: area() missing 1 required positional argument: 'self'
     # same as above, this occurs because we did not initialize an instance of Circle
-
 
     # fix:
     Circle(radius=10).area()
     >>> 314.0
 
+- assigned to a variable
 
-    # assigned to a variable:
+.. code-block:: python
+
     circle1 = Circle(10)
     circle1.area()
     >>> 314.0
 
 Class Attribute vs. Instance Attribute
 --------------------------------------
+
+- define a class with CLASS and INSTANCE ATTRIBUTES
 
 .. code-block:: python
 
@@ -84,11 +98,13 @@ Class Attribute vs. Instance Attribute
             # INSTANCE ATTRIBUTE: unique to each instance of the class
             self.radius = radius
 
+- define 2 instances of the parent class Circle
+
+.. code-block:: python
 
     # lets create 2 instances of the class Circle
     circle1 = Circle(radius=5)
     circle2 = Circle(radius=10)
-
 
     # note that circle1 and 2 both have a CLASS ATTRIBUTE .PI that is the same
     circle1.PI
@@ -101,6 +117,9 @@ Class Attribute vs. Instance Attribute
     circle2.radius
     >>> 10
 
+- Updating CLASS ATTRIBUTES
+
+.. code-block:: python
 
     # CLASS ATTRIBUTES are connected to all instances of that class,
     #   we can change all of them at once by modifying the master CLASS ATTRIBUTE
@@ -115,6 +134,9 @@ Class Attribute vs. Instance Attribute
     circle2.PI
     >>> 50
 
+- Updating CLASS ATTRIBUTES the wrong way!
+
+.. code-block:: python
 
     # IMPORTANT: python lets you do whatever you like, but with such power comes consequences
     #   ex: the ability to overwrite a CLASS ATTRIBUTE of a class instance like circle1
@@ -123,13 +145,14 @@ Class Attribute vs. Instance Attribute
     >>> 72539584
     id(circle2.PI)
     >>> 72539584
-    #   now when we overwrite .PI we are actually changing the .PI attribute from CLASS to INSTANCE ATTRIBUTE
+    # now when we overwrite .PI we are actually changing the .PI attribute from CLASS to INSTANCE ATTRIBUTE
     circle1.PI = 3
     id(circle1.PI)
     >>> 1865210064
-    #   also note that now instances DO NOT share the same .PI CLASS ATTRIBUTE any more
+    # also note that now instances DO NOT share the same .PI CLASS ATTRIBUTE any more
     circle2.PI
     >>> 3.14
+
 
     # now lets see what happens with a mutable CLASS ATTRIBUTE
     id(circle1.classlist)
@@ -147,6 +170,8 @@ Class Attribute vs. Instance Attribute
 
 Class Methods (method, staticmethod, classmethod)
 -------------------------------------------------
+
+- define a class with a METHOD, STATICMETHOD, and CLASSMETHOD
 
 .. code-block:: python
 
@@ -171,31 +196,44 @@ Class Methods (method, staticmethod, classmethod)
         #   user is able to call it without instancing the class (see example below)
         @classmethod
         def from_dia(cls, diameter):
-            # cls under the hood actually calls Circle.__new__() that creates a new instance of the class Circle
+            # cls under the hood calls Circle.__new__() that creates a new instance of the class Circle
             # with new __init__ definition that is: diameter/2
             return cls(diameter / 2)
 
+- Call/use a METHOD
+
+.. code-block:: python
 
         circle1 = Circle(radius=5)
         # call a regular METHOD via
         circle1.area()
         >>> 78.5
+
+- Call/use a STATICMETHOD
+
+.. code-block:: python
+
+        circle1 = Circle(radius=5)
         # call a STATICMETHOD
         circle1.color()
         >>> 'the color of the circle is: black'
 
+- Call/use a CLASSMETHOD. Define a Circle by diameter (note that the class is never instanced, ie: "Circle()")
+  circle2 is now instanced via CLASSMETHOD, and all of the regular functionality is available
 
-        # define a Circle by diameter (note that the class is never instanced, ie: "Circle()")
-        #   circle2 is now instanced via CLASSMETHOD, and all of the regular functionality is available
+.. code-block:: python
+
         circle2 = Circle.from_dia(diameter=10)
         circle2.radius
         >>> 5.0
-        circle.area()
+        circle2.area()
         >>> 78.5
 
 
 Double underscore methods (dunder)
 ----------------------------------
+
+- define a class with ``__init__``, ``__repr__``, ``__call__``
 
 .. code-block:: python
 
@@ -215,10 +253,16 @@ Double underscore methods (dunder)
             print(args)
             return "this is a call on the class, " + len(args)*"{},".format(*args)
 
+- call/use ``__init__`` (class instance initialization)
+
+.. code-block:: python
 
     # INIT call/use
     circle1 = Circle(radius=5)
 
+- call/use ``__repr__`` (class text representation)
+
+.. code-block:: python
 
     # REPR call/use
     circle1
@@ -227,6 +271,9 @@ Double underscore methods (dunder)
     str(circle1)
     >>> "Circle Class"
 
+- call/use ``__call__`` (call return of the class)
+
+.. code-block:: python
 
     # CALL call/use
     circle()
@@ -241,6 +288,8 @@ Take Circle class for instance, it has a method to calculate area
 now lets say Circle is locked down as a class by another coder and we cannot change it
 we dont want to start from scratch and rebuild Circle, but we do want to add functionality
 we can do this with subclassing
+
+- define a parent class and a subclass (a subclass inherits functionality of a parent class)
 
 .. code-block:: python
 
@@ -261,6 +310,9 @@ we can do this with subclassing
             #   it is INHERITED
             return self.area() / 2
 
+- using a subclass
+
+.. code-block:: python
 
     # lets create an instance of our custom class
     circle1 = CustomCircle(radius=10)
