@@ -8,7 +8,7 @@ Installation - Windows Guide Only
 1) Download the latest version of python from `python.org <https://www.python.org/>`_
 
 2) During installation all the default selection will work, but pay attention to where python is being installed.
-   The newer versions on windows will be place it under: ``c/users/yourusername/AppData/Local/Programs``
+   The newer versions on windows will be placed under: ``c/users/yourusername/AppData/Local/Programs``
 
 3) Once python is installed browse to folder it was installed in, something like
    ``c/users/yourusername/AppData/Local/Programs/Python38-32`` and inside you will see a ``python.exe``

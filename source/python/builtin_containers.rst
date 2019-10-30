@@ -133,9 +133,10 @@ List - Copy
 ^^^^^^^^^^^
 See also :doc:`builtin_copy` for more information.
 
+- true copy -> same ID, changing the index of one, changes the other
+
 .. code-block:: python
 
-    # true copy -> same ID, changing the index of one, changes the other
     a = [1,2,3]
     b = a
     id(a) == id(b)
@@ -146,10 +147,10 @@ See also :doc:`builtin_copy` for more information.
     a
     >>> [1,2,3,100]
 
-.. code-block:: python
-    :linenos:
+- shallow copy -> new list ID, however the values are the same object ID
 
-    # shallow copy -> new list ID, however the values are the same object ID
+.. code-block:: python
+
     nested = [1,2]
     a = [nested,3,4]
     b = a[:] # this
@@ -162,9 +163,10 @@ See also :doc:`builtin_copy` for more information.
     a # now note, that "a" also changed - this is called a shallow copy
     >>> [[1,2,100],3,4]
 
+- deep copy -> new list ID, and new content IDs
+
 .. code-block:: python
 
-    # deep copy -> new list ID, and new content IDs
     import copy as cp
     nested = [1,2]
     a = [nested,3,4]
@@ -182,7 +184,7 @@ List Trick - Split a list into equal bits
 
     a = [1,2,3,4,5,6,7,8,9]
     list(zip(*[iter(a)]*3))
-    # make a list of ( create a single tuple from ( 3 iterators of a ) )
+    # this translates to: make a list of ( create a single tuple from ( 3 iterators of "a" ) )
     >>> [(1, 2, 3), (4, 5, 6), (7, 8, 9)]
 
     # iter(a)*3 -> 3 iterators are created with the same ID
@@ -255,7 +257,7 @@ Dictionaries
 Dictionaries are great for name-space like structured data (key/value pairs).
 
 Easy to read and use,
-however it can be trick to use while writing large pieces of code, since available keys are not auto-completed
+however it can be tricky to use while writing large pieces of code, since available keys are not auto-completed
 therefore the programmer has to remember what keys are available for use. For large-code or more-program-friendly
 use case - classes should be looked at for containing data in its name-space attributes that is auto-completed.
 
