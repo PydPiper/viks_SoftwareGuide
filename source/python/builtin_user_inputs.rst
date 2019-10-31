@@ -5,13 +5,16 @@ Runtime Inputs
 --------------
 
 .. code-block:: python
-    :linenos:
 
-    # python3: runtime input (stops your code and waits for user input)
+    # python3: runtime input (stops your code and waits for a user input)
     store = input("Text asking for input: ")
 
+- python hack for "switch" statement
+
+.. code-block:: python
+
     # python doesnt have a "switch" keyword function builtin, but you are given the power to forge one!
-    # lets say you have multiple options on input
+    #   lets say you have multiple options on input
     print("Options:\n"
           "1) Main Menu\n"
           "2) Names\n"
@@ -35,10 +38,9 @@ Commandline Inputs
 ------------------
 
 .. code-block:: python
-    :linenos:
 
     # ask for user inputs when calling the script
-    # note that sys.argv[0] is the name of the script (in this example "script.py")
+    #   note that sys.argv[0] is the name of the script (in this example "script.py")
 
     # access argument via sys
     import sys

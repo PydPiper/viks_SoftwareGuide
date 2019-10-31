@@ -5,7 +5,6 @@ Syntax
 ------
 
 .. code-block:: python
-    :linenos:
 
     # strings can be represented in 2 different ways:
     "string with double quotes"
@@ -15,7 +14,6 @@ Syntax
     "it's a nice day"
 
 .. code-block:: python
-    :linenos:
 
     # multi-line string
     '''
@@ -75,7 +73,6 @@ String Arguments and Formatting
 -------------------------------
 
 .. code-block:: python
-    :linenos:
 
     # f-strings (python3+)
     f"x is equal to {x}"
@@ -183,8 +180,8 @@ Formatting the argument injections
     >>> 'pos0=10, pos2=30, pos0=10'
 
 
-Trick - Replace multiple spaces with single space
--------------------------------------------------
+Trick - Replace multiple spaces with a single space
+---------------------------------------------------
 
 .. code-block:: python
 
@@ -197,7 +194,6 @@ Trick - Hide print statements (closure)
 ---------------------------------------
 
 .. code-block:: python
-    :linenos:
 
     import os, sys
 

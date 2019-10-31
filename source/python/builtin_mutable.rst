@@ -5,7 +5,6 @@ builtin - Mutable/Immutable
     - list, set, dict
 
 .. code-block:: python
-    :linenos:
 
     a = [1,2,3]
     id(a)
@@ -19,7 +18,6 @@ builtin - Mutable/Immutable
     - bool, int, float, str, tuple, frozenset
 
 .. code-block:: python
-    :linenos:
 
     # same ID every time you call id on a bool, int, float, str
     id(123)

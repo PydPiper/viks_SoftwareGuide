@@ -12,6 +12,6 @@ There are 3 different ways to copy objects in python:
 
 - **Deep Copy**: creates **new** IDs for each object within (very slow!). There is no link between old and new copy
 
-For more description on mutable/immutable see :doc:`mutable`
+For more description on mutable/immutable see :doc:`builtin_mutable`
 
 For examples on copy see :ref:`list_copy`

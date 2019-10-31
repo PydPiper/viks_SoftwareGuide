@@ -41,7 +41,7 @@ All about variables
 
     - see line 7 from syntax example
     - arg1 is mandatory because it has no predefined value
-    - arg2 is optional because it has a predefined value of "0", therefore when foo can be called
+    - arg2 is optional because it has a predefined value of "0", therefore foo can be called by
       ``foo(1)`` or ``foo(1,"0")`` both returning the same value
 
 - positional vs. keyword arguments
@@ -49,7 +49,6 @@ All about variables
     - data must be entered in a positional order, unless it's fed with keyword arguments (see example below)
 
 .. code-block:: python
-    :linenos:
 
     # from the syntax example above with foo():
 
@@ -79,7 +78,6 @@ Common pitfall - Global vs Local vs NonLocal
 - General Global variable
 
 .. code-block:: python
-    :linenos:
 
     # global variable
     x = 5
@@ -103,11 +101,10 @@ Common pitfall - Global vs Local vs NonLocal
 - Accessing a Global Variable
 
 .. code-block:: python
-    :linenos:
 
-    # to access global variable defined outside of the function
+    # to access a global variable defined outside of the function
     def func():
-        global x
+        global x    # make it accessible within the function
         print(x)
         x = 500
 
@@ -124,7 +121,6 @@ Common pitfall - Global vs Local vs NonLocal
 - Accessing a Nonlocal Variable (nested functions or loops within a function)
 
 .. code-block:: python
-    :linenos:
 
     # alternatively we can access variables from nested functions via "nonlocal"
     def func():
@@ -141,7 +137,6 @@ Call function by its string name
 - Call a function by string when it is imported with ``getattr()``
 
 .. code-block:: python
-    :linenos:
 
     import file1
 
@@ -152,7 +147,6 @@ Call function by its string name
 - Call a function by string in the same file with ``globals()`` ``locals()``
 
 .. code-block:: python
-    :linenos:
 
     # suppose we have a simple add function:
     def func(a,b):
@@ -174,14 +168,13 @@ Call function by its string name
         print("from global: ", globals()["func"](1,2))
 
     nest()
-    >>> from local: -1
-    >>> from global: 3
+    >>> 'from local: -1'
+    >>> 'from global: 3'
 
 Function dundur
 ---------------
 
 .. code-block:: python
-    :linenos:
 
     # string name of a function
     foo.__name__
@@ -196,10 +189,9 @@ functional programming: map, filter, and reduce
 -----------------------------------------------
 
 .. code-block:: python
-    :linenos:
 
     # map works-on multiple iterables at the same time
-    # take the following 2 lists and a simple add function for instance
+    #   take the following 2 lists and a simple add function for instance
     a = [1,2,3]
     b = [4,5,6]
     def add(x,y):
@@ -230,21 +222,23 @@ Currying - Similar to a "Closure" but input arguments changes the functionality 
 - Simple Function (NOT A FACTORY example to stage set)
 
 .. code-block:: python
-    :linenos:
 
     # the following function is not a "factory" because its state is not internal
-    # meaning, that each instance of a function will carry the same state, see demo below:
+    #   meaning, that each instance of a function will carry the same state, see demo below:
     counter = 0 # some global initial state
     def incrementer():
         global counter # allow access to global variable "counter" within the function
         counter += 1 # increment the "state", but note that counter is linked to a global state
         return counter
+
     incro1 = incrementer() # if incrementer was a "factory", incro1 would be called a "Closure"
     incro2 = incrementer()
+
     # it doesnt matter that we have 2 instances of the function,
-    # their "state" is linked to a global variable
-    incro1 # note that "incro1" was assigned as a function, therefore calling the function doesnt require another "()"
+    #   their "state" is linked to a global variable
+    incro1 # incro1 was assigned as a function, therefore calling the function doesnt require another "()"
     >>> 1
+
     # we would expect that incro2 would also return 1 but their "state" is linked
     incro2
     >>> 2
@@ -252,10 +246,9 @@ Currying - Similar to a "Closure" but input arguments changes the functionality 
 - Factory Function
 
 .. code-block:: python
-    :linenos:
 
     # this is what makes factories unique from regular functions,
-    # their internal state unique to each instance
+    #   their internal state unique to each instance
     def incrementer():
         counter = 0 # internal state set
         def return_func():
@@ -276,7 +269,7 @@ Currying - Similar to a "Closure" but input arguments changes the functionality 
     incro2 = incrementer() # lets make a second copy to demonstrate that "state" is unique
 
     # note that in this case we have to put "()" since incro=return_func,
-    # and to call return_func we need: return_func()
+    #   and to call return_func we need: return_func()
     incro1()
     >>> 1
     incro2()
@@ -291,18 +284,18 @@ Currying - Similar to a "Closure" but input arguments changes the functionality 
 - Currying Function (special Closure)
 
 .. code-block:: python
-    :linenos:
 
-    # Currying: special "Closure"
     # now is the best time to show a builtin - library shortcut from "functools" called "partial"
-    # "partial" creates a "Closure" for you
+    #   "partial" creates a "Closure" for you
     from functools import partial
 
     def multiply(x, n=1):
         return x * n
 
-    times3 = partial(multiply, n=3) # times3 is a unique "Closure" created from a "Factory" of multiply
-    times5 = partial(multiply, n=5) # another unique "Closure" built from the same "Factory" but with different function
+    # times3 is a unique "Closure" created from a "Factory" of multiply
+    times3 = partial(multiply, n=3)
+    # another unique "Closure" built from the same "Factory" but with different function
+    times5 = partial(multiply, n=5)
 
     times3(2)
     >>> 6
@@ -315,7 +308,6 @@ Ever need to rip through a bunch of "if" statements to call the function you wan
 function calls.
 
 .. code-block:: python
-    :linenos:
 
     def func_one(a,b):
         return a+b

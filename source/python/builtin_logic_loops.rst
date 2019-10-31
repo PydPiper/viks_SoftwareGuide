@@ -5,7 +5,7 @@ builtin - Logic Loops
   this section more than any other because it is far too easy to nest
   logic loops that are confusing to read after numerous indents. As a
   suggestion try to limit nested loops to 3-4; not only will it help
-  downstream users pickup your code but the code will also be easier to
+  downstream users pickup your code easier but the code will also be easier to
   test. Logic that needs more than 3-4 nested loops should be broken up
   into separate functions.
 
@@ -22,7 +22,6 @@ General "and" "or" "not" "any" "all"
 ------------------------------------
 
 .. code-block:: python
-    :linenos:
 
     2 == 5 or 10 == 10
     True
@@ -52,7 +51,6 @@ if elif else
 ------------
 
 .. code-block:: python
-    :linenos:
 
     x = 5
     if x == 5:
@@ -72,7 +70,6 @@ for loop
 --------
 
 .. code-block:: python
-    :linenos:
 
     # iterate through strings by char
     for char in "this":
@@ -139,38 +136,58 @@ List Comprehensions (alt for loops)
 -----------------------------------
 
 .. code-block:: python
-    :linenos:
 
     # a simple for loop
     vals = []
     for value in colletion:
         if condition:
             vals.append(expression)
+
     # can be written in 1 line with list comprehension
     vals = [expression for value in collection if condition]
 
-    # example:
+- example
+
+.. code-block:: python
+
     vals = []
     for value in [1,2,3]:
         if value%2 == 1:
             vals.append(value + 10)
-    vals >>> [11,13]
+
+    vals
+    >>> [11,13]
+
+
     # now with list comprehension
     vals = [value + 10 for value in [1,2,3] if value%2 == 1]
-    vals >>> [11,13]
-    # similarly dictionaries can also be handled with list comprehensions
+
+    vals
+    >>> [11,13]
+
+- similarly dictionaries can also be handled with list comprehensions
+
+.. code-block:: python
+
     vals = ["/".join(key, str(value)) for key, value in {'one': 1, 'two': 2}.items()]
-    vals >>> ['one/1', 'two/2']
-    # or dict comprehension
+
+    vals
+    >>> ['one/1', 'two/2']
+
+- dictionary comprehensions
+
+.. code-block:: python
+
     vals = {k: 2*v for k, v in {'one': 1, 'two': 2}.items()}
-    vals >>> {'one': 2, 'two': 4}
+
+    vals
+    >>> {'one': 2, 'two': 4}
 
 
 while loop
 ----------
 
 .. code-block:: python
-    :linenos:
 
     i == 0
     while i < 3:
@@ -202,7 +219,6 @@ try/except/pass
 See full list of exception at `Link <https://docs.python.org/3/library/exceptions.html#bltin-exceptions>`_
 
 .. code-block:: python
-    :linenos:
 
     try:
         # somecode to test for exceptions
@@ -210,10 +226,10 @@ See full list of exception at `Link <https://docs.python.org/3/library/exception
         # somecode raised a NameError, do something
     except (ValueError,KeyError):
         # samecode did not raise a NameError, but it did raise either
-        # a ValueError or KeyError, do something
+        #   a ValueError or KeyError, do something
     except:
         # catch all other errors, this is lazy coding - try to not use this
-        # the owner should understand what exceptions occur and handles it appropriately
+        #   the owner should understand what exceptions occur and handle it appropriately
     else:
         # no exception were raised, do something
     finally:

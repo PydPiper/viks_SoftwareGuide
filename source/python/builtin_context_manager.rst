@@ -1,6 +1,6 @@
 builtin - Context Manager
 =========================
-Context Manager is function or class that has an "Enter" buildup code, and an
+Context Manager is a function or class that has an "Enter" buildup code, and an
 "Exit" teardown code that the user is able simply call in a "with" block. The most
 common example of this is the builtin file IO class "open". Open has an "Enter" that
 opens file streaming and an "Exit" that safely closes the file for streaming.
@@ -11,7 +11,6 @@ Object Oriented Version
 - Setup
 
 .. code-block:: python
-    :linenos:
 
     # context manager setup
     class MyContextManager():
@@ -25,9 +24,9 @@ Object Oriented Version
         def __enter__(self):
             print("inside with block")
             # keep the context manager class simple
-            # by returning another class that does the work from the __enter__ block
-            # when a "with MyContextManger(10) mycont:" is called,
-            # we are really saying is that mycont = worker_class(10)
+            #   by returning another class that does the work from the __enter__ block
+            # When a "with MyContextManger(10) mycont:" is called,
+            #   we are really saying that mycont = worker_class(10)
             return worker_class(self.preload)
 
         # exit method is called when the code exits the with block
@@ -37,8 +36,9 @@ Object Oriented Version
             # exc_tb   ==> traceback message (where the in the code did the exception occur)
 
             # exit method receives arg containing details of exception raised in the "with" block
-            # if context can handlethe exception, __exit__() should return a true (ie. error does not need to be propagated)
-            # returning false causes the exception to be re-raised after __exit__()
+            #   if context can handlethe exception, __exit__() should return a true
+            #   (ie. error does not need to be propagated)
+            #   returning false causes the exception to be re-raised after __exit__()
 
             # this feature is really nice when trying to graciously handle exceptions
             if exc_type is ValueError:
@@ -49,7 +49,6 @@ Object Oriented Version
 - Extend the context manger functionality
 
 .. code-block:: python
-    :linenos:
 
     # define worker class
     class worker_class():
@@ -61,7 +60,6 @@ Object Oriented Version
 - How to use it
 
 .. code-block:: python
-    :linenos:
 
     # now to use it
     with MyContextManager(10) as mycont:
