@@ -20,7 +20,7 @@ The majority of this guide will cover VBA in Excel, but feel free to explore the
     Finally, we're going to add the ``Edit Toolbar`` since it gives us some quick ways to format our code.
     Go to ``View > Toolbars > Edit`` and then drag it to the top where the rest of the toolbar lives.
     
-Run your first script
+Running your first script
 ---------------------
 VBA code can be stored in Application Objects (eg. Sheet1, Sheet2, Sheet3, ThisWorkbook), 
 Userforms, Modules, or Class Modules.  The most general place to add code is within a basic Module.
@@ -41,8 +41,8 @@ Userforms, Modules, or Class Modules.  The most general place to add code is wit
     You should see ``Hello World!`` get printed to your ``Immediate Window``.
 4)  You can also step through your code line-by-line using ``F8``.  Give it a try!
 
-Expanding on your first script
-------------------------------
+Expanding on your first script (Pt. 1)
+--------------------------------------
 Let's now build upon our first script to learn the basics of commenting, variable declaration, debugging, and user inputs.
 
 1)  Let's add a comment and a string variable to hold our message.  Comments are initiated by a single quote.
@@ -84,3 +84,35 @@ Let's now build upon our first script to learn the basics of commenting, variabl
     MsgBox(msg)
   End Sub
 
+Introduction to Variables
+-------------------------
+
+Data Variables
+++++++++++++++
+
+.. note:: These are just some of the most commonly used variables.  For the full list of Data Varaible Types see Microsoft's `Data Type Summary <https://docs.microsoft.com/en-us/office/vba/language/reference/user-interface-help/data-type-summary>`_
+
+-   ``String``: Denoted by double-quotes.  "This is a string"
+
+    -   Concatinating Strings: ``"Hello" & " " & "World" & "!"`` = ``"Hello World!"``
+    -   String Functions: 
+    
+        -   ``lcase("Hello")`` = ``"hello"``
+        -   ``ucase("Hello")`` = ``"HELLO"``
+        -   ``len("Hello")`` = ``5``
+        -   ``left("Hello World!", 5)`` = ``"Hello"``
+        -   ``right("Hello World!", 1)`` = "!"
+        -   ``mid("Hello World!", 2, 4)`` = ``"ello"``
+    
+-   ``Integer``: Whole number between -32,768 and 32,767
+-   ``Long``: Whole number between -2,147,483,648 and 2,147,483,647
+-   ``Double``: Double-precision floating point
+-   ``Boolean``: ``TRUE`` or ``FALSE``
+-   ``Date``: January 1, 100 to December 31, 9999
+-   ``Variant``: Special variable that can hold any data type
+
+Object Variables
+++++++++++++++++
+
+Variable Lifetime & Scope
++++++++++++++++++++++++++
