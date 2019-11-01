@@ -94,11 +94,13 @@ for loop with an optional if statement.
     a
     >>> [1,2,4]
 
-- create a subset of a list (or reverse a list)
+- list slicing (sublist from list, reverse order, skip content)
 
 .. code-block:: python
 
     a = [1,2,3,4,5]
+
+
     # get a subset of a list
     a[2:]   # this reads, [from starting index item included, to end index item NOT included]
     # by not specifying the end index, we get from index 2 all the way to the end of the list
@@ -111,6 +113,10 @@ for loop with an optional if statement.
     # reverse order
     a[::-1]
     >>> [5,4,3,2,1]
+
+    # skip every 2 for example
+    a[::2]
+    >>> [1,3,5]
 
 - define multiple variables on 1 line
 

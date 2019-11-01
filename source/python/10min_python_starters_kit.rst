@@ -129,6 +129,12 @@ What can I do with strings
 
 - sub-strings (slicing)
 
+.. figure:: list_slicing.png
+        :scale: 100%
+        :align: center
+
+        List slicing
+
 .. code-block:: python
 
     a = 'this is a string'
