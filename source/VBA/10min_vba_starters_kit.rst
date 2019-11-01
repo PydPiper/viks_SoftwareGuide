@@ -84,6 +84,45 @@ Let's now build upon our first script to learn the basics of commenting, variabl
     MsgBox(msg)
   End Sub
 
+Introduction to Objects, Properties, and Methods
+------------------------------------------------
+
+Objects
++++++++
+::
+
+    "Objects are the fundamental building block of Visual Basic;
+    nearly everything you do in Visual Basic involves modifying objects.
+    Every element of Microsoft Word - documents, tables, paragraphs, bookmarks, 
+    fields, and so on - can be represented by an object in Visual Basic."
+                                                            -Microsoft Dev Center
+                                                            
+-   An object can be a member of another object.  For example, the Sheet Object is a member of 
+    the Workbook Object which is then a member of the Application Object.  To access an Object's 
+    member, use a period (``Application.ThisWorkbook.ActiveSheet``).  
+        -   In many cases, you don't need to explicitely define the full heirarchy down to the object you want work with.
+            ``Application.ActiveWorkbook.ActiveSheet.Cells(1,1).Value = "Hello World!"`` is the fully defined heirarchy,
+            but ``Cells(1,1).Value = "Hello World!"`` would work just the same.
+
+Properties
+++++++++++
+::
+
+    "A property is an attribute of an object or an aspect of its behavior.
+    For example, properties of a document include its name, its content, and
+    its save status, as well as whether change tracking is turned on.  To change
+    the characteristics of an object, you change the values of its properties."
+                                                            -Microsoft Dev Center
+
+Methods
++++++++
+::
+
+    "A method is an action that an object can perform.  For example, just as a 
+    document can be printed, the Document object has a PrintOut method. Methods
+    often have arguments that qualify how the action is performed."
+                                                            -Microsoft Dev Center
+
 Introduction to Variables
 -------------------------
 
@@ -97,12 +136,14 @@ Data Variables
     -   Concatinating Strings: ``"Hello" & " " & "World" & "!"`` = ``"Hello World!"``
     -   String Functions: 
     
-        -   ``lcase("Hello")`` = ``"hello"``
-        -   ``ucase("Hello")`` = ``"HELLO"``
-        -   ``len("Hello")`` = ``5``
+        -   ``lcase("Hello World!")`` = ``"hello world!"``
+        -   ``ucase("Hello World!")`` = ``"HELLO WORLD!"``
+        -   ``len("Hello World!")`` = ``12``
         -   ``left("Hello World!", 5)`` = ``"Hello"``
         -   ``right("Hello World!", 1)`` = "!"
         -   ``mid("Hello World!", 2, 4)`` = ``"ello"``
+        -   ``replace("Hello World!", "Hello", "Bonjour")`` = ``"Bonjour World!"``
+        -   ``instr(1, "Hello World!", "World")`` = ``7``
     
 -   ``Integer``: Whole number between -32,768 and 32,767
 -   ``Long``: Whole number between -2,147,483,648 and 2,147,483,647
@@ -114,5 +155,6 @@ Data Variables
 Object Variables
 ++++++++++++++++
 
+    
 Variable Lifetime & Scope
 +++++++++++++++++++++++++
