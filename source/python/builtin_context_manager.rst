@@ -81,3 +81,53 @@ Object Oriented Version
     >>> 100, 10
     >>> "handled ValueError, raised exception value =  HI!"
 
+Functional Programming Version
+------------------------------
+We can accomplish the same task with a function definition as shown above and a library called
+contextlib
+
+- Define the worker class (same as above, this does not have to be a class object, this example
+  is simply reusing the same code as above for clarity)
+
+.. code-block:: python
+
+    # define worker class (same as above)
+    class worker_class():
+        def __init__(self, preload):
+            self.preload = preload
+        def extended(self, val):
+            print(val, self.preload)
+
+
+- Setup the context manager function
+
+.. code-block:: python
+
+    from contextlib import contextmanager
+
+    @contextmanager
+    def MyContextManager(preload):
+        # __init__ code goes here
+        print("context initialized on runtime")
+        try:
+            print("inside with block")
+            yield worker_class(preload)
+        except ValueError as e:
+            print("handled ValueError, raised exception value = ",e)
+        finally:
+            # __exit__ code goes here
+            print("__exit__ cleanup code goes here")
+
+
+- Use it
+
+.. code-block:: python
+
+    with MyContextManager(10) as mycont:
+        # code without any errors
+        mycont.extended(100)
+
+    >>> "context initialized on runtime"
+    >>> "inside with block"
+    >>> 100, 10
+    >>> "__exit__ cleanup code goes here"
