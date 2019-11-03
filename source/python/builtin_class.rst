@@ -418,6 +418,55 @@ Trick - Access a class's attribute by its string name
     getattr(A,'attr1')
 
 
+Trick - How to create multiple levels of attributes
+---------------------------------------------------------
+There are a lot of lessons on object oriented programming that talk about the big concepts,
+then you go to create something in practice and realize that you are still missing some fundamentals.
+For me, this was the case on nested attributes for a long time. How do I create a class with multiple
+levels of attributes?
+
+- Lets say we want have a database class (storage class), and each time is index by an ``ID``
+  but under each ``ID`` we would like to call more attributes, ie: ``db.ID[1].att1``. Let's see how
+  that can be done:
+
+.. code-block:: python
+
+    # database class
+    class Database():
+        def __init__(self):
+            # initialize the ID container as a dictionary
+            self.ID = {}
+
+        # create a method of adding new items to the database
+        def additem(self,ID,att1,att2):
+            # update database dictionary by calling another class "Attributes"
+            #  this says: Database.ID[#] returns the class Attributes,
+            #  that can then be called for it's attributes ".att1", ".att2"
+            self.ID.update({ID: Attributes(att1,att2)})
+
+
+    # 2nd level nested attributes class
+    class Attributes():
+        def __init__(self,att1,att2):
+            self.att1 = att1
+            self.att2 = att2
+
+
+    # lets see how it works in pratice
+
+    # define a instance of the database
+    db = Database()
+    # add a few items
+    db.additem(1,'att1 from ID1', 'att2 from ID1')
+    db.additem(2,'att1 from ID2', 'att2 from ID2')
+    # now to call it nested
+    db.ID[1].att1
+    >>> 'att1 from ID1'
+    db.ID[2].att2
+    >>> 'att2 from ID2'
+
+
+
 Trick - Create multiple instances of a class based on initial input
 -------------------------------------------------------------------
 This is really useful when a class __init__ is setup to take a single value input (like an ID, but instead a

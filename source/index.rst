@@ -1,5 +1,7 @@
-Welcome to Viktor's Software Guide!
+Welcome to Vik's Software Guide!
 ===================================
+Acknowledgements: Content made better by K. Kim!
+
 
 Abstract
 --------
