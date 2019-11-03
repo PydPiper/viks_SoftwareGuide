@@ -15,6 +15,71 @@ Why write tests:
   that a single function that does everything will be much hard to test (and read) than that same code refactored
   into many smaller functions with explicit output.
 
+Setup your first test
+---------------------
+Although it is not necessary to create tests in another file, it is highly encouraged to keep
+the code base nice and clean.
+
+- The code we want to test: let's say the the following is in a file ``mycode.py``
+
+.. code-block:: python
+
+    # filename: mycode.py
+
+    def adder(x,y):
+        return x + y
+
+- The test code: let's say the following is in a file ``test_mycode.py`` It is a good idea to
+  keep write a "test" file for each "code" file. Code files should also be short (not 1000s of lines).
+
+.. code-block:: python
+
+    # filename: test_mycode.py
+
+    # import the builtin test library
+    import unittest
+    # import your code module (mycode.py, assuming both mycode.py and test_myode.py is in the same folder)
+    import mycode
+
+
+    # setup the test class
+    class test_mycode(unittest.TestCase):
+
+        # setUp is optional: but if you are re-using inputs this saves you from retying them
+        def setUp(self):
+            self.input1 = 10
+            self.input2 = 20
+
+        # pytest looks for all methods that start with "test_"
+        def test_one(self):
+            # there are many different asserts, see full list above
+            #  here we are testing if our function "adder" adds 10+20 correctly and equals 30
+            self.assertEqual(mycode.adder(10,20),30)
+
+        # we can write as many tests as we like, here is the same thing with our setUp variables
+        def test_two(self):
+            self.assertEqual(mycode.adder(self.input1,self.input2),30)
+
+- To run pytest, we type the following in the terminal
+
+.. code-block:: shell
+
+    python -m pytest
+
+- The output will look something like:
+
+.. code-block:: shell
+
+    ============================= test session starts =============================
+    platform win32 -- Python 3.8.0, pytest-5.2.2, py-1.8.0, pluggy-0.13.0
+    rootdir: C:\Users\yourusername\Desktop
+    collected 2 items
+
+    test_mycode.py ..                                                        [100%]
+
+    ============================== 2 passed in 0.03s ==============================
+
+
 
 To mock file-read without an actual file
 ---------------------------------------
