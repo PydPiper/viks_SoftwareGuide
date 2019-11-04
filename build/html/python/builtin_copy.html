@@ -1,0 +1,240 @@
+
+
+<!DOCTYPE html>
+<!--[if IE 8]><html class="no-js lt-ie9" lang="en" > <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="en" > <!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  <title>1.5. builtin - Copy True/Shallow/Deep &mdash; Viktor&#39;s Software Guide 2019 documentation</title>
+  
+
+  
+  
+  
+  
+
+  
+  <script type="text/javascript" src="../_static/js/modernizr.min.js"></script>
+  
+    
+      <script type="text/javascript" id="documentation_options" data-url_root="../" src="../_static/documentation_options.js"></script>
+        <script type="text/javascript" src="../_static/jquery.js"></script>
+        <script type="text/javascript" src="../_static/underscore.js"></script>
+        <script type="text/javascript" src="../_static/doctools.js"></script>
+        <script type="text/javascript" src="../_static/language_data.js"></script>
+    
+    <script type="text/javascript" src="../_static/js/theme.js"></script>
+
+    
+
+  
+  <link rel="stylesheet" href="../_static/css/theme.css" type="text/css" />
+  <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+    <link rel="next" title="1.6. builtin - Functions" href="builtin_functions.html" />
+    <link rel="prev" title="1.4. builtin - Context Manager" href="builtin_context_manager.html" /> 
+</head>
+
+<body class="wy-body-for-nav">
+
+   
+  <div class="wy-grid-for-nav">
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+          
+
+          
+            <a href="../index.html" class="icon icon-home"> Viktor's Software Guide
+          
+
+          
+          </a>
+
+          
+            
+            
+          
+
+          
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+
+          
+        </div>
+
+        <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+          
+            
+            
+              
+            
+            
+              <ul class="current">
+<li class="toctree-l1 current"><a class="reference internal" href="index.html">1. Python Guide</a><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="10min_python_starters_kit.html">1.1. 10min - Python Starter Kit</a></li>
+<li class="toctree-l2"><a class="reference internal" href="builtin_class.html">1.2. builtin - Class (Object Oriented Programming)</a></li>
+<li class="toctree-l2"><a class="reference internal" href="builtin_containers.html">1.3. builtin - Tuples, Lists, Sets, Dictionaries</a></li>
+<li class="toctree-l2"><a class="reference internal" href="builtin_context_manager.html">1.4. builtin - Context Manager</a></li>
+<li class="toctree-l2 current"><a class="current reference internal" href="#">1.5. builtin - Copy True/Shallow/Deep</a></li>
+<li class="toctree-l2"><a class="reference internal" href="builtin_functions.html">1.6. builtin - Functions</a></li>
+<li class="toctree-l2"><a class="reference internal" href="builtin_IO.html">1.7. builtin - File Input/Output (IO)</a></li>
+<li class="toctree-l2"><a class="reference internal" href="builtin_logic_loops.html">1.8. builtin - Logic Loops</a></li>
+<li class="toctree-l2"><a class="reference internal" href="builtin_mutable.html">1.9. builtin - Mutable/Immutable</a></li>
+<li class="toctree-l2"><a class="reference internal" href="builtin_strings.html">1.10. builtin - Strings</a></li>
+<li class="toctree-l2"><a class="reference internal" href="builtin_user_inputs.html">1.11. builtin - User Inputs</a></li>
+<li class="toctree-l2"><a class="reference internal" href="lib_pyinstaller.html">1.12. lib - pyinstaller</a></li>
+<li class="toctree-l2"><a class="reference internal" href="lib_pyqt.html">1.13. lib - PyQt5 (GUI)</a></li>
+<li class="toctree-l2"><a class="reference internal" href="lib_pytest.html">1.14. lib - pytest</a></li>
+<li class="toctree-l2"><a class="reference internal" href="lib_sphinx.html">1.15. lib - Sphinx (code documentation)</a></li>
+<li class="toctree-l2"><a class="reference internal" href="lib_subprocess.html">1.16. lib - Subprocess</a></li>
+<li class="toctree-l2"><a class="reference internal" href="lib_virtualenv.html">1.17. lib - virtualenv</a></li>
+<li class="toctree-l2"><a class="reference internal" href="tool_git.html">1.18. tool - Git</a></li>
+<li class="toctree-l2"><a class="reference internal" href="tool_pip.html">1.19. tool - pip (Package Installer for Python)</a></li>
+<li class="toctree-l2"><a class="reference internal" href="tool_pycharm.html">1.20. tool - PyCharm (IDE)</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../VBA/index.html">2. VBA Guide</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../Shell/index.html">3. Shell Guide</a></li>
+</ul>
+
+            
+          
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" aria-label="top navigation">
+        
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../index.html">Viktor's Software Guide</a>
+        
+      </nav>
+
+
+      <div class="wy-nav-content">
+        
+        <div class="rst-content">
+        
+          
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div role="navigation" aria-label="breadcrumbs navigation">
+
+  <ul class="wy-breadcrumbs">
+    
+      <li><a href="../index.html">Docs</a> &raquo;</li>
+        
+          <li><a href="index.html">1. Python Guide</a> &raquo;</li>
+        
+      <li>1.5. builtin - Copy True/Shallow/Deep</li>
+    
+    
+      <li class="wy-breadcrumbs-aside">
+        
+            
+            <a href="../_sources/python/builtin_copy.rst.txt" rel="nofollow"> View page source</a>
+          
+        
+      </li>
+    
+  </ul>
+
+  
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+            
+  <div class="section" id="builtin-copy-true-shallow-deep">
+<h1>1.5. builtin - Copy True/Shallow/Deep<a class="headerlink" href="#builtin-copy-true-shallow-deep" title="Permalink to this headline">¶</a></h1>
+<p>There are 3 different ways to copy objects in python:</p>
+<ul class="simple">
+<li><p><strong>True Copy</strong>: ID or old object and new object are the <strong>same</strong>, therefore changing one object
+also changes the other</p></li>
+<li><p><strong>Shallow Copy</strong>: ID of old object and new object is <strong>different</strong>, therefore the number of contents
+and immutable contents can be changed by one that will not effect the other, HOWEVER mutable content copied
+are still linked between the two objects (ie: a = [[1,2],3], copy_a = [[1,2],3] the list [1,2] inside is the
+same ID, therefore changing the list in “a” will also change the list in “copy_a”</p></li>
+<li><p><strong>Deep Copy</strong>: creates <strong>new</strong> IDs for each object within (very slow!). There is no link between old and new copy</p></li>
+</ul>
+<p>For more description on mutable/immutable see <a class="reference internal" href="builtin_mutable.html"><span class="doc">builtin - Mutable/Immutable</span></a></p>
+<p>For examples on copy see <a class="reference internal" href="builtin_containers.html#list-copy"><span class="std std-ref">List - Copy</span></a></p>
+</div>
+
+
+           </div>
+           
+          </div>
+          <footer>
+  
+    <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
+      
+        <a href="builtin_functions.html" class="btn btn-neutral float-right" title="1.6. builtin - Functions" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right"></span></a>
+      
+      
+        <a href="builtin_context_manager.html" class="btn btn-neutral float-left" title="1.4. builtin - Context Manager" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left"></span> Previous</a>
+      
+    </div>
+  
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>
+        &copy; Copyright 2019, Viktor Kis
+
+    </p>
+  </div>
+  Built with <a href="http://sphinx-doc.org/">Sphinx</a> using a <a href="https://github.com/rtfd/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>. 
+
+</footer>
+
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+  
+
+
+  <script type="text/javascript">
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script>
+
+  
+  
+    
+   
+
+</body>
+</html>

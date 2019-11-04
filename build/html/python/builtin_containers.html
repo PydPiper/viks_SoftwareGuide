@@ -1,0 +1,613 @@
+
+
+<!DOCTYPE html>
+<!--[if IE 8]><html class="no-js lt-ie9" lang="en" > <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="en" > <!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  <title>1.3. builtin - Tuples, Lists, Sets, Dictionaries &mdash; Viktor&#39;s Software Guide 2019 documentation</title>
+  
+
+  
+  
+  
+  
+
+  
+  <script type="text/javascript" src="../_static/js/modernizr.min.js"></script>
+  
+    
+      <script type="text/javascript" id="documentation_options" data-url_root="../" src="../_static/documentation_options.js"></script>
+        <script type="text/javascript" src="../_static/jquery.js"></script>
+        <script type="text/javascript" src="../_static/underscore.js"></script>
+        <script type="text/javascript" src="../_static/doctools.js"></script>
+        <script type="text/javascript" src="../_static/language_data.js"></script>
+    
+    <script type="text/javascript" src="../_static/js/theme.js"></script>
+
+    
+
+  
+  <link rel="stylesheet" href="../_static/css/theme.css" type="text/css" />
+  <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+    <link rel="next" title="1.4. builtin - Context Manager" href="builtin_context_manager.html" />
+    <link rel="prev" title="1.2. builtin - Class (Object Oriented Programming)" href="builtin_class.html" /> 
+</head>
+
+<body class="wy-body-for-nav">
+
+   
+  <div class="wy-grid-for-nav">
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+          
+
+          
+            <a href="../index.html" class="icon icon-home"> Viktor's Software Guide
+          
+
+          
+          </a>
+
+          
+            
+            
+          
+
+          
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+
+          
+        </div>
+
+        <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+          
+            
+            
+              
+            
+            
+              <ul class="current">
+<li class="toctree-l1 current"><a class="reference internal" href="index.html">1. Python Guide</a><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="10min_python_starters_kit.html">1.1. 10min - Python Starter Kit</a></li>
+<li class="toctree-l2"><a class="reference internal" href="builtin_class.html">1.2. builtin - Class (Object Oriented Programming)</a></li>
+<li class="toctree-l2 current"><a class="current reference internal" href="#">1.3. builtin - Tuples, Lists, Sets, Dictionaries</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#tuples">1.3.1. Tuples</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#lists">1.3.2. Lists</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#list-copy">1.3.2.1. List - Copy</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#list-trick-split-a-list-into-equal-bits">1.3.2.2. List Trick - Split a list into equal bits</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="#sets">1.3.3. Sets</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#dictionaries">1.3.4. Dictionaries</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#trick-handling-nested-dicts">1.3.4.1. Trick - Handling nested dicts</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#trick-merging-2-dicts-shallow-copy">1.3.4.2. Trick - Merging 2 dicts (shallow copy)</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#trick-adding-a-custom-attribute-to-dict">1.3.4.3. Trick - Adding a custom attribute to dict</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="builtin_context_manager.html">1.4. builtin - Context Manager</a></li>
+<li class="toctree-l2"><a class="reference internal" href="builtin_copy.html">1.5. builtin - Copy True/Shallow/Deep</a></li>
+<li class="toctree-l2"><a class="reference internal" href="builtin_functions.html">1.6. builtin - Functions</a></li>
+<li class="toctree-l2"><a class="reference internal" href="builtin_IO.html">1.7. builtin - File Input/Output (IO)</a></li>
+<li class="toctree-l2"><a class="reference internal" href="builtin_logic_loops.html">1.8. builtin - Logic Loops</a></li>
+<li class="toctree-l2"><a class="reference internal" href="builtin_mutable.html">1.9. builtin - Mutable/Immutable</a></li>
+<li class="toctree-l2"><a class="reference internal" href="builtin_strings.html">1.10. builtin - Strings</a></li>
+<li class="toctree-l2"><a class="reference internal" href="builtin_user_inputs.html">1.11. builtin - User Inputs</a></li>
+<li class="toctree-l2"><a class="reference internal" href="lib_pyinstaller.html">1.12. lib - pyinstaller</a></li>
+<li class="toctree-l2"><a class="reference internal" href="lib_pyqt.html">1.13. lib - PyQt5 (GUI)</a></li>
+<li class="toctree-l2"><a class="reference internal" href="lib_pytest.html">1.14. lib - pytest</a></li>
+<li class="toctree-l2"><a class="reference internal" href="lib_sphinx.html">1.15. lib - Sphinx (code documentation)</a></li>
+<li class="toctree-l2"><a class="reference internal" href="lib_subprocess.html">1.16. lib - Subprocess</a></li>
+<li class="toctree-l2"><a class="reference internal" href="lib_virtualenv.html">1.17. lib - virtualenv</a></li>
+<li class="toctree-l2"><a class="reference internal" href="tool_git.html">1.18. tool - Git</a></li>
+<li class="toctree-l2"><a class="reference internal" href="tool_pip.html">1.19. tool - pip (Package Installer for Python)</a></li>
+<li class="toctree-l2"><a class="reference internal" href="tool_pycharm.html">1.20. tool - PyCharm (IDE)</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../VBA/index.html">2. VBA Guide</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../Shell/index.html">3. Shell Guide</a></li>
+</ul>
+
+            
+          
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" aria-label="top navigation">
+        
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../index.html">Viktor's Software Guide</a>
+        
+      </nav>
+
+
+      <div class="wy-nav-content">
+        
+        <div class="rst-content">
+        
+          
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div role="navigation" aria-label="breadcrumbs navigation">
+
+  <ul class="wy-breadcrumbs">
+    
+      <li><a href="../index.html">Docs</a> &raquo;</li>
+        
+          <li><a href="index.html">1. Python Guide</a> &raquo;</li>
+        
+      <li>1.3. builtin - Tuples, Lists, Sets, Dictionaries</li>
+    
+    
+      <li class="wy-breadcrumbs-aside">
+        
+            
+            <a href="../_sources/python/builtin_containers.rst.txt" rel="nofollow"> View page source</a>
+          
+        
+      </li>
+    
+  </ul>
+
+  
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+            
+  <div class="section" id="builtin-tuples-lists-sets-dictionaries">
+<h1>1.3. builtin - Tuples, Lists, Sets, Dictionaries<a class="headerlink" href="#builtin-tuples-lists-sets-dictionaries" title="Permalink to this headline">¶</a></h1>
+<p>There are 4 common collectors available to the users in python;
+Tuples, Lists, Sets, and Dictionaries. Each of them have unique features
+that work best for different objectives.</p>
+<div class="section" id="tuples">
+<h2>1.3.1. Tuples<a class="headerlink" href="#tuples" title="Permalink to this headline">¶</a></h2>
+<p>Tuples are immutable (once a value is added, its ID cannot be changed), see <a class="reference internal" href="builtin_mutable.html"><span class="doc">builtin - Mutable/Immutable</span></a>.
+These are great for ensuring that values stay consistent throughout your code. Note that there is
+a subtlety here though; a tuple <code class="docutils literal notranslate"><span class="pre">test=(1,[2,3])</span></code> cannot change its IDs, however there
+is a list within the tuple that can change its internal values (therefore the tuple is not,
+truely immutable when it contains mutable objects).</p>
+<ul class="simple">
+<li><p>Syntax</p></li>
+</ul>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">a</span> <span class="o">=</span> <span class="p">(</span><span class="mi">1</span><span class="p">,</span><span class="mi">2</span><span class="p">,</span><span class="mi">3</span><span class="p">)</span>
+<span class="c1"># index an item</span>
+<span class="n">a</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span>
+<span class="o">&gt;&gt;&gt;</span> <span class="mi">1</span> <span class="c1"># note first item of any container in python starts at 0</span>
+<span class="n">a</span><span class="p">[</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span> <span class="c1"># negative indexing is from the end</span>
+<span class="o">&gt;&gt;&gt;</span> <span class="mi">3</span>
+</pre></div>
+</div>
+<ul class="simple">
+<li><p>Add to a Tuple</p></li>
+</ul>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">a</span> <span class="o">+=</span> <span class="p">(</span><span class="mi">4</span><span class="p">,)</span>
+<span class="n">a</span>
+<span class="o">&gt;&gt;&gt;</span> <span class="p">(</span><span class="mi">1</span><span class="p">,</span><span class="mi">2</span><span class="p">,</span><span class="mi">3</span><span class="p">,</span><span class="mi">4</span><span class="p">)</span>
+</pre></div>
+</div>
+<ul class="simple">
+<li><p>Get a subset of a tuple</p></li>
+</ul>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">a</span><span class="p">[</span><span class="mi">2</span><span class="p">:]</span>
+<span class="o">&gt;&gt;&gt;</span> <span class="p">(</span><span class="mi">3</span><span class="p">,</span><span class="mi">4</span><span class="p">)</span>
+</pre></div>
+</div>
+<ul class="simple">
+<li><p>Method of Tuple: “count” occurrence of an item</p></li>
+<li><p>Method of Tuple: “index” finds the index for a given value</p></li>
+</ul>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="c1"># there are 2 methods available on a tuple</span>
+<span class="c1"># count: count occurrence of a item within a tuple</span>
+<span class="n">a</span><span class="o">.</span><span class="n">count</span><span class="p">(</span><span class="mi">4</span><span class="p">)</span>
+<span class="o">&gt;&gt;&gt;</span> <span class="mi">1</span>
+<span class="c1"># index: find the index for a given value</span>
+<span class="n">a</span><span class="o">.</span><span class="n">index</span><span class="p">(</span><span class="mi">4</span><span class="p">)</span>
+<span class="o">&gt;&gt;&gt;</span> <span class="mi">3</span>
+</pre></div>
+</div>
+</div>
+<div class="section" id="lists">
+<h2>1.3.2. Lists<a class="headerlink" href="#lists" title="Permalink to this headline">¶</a></h2>
+<p>Lists are extremely useful because you can change them on the fly (mutable object, see more on
+<a class="reference internal" href="builtin_mutable.html"><span class="doc">builtin - Mutable/Immutable</span></a>). However, there is a fine line between when a List should be used over
+Dictionaries. You can just about do everything with a Dictionary that you can do with a List, and
+when Lists start to look double, triple+ nested - a Dictionary should be looked at for code
+readability/use.</p>
+<p>See <a class="reference internal" href="builtin_logic_loops.html#logic-loops-list-comprehensions"><span class="std std-ref">List Comprehensions (alt for loops)</span></a> for list comprehensions, a 1-liner code that replaces a simple
+for loop with an optional if statement.</p>
+<ul class="simple">
+<li><p>Syntax</p></li>
+</ul>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">a</span> <span class="o">=</span> <span class="p">[</span><span class="mi">1</span><span class="p">,</span><span class="mi">2</span><span class="p">,</span><span class="mi">3</span><span class="p">]</span>
+<span class="c1"># index on item</span>
+<span class="n">a</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="c1"># note first item of any container in python starts at 0</span>
+<span class="o">&gt;&gt;&gt;</span> <span class="mi">1</span>
+<span class="n">a</span><span class="p">[</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span> <span class="c1"># negative indexing is from the end</span>
+<span class="o">&gt;&gt;&gt;</span> <span class="mi">3</span>
+</pre></div>
+</div>
+<ul class="simple">
+<li><p>add/remove to a list</p></li>
+</ul>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">a</span> <span class="o">=</span> <span class="p">[</span><span class="mi">1</span><span class="p">,</span><span class="mi">2</span><span class="p">,</span><span class="mi">3</span><span class="p">]</span>
+<span class="c1"># add to list</span>
+<span class="n">a</span> <span class="o">+=</span> <span class="p">[</span><span class="mi">4</span><span class="p">,]</span>
+<span class="c1"># or</span>
+<span class="n">a</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="mi">5</span><span class="p">)</span>
+<span class="n">a</span>
+<span class="o">&gt;&gt;&gt;</span> <span class="p">[</span><span class="mi">1</span><span class="p">,</span><span class="mi">2</span><span class="p">,</span><span class="mi">3</span><span class="p">,</span><span class="mi">4</span><span class="p">,</span><span class="mi">5</span><span class="p">]</span>
+<span class="c1"># remove an item from the list</span>
+<span class="n">a</span><span class="o">.</span><span class="n">remove</span><span class="p">(</span><span class="mi">3</span><span class="p">)</span>
+<span class="n">a</span>
+<span class="o">&gt;&gt;&gt;</span> <span class="p">[</span><span class="mi">1</span><span class="p">,</span><span class="mi">2</span><span class="p">,</span><span class="mi">4</span><span class="p">,</span><span class="mi">5</span><span class="p">]</span>
+<span class="c1"># remove item by index value</span>
+<span class="n">a</span><span class="o">.</span><span class="n">pop</span><span class="p">(</span><span class="mi">3</span><span class="p">)</span>
+<span class="o">&gt;&gt;&gt;</span> <span class="mi">5</span>
+<span class="n">a</span>
+<span class="o">&gt;&gt;&gt;</span> <span class="p">[</span><span class="mi">1</span><span class="p">,</span><span class="mi">2</span><span class="p">,</span><span class="mi">4</span><span class="p">]</span>
+</pre></div>
+</div>
+<ul class="simple">
+<li><p>list slicing (sublist from list, reverse order, skip content)</p></li>
+</ul>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">a</span> <span class="o">=</span> <span class="p">[</span><span class="mi">1</span><span class="p">,</span><span class="mi">2</span><span class="p">,</span><span class="mi">3</span><span class="p">,</span><span class="mi">4</span><span class="p">,</span><span class="mi">5</span><span class="p">]</span>
+
+
+<span class="c1"># get a subset of a list</span>
+<span class="n">a</span><span class="p">[</span><span class="mi">2</span><span class="p">:]</span>   <span class="c1"># this reads, [from starting index item included, to end index item NOT included]</span>
+<span class="c1"># by not specifying the end index, we get from index 2 all the way to the end of the list</span>
+<span class="o">&gt;&gt;&gt;</span> <span class="p">[</span><span class="mi">3</span><span class="p">,</span><span class="mi">4</span><span class="p">,</span><span class="mi">5</span><span class="p">]</span>
+
+<span class="c1"># negative indexing</span>
+<span class="n">a</span><span class="p">[:</span><span class="o">-</span><span class="mi">2</span><span class="p">]</span>  <span class="c1"># give me everything from start to 2 indexes before the end</span>
+<span class="o">&gt;&gt;&gt;</span> <span class="p">[</span><span class="mi">1</span><span class="p">,</span><span class="mi">2</span><span class="p">,</span><span class="mi">3</span><span class="p">]</span>
+
+<span class="c1"># reverse order</span>
+<span class="n">a</span><span class="p">[::</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span>
+<span class="o">&gt;&gt;&gt;</span> <span class="p">[</span><span class="mi">5</span><span class="p">,</span><span class="mi">4</span><span class="p">,</span><span class="mi">3</span><span class="p">,</span><span class="mi">2</span><span class="p">,</span><span class="mi">1</span><span class="p">]</span>
+
+<span class="c1"># skip every 2 for example</span>
+<span class="n">a</span><span class="p">[::</span><span class="mi">2</span><span class="p">]</span>
+<span class="o">&gt;&gt;&gt;</span> <span class="p">[</span><span class="mi">1</span><span class="p">,</span><span class="mi">3</span><span class="p">,</span><span class="mi">5</span><span class="p">]</span>
+</pre></div>
+</div>
+<ul class="simple">
+<li><p>define multiple variables on 1 line</p></li>
+</ul>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="c1"># define multiple variables on same line</span>
+<span class="n">mylist</span> <span class="o">=</span> <span class="p">[</span><span class="mi">1</span><span class="p">,</span><span class="mi">2</span><span class="p">,</span><span class="mi">3</span><span class="p">]</span>
+<span class="n">a</span><span class="p">,</span> <span class="n">b</span><span class="p">,</span> <span class="n">c</span> <span class="o">=</span> <span class="n">mylist</span>
+<span class="n">a</span>
+<span class="o">&gt;&gt;&gt;</span> <span class="mi">1</span>
+<span class="n">b</span>
+<span class="o">&gt;&gt;&gt;</span> <span class="mi">2</span>
+
+<span class="c1"># also good for initializing variables</span>
+<span class="n">a</span><span class="p">,</span> <span class="n">b</span><span class="p">,</span> <span class="n">c</span> <span class="o">=</span> <span class="p">[</span><span class="s2">&quot;&quot;</span><span class="p">]</span><span class="o">*</span><span class="mi">3</span> <span class="c1"># will all be empty strings</span>
+</pre></div>
+</div>
+<div class="section" id="list-copy">
+<span id="id1"></span><h3>1.3.2.1. List - Copy<a class="headerlink" href="#list-copy" title="Permalink to this headline">¶</a></h3>
+<p>See also <a class="reference internal" href="builtin_copy.html"><span class="doc">builtin - Copy True/Shallow/Deep</span></a> for more information.</p>
+<ul class="simple">
+<li><p>true copy -&gt; same ID, changing the index of one, changes the other</p></li>
+</ul>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">a</span> <span class="o">=</span> <span class="p">[</span><span class="mi">1</span><span class="p">,</span><span class="mi">2</span><span class="p">,</span><span class="mi">3</span><span class="p">]</span>
+<span class="n">b</span> <span class="o">=</span> <span class="n">a</span>
+<span class="nb">id</span><span class="p">(</span><span class="n">a</span><span class="p">)</span> <span class="o">==</span> <span class="nb">id</span><span class="p">(</span><span class="n">b</span><span class="p">)</span>
+<span class="o">&gt;&gt;&gt;</span> <span class="bp">True</span>
+<span class="n">b</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="mi">100</span><span class="p">)</span>
+<span class="n">b</span>
+<span class="o">&gt;&gt;&gt;</span> <span class="p">[</span><span class="mi">1</span><span class="p">,</span><span class="mi">2</span><span class="p">,</span><span class="mi">3</span><span class="p">,</span><span class="mi">100</span><span class="p">]</span>
+<span class="n">a</span>
+<span class="o">&gt;&gt;&gt;</span> <span class="p">[</span><span class="mi">1</span><span class="p">,</span><span class="mi">2</span><span class="p">,</span><span class="mi">3</span><span class="p">,</span><span class="mi">100</span><span class="p">]</span>
+</pre></div>
+</div>
+<ul class="simple">
+<li><p>shallow copy -&gt; new list ID, however the values are the same object ID</p></li>
+</ul>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">nested</span> <span class="o">=</span> <span class="p">[</span><span class="mi">1</span><span class="p">,</span><span class="mi">2</span><span class="p">]</span>
+<span class="n">a</span> <span class="o">=</span> <span class="p">[</span><span class="n">nested</span><span class="p">,</span><span class="mi">3</span><span class="p">,</span><span class="mi">4</span><span class="p">]</span>
+<span class="n">b</span> <span class="o">=</span> <span class="n">a</span><span class="p">[:]</span> <span class="c1"># this</span>
+<span class="nb">id</span><span class="p">(</span><span class="n">b</span><span class="p">)</span> <span class="o">==</span> <span class="nb">id</span><span class="p">(</span><span class="n">a</span><span class="p">)</span>
+<span class="o">&gt;&gt;&gt;</span> <span class="bp">False</span>
+<span class="c1"># however note that altering a MUTABLE value changes the value on both &quot;a&quot; and &quot;b&quot;</span>
+<span class="n">nested</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="mi">100</span><span class="p">)</span> <span class="c1"># note that append is alters the list, but does not change its id</span>
+<span class="n">b</span>
+<span class="o">&gt;&gt;&gt;</span> <span class="p">[[</span><span class="mi">1</span><span class="p">,</span><span class="mi">2</span><span class="p">,</span><span class="mi">100</span><span class="p">],</span><span class="mi">3</span><span class="p">,</span><span class="mi">4</span><span class="p">]</span>
+<span class="n">a</span> <span class="c1"># now note, that &quot;a&quot; also changed - this is called a shallow copy</span>
+<span class="o">&gt;&gt;&gt;</span> <span class="p">[[</span><span class="mi">1</span><span class="p">,</span><span class="mi">2</span><span class="p">,</span><span class="mi">100</span><span class="p">],</span><span class="mi">3</span><span class="p">,</span><span class="mi">4</span><span class="p">]</span>
+</pre></div>
+</div>
+<ul class="simple">
+<li><p>deep copy -&gt; new list ID, and new content IDs</p></li>
+</ul>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">copy</span> <span class="kn">as</span> <span class="nn">cp</span>
+<span class="n">nested</span> <span class="o">=</span> <span class="p">[</span><span class="mi">1</span><span class="p">,</span><span class="mi">2</span><span class="p">]</span>
+<span class="n">a</span> <span class="o">=</span> <span class="p">[</span><span class="n">nested</span><span class="p">,</span><span class="mi">3</span><span class="p">,</span><span class="mi">4</span><span class="p">]</span>
+<span class="n">b</span> <span class="o">=</span> <span class="n">cp</span><span class="o">.</span><span class="n">deepcopy</span><span class="p">(</span><span class="n">a</span><span class="p">)</span> <span class="c1"># note that this is a slow process, for optimization look for deepcopy first</span>
+<span class="n">nested</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="mi">100</span><span class="p">)</span>
+<span class="n">a</span>
+<span class="o">&gt;&gt;&gt;</span> <span class="p">[[</span><span class="mi">1</span><span class="p">,</span><span class="mi">2</span><span class="p">,</span><span class="mi">100</span><span class="p">],</span><span class="mi">3</span><span class="p">,</span><span class="mi">4</span><span class="p">]</span>
+<span class="n">b</span>
+<span class="o">&gt;&gt;&gt;</span> <span class="p">[[</span><span class="mi">1</span><span class="p">,</span><span class="mi">2</span><span class="p">],</span><span class="mi">3</span><span class="p">,</span><span class="mi">4</span><span class="p">]</span> <span class="c1"># nested is no longer linked in a deepcopy to list &quot;b&quot;</span>
+</pre></div>
+</div>
+</div>
+<div class="section" id="list-trick-split-a-list-into-equal-bits">
+<h3>1.3.2.2. List Trick - Split a list into equal bits<a class="headerlink" href="#list-trick-split-a-list-into-equal-bits" title="Permalink to this headline">¶</a></h3>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">a</span> <span class="o">=</span> <span class="p">[</span><span class="mi">1</span><span class="p">,</span><span class="mi">2</span><span class="p">,</span><span class="mi">3</span><span class="p">,</span><span class="mi">4</span><span class="p">,</span><span class="mi">5</span><span class="p">,</span><span class="mi">6</span><span class="p">,</span><span class="mi">7</span><span class="p">,</span><span class="mi">8</span><span class="p">,</span><span class="mi">9</span><span class="p">]</span>
+<span class="nb">list</span><span class="p">(</span><span class="nb">zip</span><span class="p">(</span><span class="o">*</span><span class="p">[</span><span class="nb">iter</span><span class="p">(</span><span class="n">a</span><span class="p">)]</span><span class="o">*</span><span class="mi">3</span><span class="p">))</span>
+<span class="c1"># this translates to: make a list of ( create a single tuple from ( 3 iterators of &quot;a&quot; ) )</span>
+<span class="o">&gt;&gt;&gt;</span> <span class="p">[(</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">3</span><span class="p">),</span> <span class="p">(</span><span class="mi">4</span><span class="p">,</span> <span class="mi">5</span><span class="p">,</span> <span class="mi">6</span><span class="p">),</span> <span class="p">(</span><span class="mi">7</span><span class="p">,</span> <span class="mi">8</span><span class="p">,</span> <span class="mi">9</span><span class="p">)]</span>
+
+<span class="c1"># iter(a)*3 -&gt; 3 iterators are created with the same ID</span>
+<span class="c1"># for explanation lets call these iter1.1, iter1.2, iter1.3</span>
+<span class="c1"># zip(* (iter1.1, iter1.2, iter1.3)) unpacks the iterator with &quot;next&quot;</span>
+<span class="c1"># (next(iter1.1 pos0), next(iter1.2 pos1), (next(iter1.3 pos3)), (next(iter1.1 pos4), ...so on</span>
+<span class="c1"># since the iters are all identical objects, they share the &quot;next&quot; counter</span>
+<span class="c1"># zip takes the 3 subdivided iters one value at a time and creates a tuple out of 3x next calls</span>
+<span class="c1"># this step repeats until a StopIteration is hit</span>
+<span class="c1"># the last step is to convert a zip object to a list via: list(zip...)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="section" id="sets">
+<h2>1.3.3. Sets<a class="headerlink" href="#sets" title="Permalink to this headline">¶</a></h2>
+<p>Sets are the best for storing unique values, finding same value intersects, finding different value
+intersects or combining unique values. It is far too easy to always use Lists for everything, but
+always remember that Sets are available to handle unique values very fast and efficiently that would
+otherwise require more work on a List.</p>
+<ul class="simple">
+<li><p>Syntax: create, add, remove</p></li>
+</ul>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="c1"># sets are great to use over lists when the user does not want to keep duplicates</span>
+<span class="n">a</span> <span class="o">=</span> <span class="p">{</span><span class="mi">1</span><span class="p">,</span><span class="mi">2</span><span class="p">,</span><span class="mi">10</span><span class="p">}</span>
+
+<span class="c1"># to add</span>
+<span class="n">a</span><span class="o">.</span><span class="n">add</span><span class="p">(</span><span class="mi">2</span><span class="p">)</span> <span class="c1"># this is duplicate and will not be added</span>
+<span class="n">a</span>
+<span class="o">&gt;&gt;&gt;</span> <span class="p">{</span><span class="mi">1</span><span class="p">,</span><span class="mi">2</span><span class="p">,</span><span class="mi">10</span><span class="p">}</span>
+<span class="n">a</span><span class="o">.</span><span class="n">add</span><span class="p">(</span><span class="mi">4</span><span class="p">)</span> <span class="c1"># this is not a duplicate, therefore it is added</span>
+<span class="n">a</span>
+<span class="o">&gt;&gt;&gt;</span> <span class="p">{</span><span class="mi">1</span><span class="p">,</span><span class="mi">2</span><span class="p">,</span><span class="mi">10</span><span class="p">,</span><span class="mi">4</span><span class="p">}</span>
+
+<span class="c1"># to remove</span>
+<span class="n">a</span><span class="o">.</span><span class="n">remove</span><span class="p">(</span><span class="mi">10</span><span class="p">)</span>
+<span class="n">a</span>
+<span class="o">&gt;&gt;&gt;</span><span class="p">{</span><span class="mi">1</span><span class="p">,</span><span class="mi">2</span><span class="p">,</span><span class="mi">4</span><span class="p">}</span>
+</pre></div>
+</div>
+<ul class="simple">
+<li><p>find the overlaps between 2 sets</p></li>
+</ul>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">a</span> <span class="o">=</span> <span class="p">{</span><span class="mi">1</span><span class="p">,</span><span class="mi">2</span><span class="p">,</span><span class="mi">4</span><span class="p">}</span>
+<span class="n">b</span> <span class="o">=</span> <span class="p">{</span><span class="mi">2</span><span class="p">,</span><span class="mi">3</span><span class="p">,</span><span class="mi">4</span><span class="p">}</span>
+<span class="n">a</span><span class="o">.</span><span class="n">intersection</span><span class="p">(</span><span class="n">b</span><span class="p">)</span>
+<span class="o">&gt;&gt;&gt;</span> <span class="p">{</span><span class="mi">2</span><span class="p">,</span><span class="mi">4</span><span class="p">}</span>
+</pre></div>
+</div>
+<ul class="simple">
+<li><p>find the difference between 2 sets</p></li>
+</ul>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="c1">#</span>
+<span class="n">a</span> <span class="o">=</span> <span class="p">{</span><span class="mi">1</span><span class="p">,</span><span class="mi">2</span><span class="p">,</span><span class="mi">4</span><span class="p">}</span>
+<span class="n">b</span> <span class="o">=</span> <span class="p">{</span><span class="mi">2</span><span class="p">,</span><span class="mi">3</span><span class="p">,</span><span class="mi">4</span><span class="p">}</span>
+<span class="n">a</span><span class="o">.</span><span class="n">difference</span><span class="p">(</span><span class="n">b</span><span class="p">)</span>
+<span class="o">&gt;&gt;&gt;</span> <span class="p">{</span><span class="mi">1</span><span class="p">,</span><span class="mi">3</span><span class="p">}</span>
+</pre></div>
+</div>
+<ul class="simple">
+<li><p>get the combined - non duplicate of 2 sets</p></li>
+</ul>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">a</span> <span class="o">=</span> <span class="p">{</span><span class="mi">1</span><span class="p">,</span><span class="mi">2</span><span class="p">,</span><span class="mi">4</span><span class="p">}</span>
+<span class="n">b</span> <span class="o">=</span> <span class="p">{</span><span class="mi">2</span><span class="p">,</span><span class="mi">3</span><span class="p">,</span><span class="mi">4</span><span class="p">}</span>
+<span class="n">a</span><span class="o">.</span><span class="n">union</span><span class="p">(</span><span class="n">b</span><span class="p">)</span>
+<span class="o">&gt;&gt;&gt;</span> <span class="p">{</span><span class="mi">1</span><span class="p">,</span><span class="mi">2</span><span class="p">,</span><span class="mi">3</span><span class="p">,</span><span class="mi">4</span><span class="p">}</span>
+</pre></div>
+</div>
+</div>
+<div class="section" id="dictionaries">
+<h2>1.3.4. Dictionaries<a class="headerlink" href="#dictionaries" title="Permalink to this headline">¶</a></h2>
+<p>Dictionaries are great for name-space like structured data (key/value pairs).</p>
+<p>Easy to read and use,
+however it can be tricky to use while writing large pieces of code, since available keys are not auto-completed
+therefore the programmer has to remember what keys are available for use. For large-code or more-program-friendly
+use case - classes should be looked at for containing data in its name-space attributes that is auto-completed.</p>
+<p>See <a class="reference internal" href="builtin_logic_loops.html#logic-loops-list-comprehensions"><span class="std std-ref">List Comprehensions (alt for loops)</span></a> for dictionary comprehensions.</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="c1"># syntax</span>
+<span class="n">a</span> <span class="o">=</span> <span class="p">{</span><span class="s2">&quot;key1&quot;</span><span class="p">:</span> <span class="s2">&quot;value1&quot;</span><span class="p">,</span> <span class="s2">&quot;key2&quot;</span><span class="p">:</span> <span class="s2">&quot;value2&quot;</span><span class="p">}</span>
+<span class="n">a</span><span class="p">[</span><span class="s2">&quot;key1&quot;</span><span class="p">]</span> <span class="c1"># access value via keys</span>
+<span class="o">&gt;&gt;&gt;</span> <span class="s2">&quot;value1&quot;</span>
+
+<span class="c1"># report out a default value if a key does not exist with &quot;get&quot; instead of raising a KeyError</span>
+<span class="n">a</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s2">&quot;key3&quot;</span><span class="p">,</span> <span class="s2">&quot;not on record&quot;</span><span class="p">)</span>
+<span class="o">&gt;&gt;&gt;</span> <span class="s2">&quot;not on record&quot;</span>
+
+<span class="c1"># add to dict</span>
+<span class="n">a</span> <span class="o">=</span> <span class="p">{</span><span class="s2">&quot;key1&quot;</span><span class="p">:</span> <span class="s2">&quot;value1&quot;</span><span class="p">}</span>
+<span class="n">a</span><span class="p">[</span><span class="s2">&quot;key2&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="s2">&quot;value2&quot;</span>
+<span class="c1"># or with &quot;update&quot;</span>
+<span class="n">a</span><span class="o">.</span><span class="n">update</span><span class="p">({</span><span class="s2">&quot;key3&quot;</span><span class="p">:</span> <span class="s2">&quot;value3&quot;</span><span class="p">})</span>
+<span class="c1"># the same syntax can be used to update an existing key/value pair</span>
+
+<span class="c1"># iterate through keys and values</span>
+<span class="k">for</span> <span class="n">k</span><span class="p">,</span> <span class="n">v</span> <span class="ow">in</span> <span class="n">a</span><span class="o">.</span><span class="n">items</span><span class="p">():</span>
+    <span class="k">print</span><span class="p">(</span><span class="n">k</span><span class="p">,</span> <span class="n">v</span><span class="p">)</span>
+<span class="o">&gt;&gt;&gt;</span> <span class="s2">&quot;key1 value1&quot;</span>
+<span class="o">&gt;&gt;&gt;</span> <span class="s2">&quot;key2 value2&quot;</span>
+</pre></div>
+</div>
+<div class="section" id="trick-handling-nested-dicts">
+<h3>1.3.4.1. Trick - Handling nested dicts<a class="headerlink" href="#trick-handling-nested-dicts" title="Permalink to this headline">¶</a></h3>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="c1"># pulling out a sub-dict from sub-dict values</span>
+<span class="n">database</span> <span class="o">=</span> <span class="p">{</span><span class="mi">1</span><span class="p">:{</span><span class="s1">&#39;name&#39;</span><span class="p">:</span> <span class="s1">&#39;bob&#39;</span><span class="p">,</span> <span class="s1">&#39;color&#39;</span><span class="p">:</span> <span class="s1">&#39;blue&#39;</span><span class="p">},</span>
+            <span class="mi">2</span><span class="p">:{</span><span class="s1">&#39;name&#39;</span><span class="p">:</span> <span class="s1">&#39;jay&#39;</span><span class="p">,</span> <span class="s1">&#39;color&#39;</span><span class="p">:</span> <span class="s1">&#39;green&#39;</span><span class="p">},</span>
+            <span class="mi">3</span><span class="p">:{</span><span class="s1">&#39;name&#39;</span><span class="p">:</span> <span class="s1">&#39;kai&#39;</span><span class="p">,</span> <span class="s1">&#39;color&#39;</span><span class="p">:</span> <span class="s1">&#39;blue&#39;</span><span class="p">},}</span>
+<span class="c1"># lets pull out a sub-dict database for all color=blue people</span>
+<span class="n">subdb</span> <span class="o">=</span> <span class="p">{</span><span class="n">ID</span><span class="p">:</span> <span class="n">subdict</span> <span class="k">for</span> <span class="n">ID</span><span class="p">,</span> <span class="n">subdict</span> <span class="ow">in</span> <span class="n">database</span><span class="o">.</span><span class="n">items</span><span class="p">()</span> <span class="k">if</span> <span class="n">subdict</span><span class="p">[</span><span class="s1">&#39;color&#39;</span><span class="p">]</span> <span class="o">==</span> <span class="s1">&#39;blue&#39;</span><span class="p">}</span>
+</pre></div>
+</div>
+</div>
+<div class="section" id="trick-merging-2-dicts-shallow-copy">
+<h3>1.3.4.2. Trick - Merging 2 dicts (shallow copy)<a class="headerlink" href="#trick-merging-2-dicts-shallow-copy" title="Permalink to this headline">¶</a></h3>
+<p>Note that a shallow copy will create a new dict ID but the key and value objects will still
+be the same object ID as the originals. (this is only an issue if the original dicts are defined
+via mutable variables). The example below will not have any issues since strings and integers are
+immutable.</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">x</span> <span class="o">=</span> <span class="p">{</span><span class="s1">&#39;a&#39;</span><span class="p">:</span> <span class="mi">1</span><span class="p">,</span> <span class="s1">&#39;b&#39;</span><span class="p">:</span> <span class="mi">2</span><span class="p">}</span>
+<span class="n">y</span> <span class="o">=</span> <span class="p">{</span><span class="s1">&#39;b&#39;</span><span class="p">:</span> <span class="mi">3</span><span class="p">,</span> <span class="s1">&#39;c&#39;</span><span class="p">:</span> <span class="mi">4</span><span class="p">}</span>
+
+<span class="n">z</span> <span class="o">=</span> <span class="p">{</span><span class="o">**</span><span class="n">x</span><span class="p">,</span> <span class="o">**</span><span class="n">y</span><span class="p">}</span>
+<span class="o">&gt;&gt;&gt;</span> <span class="p">{</span><span class="s1">&#39;c&#39;</span><span class="p">:</span> <span class="mi">4</span><span class="p">,</span> <span class="s1">&#39;a&#39;</span><span class="p">:</span> <span class="mi">1</span><span class="p">,</span> <span class="s1">&#39;b&#39;</span><span class="p">:</span> <span class="mi">3</span><span class="p">}</span>
+</pre></div>
+</div>
+</div>
+<div class="section" id="trick-adding-a-custom-attribute-to-dict">
+<h3>1.3.4.3. Trick - Adding a custom attribute to dict<a class="headerlink" href="#trick-adding-a-custom-attribute-to-dict" title="Permalink to this headline">¶</a></h3>
+<p>Ever wish that there was a cleaner attribute to a builtin object? I ran into this when
+trying to write a user-friendly API but did not want to force the users to necessarily
+know what a dict.keys() were, instead i wanted to write it out as something much more pythonic</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="c1"># lets say we have a database class that holds IDs of items in a dictionary</span>
+<span class="k">class</span> <span class="nc">MyDB</span><span class="p">():</span>
+    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="c1"># we initialize an empty dictionary</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">items</span> <span class="o">=</span> <span class="p">{}</span>
+
+    <span class="c1"># define a method for adding items</span>
+    <span class="k">def</span> <span class="nf">additem</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span><span class="n">ID</span><span class="p">,</span><span class="n">arg</span><span class="p">):</span>
+        <span class="c1"># we then update the dictionary storage</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">items</span><span class="o">.</span><span class="n">update</span><span class="p">({</span><span class="n">ID</span><span class="p">:</span> <span class="n">arg</span><span class="p">})</span>
+
+<span class="c1"># now to use it, we could say</span>
+<span class="n">db</span> <span class="o">=</span> <span class="n">MyDB</span><span class="p">()</span>
+<span class="n">db</span><span class="o">.</span><span class="n">additem</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span><span class="s1">&#39;apples&#39;</span><span class="p">)</span>
+<span class="n">db</span><span class="o">.</span><span class="n">additem</span><span class="p">(</span><span class="mi">2</span><span class="p">,</span><span class="s1">&#39;oranges&#39;</span><span class="p">)</span>
+
+<span class="c1"># we can display the item IDs by typing</span>
+<span class="n">db</span><span class="o">.</span><span class="n">items</span><span class="o">.</span><span class="n">keys</span><span class="p">()</span>
+<span class="c1"># but the results are not very nice to read, nor is db.items.keys() intuitive for users</span>
+<span class="o">&gt;&gt;&gt;</span> <span class="n">dict_keys</span><span class="p">([</span><span class="mi">1</span><span class="p">,</span><span class="mi">2</span><span class="p">])</span>
+</pre></div>
+</div>
+<ul class="simple">
+<li><p>wouldnt it be nice if we could just type db.items.ids? Let’s see how it’s done</p></li>
+</ul>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="c1"># same class as before, but self.items = a custom class now that extends dictionaries</span>
+<span class="k">class</span> <span class="nc">MyDB</span><span class="p">():</span>
+    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="c1"># we initialize an empty dictionary</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">items</span> <span class="o">=</span> <span class="n">ExtDict</span><span class="p">()</span>
+
+    <span class="c1"># define a method for adding items</span>
+    <span class="k">def</span> <span class="nf">additem</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span><span class="n">ID</span><span class="p">,</span><span class="n">arg</span><span class="p">):</span>
+        <span class="c1"># we then update the dictionary storage</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">items</span><span class="o">.</span><span class="n">update</span><span class="p">({</span><span class="n">ID</span><span class="p">:</span> <span class="n">arg</span><span class="p">})</span>
+
+
+<span class="c1"># a custom class to extend dictionaries</span>
+<span class="c1">#  inherit from dict all the builtin attributes of a dictionary</span>
+<span class="k">class</span> <span class="nc">ExtDict</span><span class="p">(</span><span class="nb">dict</span><span class="p">):</span>
+    <span class="nd">@property</span>
+    <span class="k">def</span> <span class="nf">ids</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="k">return</span> <span class="nb">list</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">keys</span><span class="p">())</span>
+
+
+<span class="c1"># now let&#39;s use it</span>
+<span class="n">db</span> <span class="o">=</span> <span class="n">MyDB</span><span class="p">()</span>
+<span class="n">db</span><span class="o">.</span><span class="n">additem</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span><span class="s1">&#39;apples&#39;</span><span class="p">)</span>
+<span class="n">db</span><span class="o">.</span><span class="n">additem</span><span class="p">(</span><span class="mi">2</span><span class="p">,</span><span class="s1">&#39;oranges&#39;</span><span class="p">)</span>
+
+<span class="c1"># lets get the existing IDs a more user-friendly way</span>
+<span class="n">db</span><span class="o">.</span><span class="n">items</span><span class="o">.</span><span class="n">ids</span>    <span class="c1"># easy to read/use</span>
+<span class="o">&gt;&gt;&gt;</span> <span class="p">[</span><span class="mi">1</span><span class="p">,</span><span class="mi">2</span><span class="p">]</span>       <span class="c1"># easy to read/use</span>
+</pre></div>
+</div>
+</div>
+</div>
+</div>
+
+
+           </div>
+           
+          </div>
+          <footer>
+  
+    <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
+      
+        <a href="builtin_context_manager.html" class="btn btn-neutral float-right" title="1.4. builtin - Context Manager" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right"></span></a>
+      
+      
+        <a href="builtin_class.html" class="btn btn-neutral float-left" title="1.2. builtin - Class (Object Oriented Programming)" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left"></span> Previous</a>
+      
+    </div>
+  
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>
+        &copy; Copyright 2019, Viktor Kis
+
+    </p>
+  </div>
+  Built with <a href="http://sphinx-doc.org/">Sphinx</a> using a <a href="https://github.com/rtfd/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>. 
+
+</footer>
+
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+  
+
+
+  <script type="text/javascript">
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script>
+
+  
+  
+    
+   
+
+</body>
+</html>

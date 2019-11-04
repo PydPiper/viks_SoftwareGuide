@@ -1,0 +1,349 @@
+
+
+<!DOCTYPE html>
+<!--[if IE 8]><html class="no-js lt-ie9" lang="en" > <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="en" > <!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  <title>1.15. lib - Sphinx (code documentation) &mdash; Viktor&#39;s Software Guide 2019 documentation</title>
+  
+
+  
+  
+  
+  
+
+  
+  <script type="text/javascript" src="../_static/js/modernizr.min.js"></script>
+  
+    
+      <script type="text/javascript" id="documentation_options" data-url_root="../" src="../_static/documentation_options.js"></script>
+        <script type="text/javascript" src="../_static/jquery.js"></script>
+        <script type="text/javascript" src="../_static/underscore.js"></script>
+        <script type="text/javascript" src="../_static/doctools.js"></script>
+        <script type="text/javascript" src="../_static/language_data.js"></script>
+    
+    <script type="text/javascript" src="../_static/js/theme.js"></script>
+
+    
+
+  
+  <link rel="stylesheet" href="../_static/css/theme.css" type="text/css" />
+  <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+    <link rel="next" title="1.16. lib - Subprocess" href="lib_subprocess.html" />
+    <link rel="prev" title="1.14. lib - pytest" href="lib_pytest.html" /> 
+</head>
+
+<body class="wy-body-for-nav">
+
+   
+  <div class="wy-grid-for-nav">
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+          
+
+          
+            <a href="../index.html" class="icon icon-home"> Viktor's Software Guide
+          
+
+          
+          </a>
+
+          
+            
+            
+          
+
+          
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+
+          
+        </div>
+
+        <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+          
+            
+            
+              
+            
+            
+              <ul class="current">
+<li class="toctree-l1 current"><a class="reference internal" href="index.html">1. Python Guide</a><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="10min_python_starters_kit.html">1.1. 10min - Python Starter Kit</a></li>
+<li class="toctree-l2"><a class="reference internal" href="builtin_class.html">1.2. builtin - Class (Object Oriented Programming)</a></li>
+<li class="toctree-l2"><a class="reference internal" href="builtin_containers.html">1.3. builtin - Tuples, Lists, Sets, Dictionaries</a></li>
+<li class="toctree-l2"><a class="reference internal" href="builtin_context_manager.html">1.4. builtin - Context Manager</a></li>
+<li class="toctree-l2"><a class="reference internal" href="builtin_copy.html">1.5. builtin - Copy True/Shallow/Deep</a></li>
+<li class="toctree-l2"><a class="reference internal" href="builtin_functions.html">1.6. builtin - Functions</a></li>
+<li class="toctree-l2"><a class="reference internal" href="builtin_IO.html">1.7. builtin - File Input/Output (IO)</a></li>
+<li class="toctree-l2"><a class="reference internal" href="builtin_logic_loops.html">1.8. builtin - Logic Loops</a></li>
+<li class="toctree-l2"><a class="reference internal" href="builtin_mutable.html">1.9. builtin - Mutable/Immutable</a></li>
+<li class="toctree-l2"><a class="reference internal" href="builtin_strings.html">1.10. builtin - Strings</a></li>
+<li class="toctree-l2"><a class="reference internal" href="builtin_user_inputs.html">1.11. builtin - User Inputs</a></li>
+<li class="toctree-l2"><a class="reference internal" href="lib_pyinstaller.html">1.12. lib - pyinstaller</a></li>
+<li class="toctree-l2"><a class="reference internal" href="lib_pyqt.html">1.13. lib - PyQt5 (GUI)</a></li>
+<li class="toctree-l2"><a class="reference internal" href="lib_pytest.html">1.14. lib - pytest</a></li>
+<li class="toctree-l2 current"><a class="current reference internal" href="#">1.15. lib - Sphinx (code documentation)</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#text-manipulations">1.15.1. Text Manipulations</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#sphinx-toctree">1.15.2. Sphinx toctree</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#code-blocks">1.15.3. Code-Blocks</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#code-auto-doc">1.15.4. Code-Auto-Doc</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#figures">1.15.5. Figures</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="lib_subprocess.html">1.16. lib - Subprocess</a></li>
+<li class="toctree-l2"><a class="reference internal" href="lib_virtualenv.html">1.17. lib - virtualenv</a></li>
+<li class="toctree-l2"><a class="reference internal" href="tool_git.html">1.18. tool - Git</a></li>
+<li class="toctree-l2"><a class="reference internal" href="tool_pip.html">1.19. tool - pip (Package Installer for Python)</a></li>
+<li class="toctree-l2"><a class="reference internal" href="tool_pycharm.html">1.20. tool - PyCharm (IDE)</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../VBA/index.html">2. VBA Guide</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../Shell/index.html">3. Shell Guide</a></li>
+</ul>
+
+            
+          
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" aria-label="top navigation">
+        
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../index.html">Viktor's Software Guide</a>
+        
+      </nav>
+
+
+      <div class="wy-nav-content">
+        
+        <div class="rst-content">
+        
+          
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div role="navigation" aria-label="breadcrumbs navigation">
+
+  <ul class="wy-breadcrumbs">
+    
+      <li><a href="../index.html">Docs</a> &raquo;</li>
+        
+          <li><a href="index.html">1. Python Guide</a> &raquo;</li>
+        
+      <li>1.15. lib - Sphinx (code documentation)</li>
+    
+    
+      <li class="wy-breadcrumbs-aside">
+        
+            
+            <a href="../_sources/python/lib_sphinx.rst.txt" rel="nofollow"> View page source</a>
+          
+        
+      </li>
+    
+  </ul>
+
+  
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+            
+  <div class="section" id="lib-sphinx-code-documentation">
+<h1>1.15. lib - Sphinx (code documentation)<a class="headerlink" href="#lib-sphinx-code-documentation" title="Permalink to this headline">¶</a></h1>
+<ol class="arabic simple">
+<li><p>Create a virtualenv, see <a class="reference internal" href="lib_virtualenv.html"><span class="doc">lib - virtualenv</span></a></p></li>
+<li><p>Active virtualenv and add sphinx <code class="docutils literal notranslate"><span class="pre">pip</span> <span class="pre">install</span> <span class="pre">sphinx</span></code></p></li>
+<li><p>Change dir to your 00_project folder</p></li>
+<li><p>Run sphinx-quickstart (you will want to separate source and build for a cleaner structure)</p></li>
+<li><p>To install a custom sphinx theme: <code class="docutils literal notranslate"><span class="pre">pip</span> <span class="pre">install</span> <span class="pre">sphinx_rtd_theme</span></code></p></li>
+<li><p>Edit theme on your source/conf.py file to be “sphinx_rtd_theme”</p></li>
+<li><p>Create your docs</p></li>
+<li><p>To create your html files <code class="docutils literal notranslate"><span class="pre">./make.bat</span> <span class="pre">html</span></code></p></li>
+<li><p>To clean up your builds before git push <code class="docutils literal notranslate"><span class="pre">./make.bat</span> <span class="pre">clean</span></code></p></li>
+<li><p>Push your docs to your git (make sure you do a <code class="docutils literal notranslate"><span class="pre">pip</span> <span class="pre">freeze</span> <span class="pre">&gt;</span> <span class="pre">requirements.txt</span></code> because readthedocs might fail for
+using the incorrect version)</p></li>
+<li><p>Setup your commit hock with readthedocs (login to readthedocs, add your github project, then build).
+After your build is complete, each git push will auto-trigger a webhock to readthedocs</p></li>
+</ol>
+<div class="section" id="text-manipulations">
+<h2>1.15.1. Text Manipulations<a class="headerlink" href="#text-manipulations" title="Permalink to this headline">¶</a></h2>
+<p>Ref Sphinx rst docs:
+- <a class="reference external" href="http://www.sphinx-doc.org/en/master/usage/restructuredtext/index.html">Link1</a>
+- <a class="reference external" href="https://www.sphinx-doc.org/en/master/usage/restructuredtext/directives.html?highlight=code-block#showing-code-examples">Link2</a></p>
+<ul>
+<li><p>To italicize text: <code class="docutils literal notranslate"><span class="pre">*text*</span></code></p></li>
+<li><p>To bold text: <code class="docutils literal notranslate"><span class="pre">**text**</span></code></p></li>
+<li><p>Subscript/Superscript: <code class="docutils literal notranslate"><span class="pre">:sub:`yourtext`</span></code> or <code class="docutils literal notranslate"><span class="pre">:sup:`yourtext`</span></code></p></li>
+<li><p>Bullets: numbered “1)” dashed “-” (note that next line text of the same bullet must align with the text above!)</p></li>
+<li><p>To in-text code highlight: <code class="docutils literal notranslate"><span class="pre">``text``</span></code></p></li>
+<li><p>Important messages: <code class="docutils literal notranslate"><span class="pre">..</span> <span class="pre">note::</span></code> <code class="docutils literal notranslate"><span class="pre">..</span> <span class="pre">warning::</span></code> <code class="docutils literal notranslate"><span class="pre">..</span> <span class="pre">deprecated::</span></code> <code class="docutils literal notranslate"><span class="pre">..</span> <span class="pre">seealso::</span></code></p></li>
+<li><p>Internal Links: <code class="docutils literal notranslate"><span class="pre">:doc:`filename`</span></code></p></li>
+<li><p>External Links: <code class="docutils literal notranslate"><span class="pre">`linktext</span> <span class="pre">&lt;https://google.com&gt;`_</span></code></p></li>
+<li><p>Section Links within the same doc</p>
+<blockquote>
+<div><ol class="arabic simple">
+<li><p>put a <code class="docutils literal notranslate"><span class="pre">..</span> <span class="pre">_ref1:</span></code> above the header you want to ref (make sure there is an empty line between the header and _ref1)</p></li>
+<li><p>call the link by: <code class="docutils literal notranslate"><span class="pre">:ref:`ref1`</span></code></p></li>
+</ol>
+</div></blockquote>
+</li>
+<li><p>Today’s date in text <code class="docutils literal notranslate"><span class="pre">|today|</span></code></p></li>
+<li><p>Section underline: Section:<code class="docutils literal notranslate"><span class="pre">====</span></code>, Sub-Section <code class="docutils literal notranslate"><span class="pre">----</span></code>, Sub-Sub-Section <code class="docutils literal notranslate"><span class="pre">^^^^</span></code></p></li>
+</ul>
+</div>
+<div class="section" id="sphinx-toctree">
+<h2>1.15.2. Sphinx toctree<a class="headerlink" href="#sphinx-toctree" title="Permalink to this headline">¶</a></h2>
+<ol class="arabic simple">
+<li><p>The <code class="docutils literal notranslate"><span class="pre">..</span> <span class="pre">toctree::</span></code> must be present in your top level index.rst file. The links will show up on both your page and
+on the left quickbar</p></li>
+<li><p>The sub-folder trees also need to have a index.rst with <code class="docutils literal notranslate"><span class="pre">..</span> <span class="pre">toctree::</span></code> to properly get nested tree reference links,
+see example below:</p></li>
+</ol>
+<div class="highlight-text notranslate"><div class="highlight"><pre><span></span>on the top-level index.rst
+.. toctree::
+
+    python/index
+    VBA/index
+    Shell/index
+</pre></div>
+</div>
+<div class="highlight-text notranslate"><div class="highlight"><pre><span></span>in the subdirectory /python/ we have a index.rst, it needs to have a header and a sub-toctree
+
+Python Guide
+============
+
+.. toctree::
+
+    virtualenv
+    sphinx
+</pre></div>
+</div>
+</div>
+<div class="section" id="code-blocks">
+<h2>1.15.3. Code-Blocks<a class="headerlink" href="#code-blocks" title="Permalink to this headline">¶</a></h2>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p><strong>“.. code-block::” has to have an empty line above and below it, AND empty line after your code.
+The code has to be on the same indent level as “:linenos”</strong></p>
+</div>
+<div class="highlight-text notranslate"><div class="highlight"><pre><span></span>.. code-block:: shell
+    :linenos:
+    :lineno-start: 10
+    :emphasize-lines: 3,5
+
+    some shell code
+</pre></div>
+</div>
+</div>
+<div class="section" id="code-auto-doc">
+<h2>1.15.4. Code-Auto-Doc<a class="headerlink" href="#code-auto-doc" title="Permalink to this headline">¶</a></h2>
+<ol class="arabic simple">
+<li><p>Uncomment the following from your config file:</p></li>
+</ol>
+<div class="highlight-text notranslate"><div class="highlight"><pre><span></span>import os
+import sys
+sys.path.insert(0, os.path.abspath(&#39;.&#39;))
+</pre></div>
+</div>
+<ol class="arabic simple" start="2">
+<li><p>In your desired .rst file, add the following (where each function/class is the member):</p></li>
+</ol>
+<div class="highlight-text notranslate"><div class="highlight"><pre><span></span>.. automodule::
+    :members: foo, bar
+</pre></div>
+</div>
+</div>
+<div class="section" id="figures">
+<h2>1.15.5. Figures<a class="headerlink" href="#figures" title="Permalink to this headline">¶</a></h2>
+<div class="highlight-text notranslate"><div class="highlight"><pre><span></span>.. figure:: pic.png
+    :scale: 50%
+    :alt: Alternative text if image does not load, spoken by application for visually impaired
+    :align: center
+
+    This is caption text
+</pre></div>
+</div>
+</div>
+</div>
+
+
+           </div>
+           
+          </div>
+          <footer>
+  
+    <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
+      
+        <a href="lib_subprocess.html" class="btn btn-neutral float-right" title="1.16. lib - Subprocess" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right"></span></a>
+      
+      
+        <a href="lib_pytest.html" class="btn btn-neutral float-left" title="1.14. lib - pytest" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left"></span> Previous</a>
+      
+    </div>
+  
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>
+        &copy; Copyright 2019, Viktor Kis
+
+    </p>
+  </div>
+  Built with <a href="http://sphinx-doc.org/">Sphinx</a> using a <a href="https://github.com/rtfd/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>. 
+
+</footer>
+
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+  
+
+
+  <script type="text/javascript">
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script>
+
+  
+  
+    
+   
+
+</body>
+</html>

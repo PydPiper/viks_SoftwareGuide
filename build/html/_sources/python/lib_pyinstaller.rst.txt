@@ -47,4 +47,4 @@ TroubleShooting
     ...
 
 - then compile your project via .spec file ``pyinstaller project.spec``. If you dont have a spec file,
-  create one via ``pyi-makespec project --onefile``
+ create one via ``pyi-makespec project --onefile``

@@ -1,0 +1,350 @@
+
+
+<!DOCTYPE html>
+<!--[if IE 8]><html class="no-js lt-ie9" lang="en" > <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="en" > <!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  <title>1.14. lib - pytest &mdash; Viktor&#39;s Software Guide 2019 documentation</title>
+  
+
+  
+  
+  
+  
+
+  
+  <script type="text/javascript" src="../_static/js/modernizr.min.js"></script>
+  
+    
+      <script type="text/javascript" id="documentation_options" data-url_root="../" src="../_static/documentation_options.js"></script>
+        <script type="text/javascript" src="../_static/jquery.js"></script>
+        <script type="text/javascript" src="../_static/underscore.js"></script>
+        <script type="text/javascript" src="../_static/doctools.js"></script>
+        <script type="text/javascript" src="../_static/language_data.js"></script>
+    
+    <script type="text/javascript" src="../_static/js/theme.js"></script>
+
+    
+
+  
+  <link rel="stylesheet" href="../_static/css/theme.css" type="text/css" />
+  <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+    <link rel="next" title="1.15. lib - Sphinx (code documentation)" href="lib_sphinx.html" />
+    <link rel="prev" title="1.13. lib - PyQt5 (GUI)" href="lib_pyqt.html" /> 
+</head>
+
+<body class="wy-body-for-nav">
+
+   
+  <div class="wy-grid-for-nav">
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+          
+
+          
+            <a href="../index.html" class="icon icon-home"> Viktor's Software Guide
+          
+
+          
+          </a>
+
+          
+            
+            
+          
+
+          
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+
+          
+        </div>
+
+        <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+          
+            
+            
+              
+            
+            
+              <ul class="current">
+<li class="toctree-l1 current"><a class="reference internal" href="index.html">1. Python Guide</a><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="10min_python_starters_kit.html">1.1. 10min - Python Starter Kit</a></li>
+<li class="toctree-l2"><a class="reference internal" href="builtin_class.html">1.2. builtin - Class (Object Oriented Programming)</a></li>
+<li class="toctree-l2"><a class="reference internal" href="builtin_containers.html">1.3. builtin - Tuples, Lists, Sets, Dictionaries</a></li>
+<li class="toctree-l2"><a class="reference internal" href="builtin_context_manager.html">1.4. builtin - Context Manager</a></li>
+<li class="toctree-l2"><a class="reference internal" href="builtin_copy.html">1.5. builtin - Copy True/Shallow/Deep</a></li>
+<li class="toctree-l2"><a class="reference internal" href="builtin_functions.html">1.6. builtin - Functions</a></li>
+<li class="toctree-l2"><a class="reference internal" href="builtin_IO.html">1.7. builtin - File Input/Output (IO)</a></li>
+<li class="toctree-l2"><a class="reference internal" href="builtin_logic_loops.html">1.8. builtin - Logic Loops</a></li>
+<li class="toctree-l2"><a class="reference internal" href="builtin_mutable.html">1.9. builtin - Mutable/Immutable</a></li>
+<li class="toctree-l2"><a class="reference internal" href="builtin_strings.html">1.10. builtin - Strings</a></li>
+<li class="toctree-l2"><a class="reference internal" href="builtin_user_inputs.html">1.11. builtin - User Inputs</a></li>
+<li class="toctree-l2"><a class="reference internal" href="lib_pyinstaller.html">1.12. lib - pyinstaller</a></li>
+<li class="toctree-l2"><a class="reference internal" href="lib_pyqt.html">1.13. lib - PyQt5 (GUI)</a></li>
+<li class="toctree-l2 current"><a class="current reference internal" href="#">1.14. lib - pytest</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#setup-your-first-test">1.14.1. Setup your first test</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#how-to-check-if-a-function-raises-an-error">1.14.2. How to check if a function raises an error</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#how-to-report-out-code-test-coverage">1.14.3. How to report out code test coverage</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#to-mock-file-read-without-an-actual-file">1.14.4. To mock file-read without an actual file</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="lib_sphinx.html">1.15. lib - Sphinx (code documentation)</a></li>
+<li class="toctree-l2"><a class="reference internal" href="lib_subprocess.html">1.16. lib - Subprocess</a></li>
+<li class="toctree-l2"><a class="reference internal" href="lib_virtualenv.html">1.17. lib - virtualenv</a></li>
+<li class="toctree-l2"><a class="reference internal" href="tool_git.html">1.18. tool - Git</a></li>
+<li class="toctree-l2"><a class="reference internal" href="tool_pip.html">1.19. tool - pip (Package Installer for Python)</a></li>
+<li class="toctree-l2"><a class="reference internal" href="tool_pycharm.html">1.20. tool - PyCharm (IDE)</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../VBA/index.html">2. VBA Guide</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../Shell/index.html">3. Shell Guide</a></li>
+</ul>
+
+            
+          
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" aria-label="top navigation">
+        
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../index.html">Viktor's Software Guide</a>
+        
+      </nav>
+
+
+      <div class="wy-nav-content">
+        
+        <div class="rst-content">
+        
+          
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div role="navigation" aria-label="breadcrumbs navigation">
+
+  <ul class="wy-breadcrumbs">
+    
+      <li><a href="../index.html">Docs</a> &raquo;</li>
+        
+          <li><a href="index.html">1. Python Guide</a> &raquo;</li>
+        
+      <li>1.14. lib - pytest</li>
+    
+    
+      <li class="wy-breadcrumbs-aside">
+        
+            
+            <a href="../_sources/python/lib_pytest.rst.txt" rel="nofollow"> View page source</a>
+          
+        
+      </li>
+    
+  </ul>
+
+  
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+            
+  <div class="section" id="lib-pytest">
+<h1>1.14. lib - pytest<a class="headerlink" href="#lib-pytest" title="Permalink to this headline">¶</a></h1>
+<p>The concept of writing code to test code can be a bit bizarre at first, but the idea is to test
+the behavior of a function or integration of functions with a set of inputs that have a known
+desired output value (ie. add 1 + 3; the inputs are 1 and 3, and we know that the correct answer
+should be 4).</p>
+<p>Why write tests:</p>
+<ul class="simple">
+<li><p>Code reliability. Does the code work the way it is was intended?</p></li>
+<li><p>Code maintainability. During refactoring or feature addition/removal does the code still do
+what it was supposed to do?</p></li>
+<li><p>Code longevity. During version updates, outputs of dependent packages can change. A properly tested
+code will ensure that all outputs of dependent packages still work for your code.</p></li>
+<li><p>Tested code will yield cleaner code as well. It will be come very apparent in practice
+that a single function that does everything will be much hard to test (and read) than that same code refactored
+into many smaller functions with explicit output.</p></li>
+</ul>
+<p>Assertions: <a class="reference external" href="https://docs.python.org/3/library/2to3.html?highlight=assert#2to3fixer-asserts">Python.org</a></p>
+<div class="section" id="setup-your-first-test">
+<h2>1.14.1. Setup your first test<a class="headerlink" href="#setup-your-first-test" title="Permalink to this headline">¶</a></h2>
+<p>Although it is not necessary to create tests in another file, it is highly encouraged to keep
+the code base nice and clean.</p>
+<ul class="simple">
+<li><p>The code we want to test: let’s say the the following is in a file <code class="docutils literal notranslate"><span class="pre">mycode.py</span></code></p></li>
+</ul>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="c1"># filename: mycode.py</span>
+
+<span class="k">def</span> <span class="nf">adder</span><span class="p">(</span><span class="n">x</span><span class="p">,</span><span class="n">y</span><span class="p">):</span>
+    <span class="k">return</span> <span class="n">x</span> <span class="o">+</span> <span class="n">y</span>
+</pre></div>
+</div>
+<ul class="simple">
+<li><p>The test code: let’s say the following is in a file <code class="docutils literal notranslate"><span class="pre">test_mycode.py</span></code> It is a good idea to
+keep write a “test” file for each “code” file. Code files should also be short (not 1000s of lines).</p></li>
+</ul>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="c1"># filename: test_mycode.py</span>
+
+<span class="c1"># import the builtin test library</span>
+<span class="kn">import</span> <span class="nn">unittest</span>
+<span class="c1"># import your code module (mycode.py, assuming both mycode.py and test_myode.py is in the same folder)</span>
+<span class="kn">import</span> <span class="nn">mycode</span>
+
+
+<span class="c1"># setup the test class</span>
+<span class="k">class</span> <span class="nc">test_mycode</span><span class="p">(</span><span class="n">unittest</span><span class="o">.</span><span class="n">TestCase</span><span class="p">):</span>
+
+    <span class="c1"># setUp is optional: but if you are re-using inputs this saves you from retying them</span>
+    <span class="k">def</span> <span class="nf">setUp</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">input1</span> <span class="o">=</span> <span class="mi">10</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">input2</span> <span class="o">=</span> <span class="mi">20</span>
+
+    <span class="c1"># pytest looks for all methods that start with &quot;test_&quot;</span>
+    <span class="k">def</span> <span class="nf">test_one</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="c1"># there are many different asserts, see full list above</span>
+        <span class="c1">#  here we are testing if our function &quot;adder&quot; adds 10+20 correctly and equals 30</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">assertEqual</span><span class="p">(</span><span class="n">mycode</span><span class="o">.</span><span class="n">adder</span><span class="p">(</span><span class="mi">10</span><span class="p">,</span><span class="mi">20</span><span class="p">),</span><span class="mi">30</span><span class="p">)</span>
+
+    <span class="c1"># we can write as many tests as we like,</span>
+    <span class="c1">#   here is the same test input/out but with our setUp variables</span>
+    <span class="k">def</span> <span class="nf">test_two</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">assertEqual</span><span class="p">(</span><span class="n">mycode</span><span class="o">.</span><span class="n">adder</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">input1</span><span class="p">,</span><span class="bp">self</span><span class="o">.</span><span class="n">input2</span><span class="p">),</span><span class="mi">30</span><span class="p">)</span>
+</pre></div>
+</div>
+<ul class="simple">
+<li><p>To run pytest, we type the following in the terminal</p></li>
+</ul>
+<div class="highlight-shell notranslate"><div class="highlight"><pre><span></span>python -m pytest
+</pre></div>
+</div>
+<ul class="simple">
+<li><p>The output will look something like:</p></li>
+</ul>
+<div class="highlight-shell notranslate"><div class="highlight"><pre><span></span><span class="o">=============================</span> <span class="nb">test</span> session <span class="nv">starts</span> <span class="o">=============================</span>
+platform win32 -- Python <span class="m">3</span>.8.0, pytest-5.2.2, py-1.8.0, pluggy-0.13.0
+rootdir: C:<span class="se">\U</span>sers<span class="se">\y</span>ourusername<span class="se">\D</span>esktop
+collected <span class="m">2</span> items
+
+test_mycode.py ..                                                        <span class="o">[</span><span class="m">100</span>%<span class="o">]</span>
+
+<span class="o">==============================</span> <span class="m">2</span> passed in <span class="m">0</span>.03s <span class="o">==============================</span>
+</pre></div>
+</div>
+</div>
+<div class="section" id="how-to-check-if-a-function-raises-an-error">
+<h2>1.14.2. How to check if a function raises an error<a class="headerlink" href="#how-to-check-if-a-function-raises-an-error" title="Permalink to this headline">¶</a></h2>
+<p>Reusing the same example from <code class="docutils literal notranslate"><span class="pre">mycode.py</span></code></p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="c1"># filename: test_mycode.py</span>
+
+<span class="kn">import</span> <span class="nn">unittest</span>
+<span class="kn">import</span> <span class="nn">mycode</span>
+
+
+<span class="k">class</span> <span class="nc">test_mycode</span><span class="p">(</span><span class="n">unittest</span><span class="o">.</span><span class="n">TestCase</span><span class="p">):</span>
+
+    <span class="k">def</span> <span class="nf">test_error</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="c1"># to test a error raise, we have to enclose the code being testing a &quot;with&quot; block</span>
+        <span class="c1">#  here we are testing if our code raises a TypeError when adding 10 + &quot;20&quot; as it should</span>
+        <span class="k">with</span> <span class="bp">self</span><span class="o">.</span><span class="n">assertRaises</span><span class="p">(</span><span class="ne">TypeError</span><span class="p">):</span>
+            <span class="n">mycode</span><span class="o">.</span><span class="n">adder</span><span class="p">(</span><span class="mi">10</span><span class="p">,</span><span class="s2">&quot;20&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="section" id="how-to-report-out-code-test-coverage">
+<h2>1.14.3. How to report out code test coverage<a class="headerlink" href="#how-to-report-out-code-test-coverage" title="Permalink to this headline">¶</a></h2>
+<p>Code test coverage writes out a detailed report on what percent of your code the test actually executed.</p>
+<div class="highlight-shell notranslate"><div class="highlight"><pre><span></span>python -m pytest --cov
+</pre></div>
+</div>
+</div>
+<div class="section" id="to-mock-file-read-without-an-actual-file">
+<h2>1.14.4. To mock file-read without an actual file<a class="headerlink" href="#to-mock-file-read-without-an-actual-file" title="Permalink to this headline">¶</a></h2>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">f</span> <span class="o">=</span> <span class="n">io</span><span class="o">.</span><span class="n">StringIO</span><span class="p">(</span><span class="s2">&quot;text</span><span class="se">\n</span><span class="s2">&quot;</span><span class="p">)</span>
+
+<span class="n">f</span><span class="o">.</span><span class="n">readline</span><span class="p">()</span>
+<span class="o">&gt;&gt;&gt;</span> <span class="s2">&quot;text&quot;</span>
+</pre></div>
+</div>
+</div>
+</div>
+
+
+           </div>
+           
+          </div>
+          <footer>
+  
+    <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
+      
+        <a href="lib_sphinx.html" class="btn btn-neutral float-right" title="1.15. lib - Sphinx (code documentation)" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right"></span></a>
+      
+      
+        <a href="lib_pyqt.html" class="btn btn-neutral float-left" title="1.13. lib - PyQt5 (GUI)" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left"></span> Previous</a>
+      
+    </div>
+  
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>
+        &copy; Copyright 2019, Viktor Kis
+
+    </p>
+  </div>
+  Built with <a href="http://sphinx-doc.org/">Sphinx</a> using a <a href="https://github.com/rtfd/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>. 
+
+</footer>
+
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+  
+
+
+  <script type="text/javascript">
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script>
+
+  
+  
+    
+   
+
+</body>
+</html>

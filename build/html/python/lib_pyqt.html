@@ -1,0 +1,420 @@
+
+
+<!DOCTYPE html>
+<!--[if IE 8]><html class="no-js lt-ie9" lang="en" > <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="en" > <!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  <title>1.13. lib - PyQt5 (GUI) &mdash; Viktor&#39;s Software Guide 2019 documentation</title>
+  
+
+  
+  
+  
+  
+
+  
+  <script type="text/javascript" src="../_static/js/modernizr.min.js"></script>
+  
+    
+      <script type="text/javascript" id="documentation_options" data-url_root="../" src="../_static/documentation_options.js"></script>
+        <script type="text/javascript" src="../_static/jquery.js"></script>
+        <script type="text/javascript" src="../_static/underscore.js"></script>
+        <script type="text/javascript" src="../_static/doctools.js"></script>
+        <script type="text/javascript" src="../_static/language_data.js"></script>
+    
+    <script type="text/javascript" src="../_static/js/theme.js"></script>
+
+    
+
+  
+  <link rel="stylesheet" href="../_static/css/theme.css" type="text/css" />
+  <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+    <link rel="next" title="1.14. lib - pytest" href="lib_pytest.html" />
+    <link rel="prev" title="1.12. lib - pyinstaller" href="lib_pyinstaller.html" /> 
+</head>
+
+<body class="wy-body-for-nav">
+
+   
+  <div class="wy-grid-for-nav">
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+          
+
+          
+            <a href="../index.html" class="icon icon-home"> Viktor's Software Guide
+          
+
+          
+          </a>
+
+          
+            
+            
+          
+
+          
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+
+          
+        </div>
+
+        <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+          
+            
+            
+              
+            
+            
+              <ul class="current">
+<li class="toctree-l1 current"><a class="reference internal" href="index.html">1. Python Guide</a><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="10min_python_starters_kit.html">1.1. 10min - Python Starter Kit</a></li>
+<li class="toctree-l2"><a class="reference internal" href="builtin_class.html">1.2. builtin - Class (Object Oriented Programming)</a></li>
+<li class="toctree-l2"><a class="reference internal" href="builtin_containers.html">1.3. builtin - Tuples, Lists, Sets, Dictionaries</a></li>
+<li class="toctree-l2"><a class="reference internal" href="builtin_context_manager.html">1.4. builtin - Context Manager</a></li>
+<li class="toctree-l2"><a class="reference internal" href="builtin_copy.html">1.5. builtin - Copy True/Shallow/Deep</a></li>
+<li class="toctree-l2"><a class="reference internal" href="builtin_functions.html">1.6. builtin - Functions</a></li>
+<li class="toctree-l2"><a class="reference internal" href="builtin_IO.html">1.7. builtin - File Input/Output (IO)</a></li>
+<li class="toctree-l2"><a class="reference internal" href="builtin_logic_loops.html">1.8. builtin - Logic Loops</a></li>
+<li class="toctree-l2"><a class="reference internal" href="builtin_mutable.html">1.9. builtin - Mutable/Immutable</a></li>
+<li class="toctree-l2"><a class="reference internal" href="builtin_strings.html">1.10. builtin - Strings</a></li>
+<li class="toctree-l2"><a class="reference internal" href="builtin_user_inputs.html">1.11. builtin - User Inputs</a></li>
+<li class="toctree-l2"><a class="reference internal" href="lib_pyinstaller.html">1.12. lib - pyinstaller</a></li>
+<li class="toctree-l2 current"><a class="current reference internal" href="#">1.13. lib - PyQt5 (GUI)</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#installation">1.13.1. Installation</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#designer-gui-builder">1.13.2. Designer (GUI builder)</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#designer-to-python-code-setup">1.13.3. Designer to Python code setup</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#tables">1.13.4. Tables</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#path-file-browser">1.13.5. Path File Browser</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#messagebox-popup">1.13.6. MessageBox Popup</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#tabwidget-indexing">1.13.7. tabWidget Indexing</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#pyinstaller-packing-troubleshooting">1.13.8. PyInstaller Packing TroubleShooting</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#gui-lockup-multithreading">1.13.9. GUI Lockup - Multithreading</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="lib_pytest.html">1.14. lib - pytest</a></li>
+<li class="toctree-l2"><a class="reference internal" href="lib_sphinx.html">1.15. lib - Sphinx (code documentation)</a></li>
+<li class="toctree-l2"><a class="reference internal" href="lib_subprocess.html">1.16. lib - Subprocess</a></li>
+<li class="toctree-l2"><a class="reference internal" href="lib_virtualenv.html">1.17. lib - virtualenv</a></li>
+<li class="toctree-l2"><a class="reference internal" href="tool_git.html">1.18. tool - Git</a></li>
+<li class="toctree-l2"><a class="reference internal" href="tool_pip.html">1.19. tool - pip (Package Installer for Python)</a></li>
+<li class="toctree-l2"><a class="reference internal" href="tool_pycharm.html">1.20. tool - PyCharm (IDE)</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../VBA/index.html">2. VBA Guide</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../Shell/index.html">3. Shell Guide</a></li>
+</ul>
+
+            
+          
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" aria-label="top navigation">
+        
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../index.html">Viktor's Software Guide</a>
+        
+      </nav>
+
+
+      <div class="wy-nav-content">
+        
+        <div class="rst-content">
+        
+          
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div role="navigation" aria-label="breadcrumbs navigation">
+
+  <ul class="wy-breadcrumbs">
+    
+      <li><a href="../index.html">Docs</a> &raquo;</li>
+        
+          <li><a href="index.html">1. Python Guide</a> &raquo;</li>
+        
+      <li>1.13. lib - PyQt5 (GUI)</li>
+    
+    
+      <li class="wy-breadcrumbs-aside">
+        
+            
+            <a href="../_sources/python/lib_pyqt.rst.txt" rel="nofollow"> View page source</a>
+          
+        
+      </li>
+    
+  </ul>
+
+  
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+            
+  <div class="section" id="lib-pyqt5-gui">
+<h1>1.13. lib - PyQt5 (GUI)<a class="headerlink" href="#lib-pyqt5-gui" title="Permalink to this headline">¶</a></h1>
+<div class="section" id="installation">
+<h2>1.13.1. Installation<a class="headerlink" href="#installation" title="Permalink to this headline">¶</a></h2>
+<div class="highlight-shell notranslate"><div class="highlight"><pre><span></span>pip install pyqt5 pyqt5-tools
+</pre></div>
+</div>
+</div>
+<div class="section" id="designer-gui-builder">
+<h2>1.13.2. Designer (GUI builder)<a class="headerlink" href="#designer-gui-builder" title="Permalink to this headline">¶</a></h2>
+<p>PyQt comes with an awesome drag and drop GUI builder <code class="docutils literal notranslate"><span class="pre">designer.exe</span></code>.
+The tool (and all other pyqt .exe) will be placed in:</p>
+<ul class="simple">
+<li><p>lib/site-package/pyqt5_tools/Qt/bin</p></li>
+<li><p>or if you are using virtualenv, it will simply be under Scripts</p></li>
+</ul>
+<ol class="arabic simple">
+<li><p>Construct your GUI by drag/drop method and save it as a <code class="docutils literal notranslate"><span class="pre">.ui</span></code></p></li>
+<li><p>Convert your <code class="docutils literal notranslate"><span class="pre">.ui</span></code> to python code with <code class="docutils literal notranslate"><span class="pre">pyuic5.exe</span></code></p></li>
+</ol>
+<div class="highlight-shell notranslate"><div class="highlight"><pre><span></span><span class="c1"># -x to make it executable (creates __name__ == &quot;__main__&quot;)</span>
+<span class="c1"># -o to specify output filename</span>
+pyuic5.exe -x -o outputfilename.py designerfilename.ui
+</pre></div>
+</div>
+</div>
+<div class="section" id="designer-to-python-code-setup">
+<h2>1.13.3. Designer to Python code setup<a class="headerlink" href="#designer-to-python-code-setup" title="Permalink to this headline">¶</a></h2>
+<p>An efficient way to use Qt Designer is export out the widget code then without alterations import it
+into the logic modules.</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">form</span> <span class="kn">import</span> <span class="n">Ui_MainWindow</span>
+<span class="kn">from</span> <span class="nn">PyQt5</span> <span class="kn">import</span> <span class="n">QtWidgets</span><span class="p">,</span> <span class="n">QtCore</span><span class="p">,</span> <span class="n">QtGui</span>
+
+<span class="k">class</span> <span class="nc">Ui</span><span class="p">(</span><span class="n">QtWidgets</span><span class="o">.</span><span class="n">QMainWindow</span><span class="p">,</span> <span class="n">Ui_MainWindow</span><span class="p">):</span>
+    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="o">*</span><span class="n">args</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">):</span>
+        <span class="n">QtWidgets</span><span class="o">.</span><span class="n">QMainWindow</span><span class="o">.</span><span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="o">*</span><span class="n">args</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">setupUi</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span>
+
+        <span class="c1"># to enable event handling</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">installEventFilter</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span>
+
+    <span class="c1"># overwrite the Qt event method</span>
+    <span class="k">def</span> <span class="nf">eventFilter</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">source</span><span class="p">,</span> <span class="n">event</span><span class="p">):</span>
+        <span class="k">if</span> <span class="p">(</span><span class="n">event</span><span class="o">.</span><span class="n">type</span><span class="p">()</span> <span class="o">==</span> <span class="n">QtCore</span><span class="o">.</span><span class="n">QEvent</span><span class="o">.</span><span class="n">KeyPress</span> <span class="ow">and</span>
+                <span class="n">event</span><span class="o">.</span><span class="n">matches</span><span class="p">(</span><span class="n">QtGui</span><span class="o">.</span><span class="n">QKeySequence</span><span class="o">.</span><span class="n">Copy</span><span class="p">)):</span>
+            <span class="c1"># now pipe the event to any method to logic handling</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">customcopy</span><span class="p">()</span>
+        <span class="c1"># exp TBD</span>
+        <span class="k">return</span> <span class="nb">super</span><span class="p">(</span><span class="n">Ui</span><span class="p">,</span> <span class="bp">self</span><span class="p">)</span><span class="o">.</span><span class="n">eventFilter</span><span class="p">(</span><span class="n">source</span><span class="p">,</span> <span class="n">event</span><span class="p">)</span>
+
+    <span class="k">def</span> <span class="nf">customcopy</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="k">pass</span>
+
+<span class="k">if</span> <span class="vm">__name__</span> <span class="o">==</span> <span class="s2">&quot;__main__&quot;</span><span class="p">:</span>
+    <span class="c1"># create an instance of Qt (pass in sys.argv allows args to be passed it from terminal)</span>
+    <span class="n">app</span> <span class="o">=</span> <span class="n">QtWidgets</span><span class="o">.</span><span class="n">QApplication</span><span class="p">(</span><span class="n">sys</span><span class="o">.</span><span class="n">argv</span><span class="p">)</span>
+
+    <span class="n">gui</span> <span class="o">=</span> <span class="n">Ui</span><span class="p">()</span>
+    <span class="n">gui</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+    <span class="c1"># app.exce_() runs the mainloop, and returns 0 for no error, 1 for error</span>
+    <span class="n">sys</span><span class="o">.</span><span class="n">exit</span><span class="p">(</span><span class="n">app</span><span class="o">.</span><span class="n">exec_</span><span class="p">())</span>
+</pre></div>
+</div>
+</div>
+<div class="section" id="tables">
+<h2>1.13.4. Tables<a class="headerlink" href="#tables" title="Permalink to this headline">¶</a></h2>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="c1"># NOTE: this is another method to the example shown above under &quot;Designer to Python code setup&quot;</span>
+
+<span class="c1"># set cell value</span>
+<span class="k">def</span> <span class="nf">mycellsetter</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">value</span><span class="p">):</span>
+    <span class="c1"># input value must be a string</span>
+    <span class="n">row</span> <span class="o">=</span> <span class="mi">0</span>
+    <span class="n">col</span> <span class="o">=</span> <span class="mi">0</span>
+    <span class="bp">self</span><span class="o">.</span><span class="n">table</span><span class="o">.</span><span class="n">setItem</span><span class="p">(</span><span class="n">row</span><span class="p">,</span><span class="n">col</span><span class="p">,</span><span class="n">QtWidgets</span><span class="o">.</span><span class="n">QTableWidgetItem</span><span class="p">(</span><span class="nb">str</span><span class="p">(</span><span class="n">value</span><span class="p">)))</span>
+
+<span class="c1"># to get cell value</span>
+<span class="k">def</span> <span class="nf">mycellgetter</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+    <span class="n">row</span> <span class="o">=</span> <span class="mi">0</span>
+    <span class="n">col</span> <span class="o">=</span> <span class="mi">0</span>
+    <span class="c1"># return values will always be strings</span>
+    <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">table</span><span class="o">.</span><span class="n">item</span><span class="p">(</span><span class="n">row</span><span class="p">,</span> <span class="n">col</span><span class="p">)</span><span class="o">.</span><span class="n">text</span><span class="p">()</span>
+
+<span class="c1"># to iterate through a tableWidget</span>
+<span class="k">def</span> <span class="nf">tableiter</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+    <span class="n">maxcol</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">table</span><span class="o">.</span><span class="n">model</span><span class="p">()</span><span class="o">.</span><span class="n">columnCount</span><span class="p">()</span>
+    <span class="n">maxrow</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">table</span><span class="o">.</span><span class="n">model</span><span class="p">()</span><span class="o">.</span><span class="n">rowCount</span><span class="p">()</span>
+    <span class="k">for</span> <span class="n">c</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">maxcol</span><span class="p">):</span>
+        <span class="k">for</span> <span class="n">r</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">maxrow</span><span class="p">):</span>
+            <span class="c1"># note that empty cells show up as None type</span>
+            <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">table</span><span class="o">.</span><span class="n">item</span><span class="p">(</span><span class="n">r</span><span class="p">,</span><span class="n">c</span><span class="p">)</span> <span class="o">!=</span> <span class="bp">None</span><span class="p">:</span>
+                <span class="c1"># to get the actual value stored we have to call .text() on the current cell</span>
+                <span class="bp">self</span><span class="o">.</span><span class="n">table</span><span class="o">.</span><span class="n">item</span><span class="p">(</span><span class="n">r</span><span class="p">,</span><span class="n">c</span><span class="p">)</span><span class="o">.</span><span class="n">text</span><span class="p">()</span>
+
+<span class="c1"># to copy from table</span>
+<span class="k">def</span> <span class="nf">copySelection</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+    <span class="c1"># note this is tablename specific (table name = &quot;table&quot;)</span>
+    <span class="n">selection</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">table</span><span class="o">.</span><span class="n">selectedIndexes</span><span class="p">()</span>
+    <span class="k">if</span> <span class="n">selection</span><span class="p">:</span>
+        <span class="n">rows</span> <span class="o">=</span> <span class="nb">sorted</span><span class="p">(</span><span class="n">index</span><span class="o">.</span><span class="n">row</span><span class="p">())</span> <span class="k">for</span> <span class="n">index</span> <span class="ow">in</span> <span class="n">selection</span><span class="p">)</span>
+        <span class="n">columns</span> <span class="o">=</span> <span class="nb">sorted</span><span class="p">(</span><span class="n">index</span><span class="o">.</span><span class="n">column</span><span class="p">()</span> <span class="k">for</span> <span class="n">index</span> <span class="ow">in</span> <span class="n">selection</span><span class="p">)</span>
+        <span class="n">rowcount</span> <span class="o">=</span> <span class="n">rows</span><span class="p">[</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span> <span class="o">-</span> <span class="n">row</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="o">+</span> <span class="mi">1</span>
+        <span class="n">colcount</span> <span class="o">=</span> <span class="n">columns</span><span class="p">[</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span> <span class="o">-</span> <span class="n">columns</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="o">+</span> <span class="mi">1</span>
+        <span class="n">table</span> <span class="o">=</span> <span class="p">[[</span><span class="s1">&#39;&#39;</span><span class="p">]</span> <span class="o">*</span> <span class="n">colcount</span> <span class="k">for</span> <span class="n">_</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">rowcount</span><span class="p">)]</span>
+        <span class="k">for</span> <span class="n">index</span> <span class="ow">in</span> <span class="n">selection</span><span class="p">:</span>
+            <span class="n">row</span> <span class="o">=</span> <span class="n">index</span><span class="o">.</span><span class="n">row</span><span class="p">()</span> <span class="o">-</span> <span class="n">rows</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span>
+            <span class="n">column</span> <span class="o">=</span> <span class="n">index</span><span class="o">.</span><span class="n">coumn</span><span class="p">()</span> <span class="o">-</span> <span class="n">columns</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span>
+            <span class="n">table</span><span class="p">[</span><span class="n">row</span><span class="p">][</span><span class="n">column</span><span class="p">]</span> <span class="o">=</span> <span class="n">index</span><span class="o">.</span><span class="n">data</span><span class="p">()</span>
+        <span class="n">stream</span> <span class="o">=</span> <span class="n">io</span><span class="o">.</span><span class="n">StringIO</span><span class="p">()</span>
+        <span class="n">csv</span><span class="o">.</span><span class="n">writer</span><span class="p">(</span><span class="n">stream</span><span class="p">,</span> <span class="n">delimiter</span><span class="o">=</span><span class="s1">&#39;</span><span class="se">\t</span><span class="s1">&#39;</span><span class="p">)</span><span class="o">.</span><span class="n">writerows</span><span class="p">(</span><span class="n">table</span><span class="p">)</span>
+        <span class="n">QtWidgets</span><span class="o">.</span><span class="n">qApp</span><span class="o">.</span><span class="n">clipboard</span><span class="p">()</span><span class="o">.</span><span class="n">setText</span><span class="p">(</span><span class="n">stream</span><span class="o">.</span><span class="n">getvalue</span><span class="p">())</span>
+
+<span class="c1"># to paste to table</span>
+<span class="k">def</span> <span class="nf">pasteSelection</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+    <span class="c1"># notethis is tablename specific (table name = &quot;table&quot;)</span>
+    <span class="n">selection</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">table</span><span class="o">.</span><span class="n">selectedIndexes</span><span class="p">()</span>
+    <span class="n">model</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">table</span><span class="o">.</span><span class="n">model</span><span class="p">()</span>
+
+    <span class="k">if</span> <span class="n">selection</span><span class="p">:</span>
+        <span class="nb">buffer</span> <span class="o">=</span> <span class="n">QtWidgets</span><span class="o">.</span><span class="n">qApp</span><span class="o">.</span><span class="n">clipboard</span><span class="p">()</span><span class="o">.</span><span class="n">text</span><span class="p">()</span>
+        <span class="n">rows</span> <span class="o">=</span> <span class="nb">sorted</span><span class="p">(</span><span class="n">index</span><span class="o">.</span><span class="n">row</span><span class="p">()</span> <span class="k">for</span> <span class="n">index</span> <span class="ow">in</span> <span class="n">selection</span><span class="p">)</span>
+        <span class="n">columns</span> <span class="o">=</span> <span class="nb">sorted</span><span class="p">(</span><span class="n">index</span><span class="o">.</span><span class="n">column</span><span class="p">()</span> <span class="k">for</span> <span class="n">index</span> <span class="ow">in</span> <span class="n">selection</span><span class="p">)</span>
+        <span class="n">reader</span> <span class="o">=</span> <span class="n">csv</span><span class="o">.</span><span class="n">reader</span><span class="p">(</span><span class="n">io</span><span class="o">.</span><span class="n">StringIO</span><span class="p">(</span><span class="nb">buffer</span><span class="p">),</span> <span class="n">delimiter</span><span class="o">=</span><span class="s1">&#39;</span><span class="se">\t</span><span class="s1">&#39;</span><span class="p">)</span>
+        <span class="k">if</span> <span class="nb">len</span><span class="p">(</span><span class="n">rows</span><span class="p">)</span> <span class="o">==</span> <span class="mi">1</span> <span class="ow">and</span> <span class="nb">len</span><span class="p">(</span><span class="n">columns</span><span class="p">)</span> <span class="o">==</span> <span class="mi">1</span><span class="p">:</span>
+            <span class="k">for</span> <span class="n">i</span><span class="p">,</span> <span class="n">line</span> <span class="ow">in</span> <span class="nb">enumerate</span><span class="p">(</span><span class="n">reader</span><span class="p">):</span>
+                <span class="k">for</span> <span class="n">j</span><span class="p">,</span> <span class="n">cell</span> <span class="ow">in</span> <span class="nb">enumerate</span><span class="p">(</span><span class="n">line</span><span class="p">):</span>
+                    <span class="n">model</span><span class="o">.</span><span class="n">setData</span><span class="p">(</span><span class="n">model</span><span class="o">.</span><span class="n">index</span><span class="p">(</span><span class="n">row</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="o">+</span> <span class="mi">1</span><span class="p">,</span> <span class="n">columns</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="o">+</span> <span class="n">j</span><span class="p">),</span> <span class="n">cell</span><span class="p">)</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="n">arr</span> <span class="o">=</span> <span class="p">[[</span><span class="n">cell</span> <span class="k">for</span> <span class="n">cell</span> <span class="ow">in</span> <span class="n">row</span><span class="p">]</span> <span class="k">for</span> <span class="n">row</span> <span class="ow">in</span> <span class="n">reader</span><span class="p">]</span>
+            <span class="k">for</span> <span class="n">index</span> <span class="ow">in</span> <span class="n">selection</span><span class="p">:</span>
+                <span class="n">row</span> <span class="o">=</span> <span class="n">index</span><span class="o">.</span><span class="n">row</span><span class="p">()</span> <span class="o">-</span> <span class="n">rows</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span>
+                <span class="n">column</span> <span class="o">=</span> <span class="n">index</span><span class="o">.</span><span class="n">column</span><span class="p">()</span> <span class="o">-</span> <span class="n">columns</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span>
+                <span class="n">model</span><span class="o">.</span><span class="n">setData</span><span class="p">(</span><span class="n">model</span><span class="o">.</span><span class="n">index</span><span class="p">(</span><span class="n">index</span><span class="o">.</span><span class="n">row</span><span class="p">(),</span> <span class="n">index</span><span class="o">.</span><span class="n">column</span><span class="p">()),</span> <span class="n">arr</span><span class="p">[</span><span class="n">row</span><span class="p">][</span><span class="n">column</span><span class="p">])</span>
+</pre></div>
+</div>
+</div>
+<div class="section" id="path-file-browser">
+<h2>1.13.5. Path File Browser<a class="headerlink" href="#path-file-browser" title="Permalink to this headline">¶</a></h2>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="c1"># NOTE: this is another method to the example shown above under &quot;Designer to Python code setup&quot;</span>
+
+<span class="k">def</span> <span class="nf">getpath</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+    <span class="n">path</span> <span class="o">=</span> <span class="n">QtWidgets</span><span class="o">.</span><span class="n">QFileDialog</span><span class="o">.</span><span class="n">getExistingDirectory</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="s1">&#39;Select Directory&#39;</span><span class="p">)</span>
+    <span class="k">return</span> <span class="n">path</span>
+</pre></div>
+</div>
+</div>
+<div class="section" id="messagebox-popup">
+<h2>1.13.6. MessageBox Popup<a class="headerlink" href="#messagebox-popup" title="Permalink to this headline">¶</a></h2>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="c1"># NOTE: this is another method to the example shown above under &quot;Designer to Python code setup&quot;</span>
+
+<span class="c1"># the following is useful as error handling popup</span>
+<span class="k">try</span><span class="p">:</span>
+    <span class="c1"># some code</span>
+<span class="k">except</span> <span class="ne">Exception</span> <span class="k">as</span> <span class="n">e</span><span class="p">:</span>
+    <span class="n">msgbox</span> <span class="o">=</span> <span class="n">QtWidgets</span><span class="o">.</span><span class="n">QErrorMessage</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span>
+    <span class="n">msgbox</span><span class="o">.</span><span class="n">showMessage</span><span class="p">(</span><span class="nb">str</span><span class="p">(</span><span class="n">e</span><span class="p">))</span>
+</pre></div>
+</div>
+</div>
+<div class="section" id="tabwidget-indexing">
+<h2>1.13.7. tabWidget Indexing<a class="headerlink" href="#tabwidget-indexing" title="Permalink to this headline">¶</a></h2>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">tabpiper</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+    <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">yourtabwidgetname</span><span class="o">.</span><span class="n">currentIndex</span><span class="p">()</span> <span class="o">==</span> <span class="mi">0</span><span class="p">:</span>
+        <span class="k">print</span><span class="p">(</span><span class="s1">&#39;you are on the first tab&#39;</span><span class="p">)</span>
+    <span class="k">elif</span> <span class="bp">self</span><span class="o">.</span><span class="n">yourtabwidgetname</span><span class="o">.</span><span class="n">currentIndex</span><span class="p">()</span> <span class="o">==</span> <span class="mi">1</span><span class="p">:</span>
+        <span class="k">print</span><span class="p">(</span><span class="s1">&#39;you are on the second tab&#39;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="section" id="pyinstaller-packing-troubleshooting">
+<h2>1.13.8. PyInstaller Packing TroubleShooting<a class="headerlink" href="#pyinstaller-packing-troubleshooting" title="Permalink to this headline">¶</a></h2>
+<p>Dealing with “ImportError: unable to find QtCore.dll on PATH”
+- Run on pyinstaller 3.5 and PyQt5 5.12.3 (<a class="reference external" href="https://pyinstaller.readthedocs.io/en/stable/man/pyi-makespec.html">PyInstaller Link</a>)
+- Create spec file via (pyi-makespec filename.py)
+- Add to gui.spec datas=[(‘fullpath/site-packages/PyQt5/Qt/bin/<a href="#id1"><span class="problematic" id="id2">*</span></a>’,’PyQt5/Qt/bin’)]</p>
+<blockquote>
+<div><p>then run pyinstaller gui.spec –onefile</p>
+</div></blockquote>
+</div>
+<div class="section" id="gui-lockup-multithreading">
+<h2>1.13.9. GUI Lockup - Multithreading<a class="headerlink" href="#gui-lockup-multithreading" title="Permalink to this headline">¶</a></h2>
+<p>Execute a second window without locking up the first
+- QWidgets.QApplication.processEvents()</p>
+</div>
+</div>
+
+
+           </div>
+           
+          </div>
+          <footer>
+  
+    <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
+      
+        <a href="lib_pytest.html" class="btn btn-neutral float-right" title="1.14. lib - pytest" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right"></span></a>
+      
+      
+        <a href="lib_pyinstaller.html" class="btn btn-neutral float-left" title="1.12. lib - pyinstaller" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left"></span> Previous</a>
+      
+    </div>
+  
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>
+        &copy; Copyright 2019, Viktor Kis
+
+    </p>
+  </div>
+  Built with <a href="http://sphinx-doc.org/">Sphinx</a> using a <a href="https://github.com/rtfd/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>. 
+
+</footer>
+
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+  
+
+
+  <script type="text/javascript">
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script>
+
+  
+  
+    
+   
+
+</body>
+</html>

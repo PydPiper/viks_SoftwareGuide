@@ -187,7 +187,7 @@ Dealing with "ImportError: unable to find QtCore.dll on PATH"
 - Run on pyinstaller 3.5 and PyQt5 5.12.3 (`PyInstaller Link <https://pyinstaller.readthedocs.io/en/stable/man/pyi-makespec.html>`_)
 - Create spec file via (pyi-makespec filename.py)
 - Add to gui.spec datas=[('fullpath/site-packages/PyQt5/Qt/bin/*','PyQt5/Qt/bin')]
-then run pyinstaller gui.spec --onefile
+  then run pyinstaller gui.spec --onefile
 
 GUI Lockup - Multithreading
 ---------------------------

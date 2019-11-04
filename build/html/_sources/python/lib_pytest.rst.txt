@@ -114,7 +114,7 @@ Code test coverage writes out a detailed report on what percent of your code the
     python -m pytest --cov
 
 To mock file-read without an actual file
-----------------------------------------
+---------------------------------------
 
 .. code-block:: python
 
