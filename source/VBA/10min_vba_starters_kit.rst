@@ -41,9 +41,40 @@ Userforms, Modules, or Class Modules.  The most general place to add code is wit
     You should see ``Hello World!`` get printed to your ``Immediate Window``.
 4)  You can also step through your code line-by-line using ``F8``.  Give it a try!
 
+
+Introduction to Data Variables
+-------------------------
+Data Variable Types
++++++++++++++++++++
+
+.. note:: These are just some of the most commonly used variables.  For the full list of Data Varaible Types see Microsoft's `Data Type Summary <https://docs.microsoft.com/en-us/office/vba/language/reference/user-interface-help/data-type-summary>`_
+
+-   ``String``: Denoted by double-quotes.  "This is a string"
+-   ``Integer``: Whole number between -32,768 and 32,767
+-   ``Long``: Whole number between -2,147,483,648 and 2,147,483,647
+-   ``Double``: Double-precision floating point
+-   ``Boolean``: ``TRUE`` or ``FALSE``
+-   ``Date``: January 1, 100 to December 31, 9999
+-   ``Variant``: Special variable that can hold any data type
+    
+Variable Declaration & Scope
+++++++++++++++++++++++++++++
+There are three ways to declare a variable (each defining a different level of scope).
+
+-   ``Dim``: Procedure level (local) variable.  Must be declared within the procedure using it.
+-   ``Private``: Module level variable.  Visible to any procedure within the module.  Must be declared at the top of the module.
+-   ``Public``: Global level variable.  Visible to any module within the project.  Must be declared at the top of the module.
+
+.. code-block:: vba
+    Public gMyPublicVar As Variant
+    Public mMyPrivateVar As Variant
+    Sub MyProcedure()
+        Dim MyLocalVar As Variant
+    End Sub
+
 Expanding on your first script (Pt. 1)
 --------------------------------------
-Let's now build upon our first script to learn the basics of commenting, variable declaration, debugging, and user inputs.
+Let's now build upon our first script to apply what we've learned about variables and touch upon the basics of commenting, debugging, and user inputs.
 
 1)  Let's add a comment and a string variable to hold our message.  Comments are initiated by a single quote.
     Unfortunately, the concept of Comment Blocks do not exist in VBA.
@@ -65,8 +96,7 @@ Let's now build upon our first script to learn the basics of commenting, variabl
           it will stop right before executing that line of code (it will be highlighted yellow and nothing would have printed).
     2.2)  In your ``Immediate Window``, type in ``?msg`` and hit enter.  This will return the value stored in your variable ``msg``.
           You could also hover your mouse over ``msg`` in your script and a tooltip will appear showing it's value.
-    2.3)  Now in your ``Immediate Window``, type ``msg = "Bonjour World!"``.  This reassigns the value stored in your variable.
-          If you allow the script to finish executing by hitting Play or ``F5``, it will print the new value we just assigned.
+    2.3)  Now in your ``Immediate Window``, type ``msg = "Bonjour World!"``.  This reassigns the value stored in your variable.  If you allow the script to finish executing by hitting Play or ``F5``, it will print the new value we just assigned.
 
 3)  Let's now grab some info from our user to make our greeting a little more personalized.  
     To do this, we'll also need to concatinate our strings together using ``&``.
@@ -83,10 +113,9 @@ Let's now build upon our first script to learn the basics of commenting, variabl
     msg = "Hello " & user & "!"
     MsgBox(msg)
   End Sub
-
+  
 Introduction to Objects, Properties, and Methods
 ------------------------------------------------
-
 Objects
 +++++++
 ::
@@ -123,38 +152,39 @@ Methods
     often have arguments that qualify how the action is performed."
                                                             -Microsoft Dev Center
 
-Introduction to Variables
--------------------------
-
-Data Variables
-++++++++++++++
-
-.. note:: These are just some of the most commonly used variables.  For the full list of Data Varaible Types see Microsoft's `Data Type Summary <https://docs.microsoft.com/en-us/office/vba/language/reference/user-interface-help/data-type-summary>`_
-
--   ``String``: Denoted by double-quotes.  "This is a string"
-
-    -   Concatinating Strings: ``"Hello" & " " & "World" & "!"`` = ``"Hello World!"``
-    -   String Functions: 
-    
-        -   ``lcase("Hello World!")`` = ``"hello world!"``
-        -   ``ucase("Hello World!")`` = ``"HELLO WORLD!"``
-        -   ``len("Hello World!")`` = ``12``
-        -   ``left("Hello World!", 5)`` = ``"Hello"``
-        -   ``right("Hello World!", 1)`` = "!"
-        -   ``mid("Hello World!", 2, 4)`` = ``"ello"``
-        -   ``replace("Hello World!", "Hello", "Bonjour")`` = ``"Bonjour World!"``
-        -   ``instr(1, "Hello World!", "World")`` = ``7``
-    
--   ``Integer``: Whole number between -32,768 and 32,767
--   ``Long``: Whole number between -2,147,483,648 and 2,147,483,647
--   ``Double``: Double-precision floating point
--   ``Boolean``: ``TRUE`` or ``FALSE``
--   ``Date``: January 1, 100 to December 31, 9999
--   ``Variant``: Special variable that can hold any data type
-
 Object Variables
 ++++++++++++++++
+Object variables allow you to store a reference to any object.  The main difference in using an object variable as opposed to a
+data variable is that you need to use the word ``Set`` to assign something to it.
 
+.. code-block:: vba
+    Sub MyProcedure()
+        Dim xlSht As Excel.Worksheet
+        Dim sheetName As String
+        
+        Set xlSht = ActiveSheet
+        sheetName = xlSht.Name
+    End Sub
+
+.. note:: This example uses early binding to declare the variable ``xlSht`` specifically as an ``Excel.Worksheet`` object. You could also use late binding to declare the variable as just an Object like ``Dim xlSht As Object``.  Early binding requires you to have the appropriate library references loaded beforehand.
+
+.. note:: If you need help with any Object in VBA, your best resource is the ``Object Browser``.  Go to ``View > Object Browser`` or hit ``F2`` to open it up.  The ``Object Browser`` allows you to look up anything about an Object including it's Properties and Methods.
+
+Expanding on your first script (Pt. 2)
+--------------------------------------
+Let's build upon our first script one last time to practice using Objects, Properties, and Methods.  First, we're going to read the user's name from the ``Value Property`` of the ``Range Object`` for Cell A1 and then we'll execute the object's ``ClearContents Method`` to clear out their name before displaying the message.  
+
+.. code-block:: vba
+
+  Sub HelloWorld()
+    'This was my very first VBA script!
+    Dim xlRng As Object
+    Dim msg As String
+    Dim user As String
     
-Variable Lifetime & Scope
-+++++++++++++++++++++++++
+    Set xlRng = ActiveSheet.Range("A1")
+    user = xlRng.Value
+    xlRng.ClearContents
+    msg = "Hello " & user & "!"
+    MsgBox(msg)
+  End Sub
