@@ -2,6 +2,6 @@ VBA Guide
 ============
 
 .. toctree::
-    :maxdepth: 5
-    :titlesonly:
+    :maxdepth: 2
 
+    excel_cell_split

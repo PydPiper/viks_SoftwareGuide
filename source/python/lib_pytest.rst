@@ -6,6 +6,7 @@ desired output value (ie. add 1 + 3; the inputs are 1 and 3, and we know that th
 should be 4).
 
 Why write tests:
+
 - Code reliability. Does the code work the way it is was intended?
 - Code maintainability. During refactoring or feature addition/removal does the code still do
   what it was supposed to do?
@@ -14,6 +15,9 @@ Why write tests:
 - Tested code will yield cleaner code as well. It will be come very apparent in practice
   that a single function that does everything will be much hard to test (and read) than that same code refactored
   into many smaller functions with explicit output.
+
+Assertions: `Python.org <https://docs.python.org/3/library/2to3.html?highlight=assert#2to3fixer-asserts>`_
+
 
 Setup your first test
 ---------------------
@@ -56,7 +60,8 @@ the code base nice and clean.
             #  here we are testing if our function "adder" adds 10+20 correctly and equals 30
             self.assertEqual(mycode.adder(10,20),30)
 
-        # we can write as many tests as we like, here is the same thing with our setUp variables
+        # we can write as many tests as we like,
+        #   here is the same test input/out but with our setUp variables
         def test_two(self):
             self.assertEqual(mycode.adder(self.input1,self.input2),30)
 
@@ -79,7 +84,34 @@ the code base nice and clean.
 
     ============================== 2 passed in 0.03s ==============================
 
+How to check if a function raises an error
+------------------------------------------
+Reusing the same example from ``mycode.py``
 
+.. code-block:: python
+
+    # filename: test_mycode.py
+
+    import unittest
+    import mycode
+
+
+    class test_mycode(unittest.TestCase):
+
+        def test_error(self):
+            # to test a error raise, we have to enclose the code being testing a "with" block
+            #  here we are testing if our code raises a TypeError when adding 10 + "20" as it should
+            with self.assertRaises(TypeError):
+                mycode.adder(10,"20")
+
+How to report out code test coverage
+------------------------------------
+Code test coverage writes out a detailed report on what percent of your code the test actually executed.
+
+
+.. code-block:: shell
+
+    python -m pytest --cov
 
 To mock file-read without an actual file
 ---------------------------------------
