@@ -25,7 +25,6 @@ Ref Sphinx rst docs:
 - To italicize text: ``*text*``
 - To bold text: ``**text**``
 - Subscript/Superscript: ``:sub:`yourtext``` or ``:sup:`yourtext```
-- Bullets: numbered "1)" dashed "-" (note that next line text of the same bullet must align with the text above!)
 - To in-text code highlight: ````text````
 - Important messages: ``.. note::`` ``.. warning::`` ``.. deprecated::`` ``.. seealso::``
 - Internal Links: ``:doc:`filename```
@@ -36,6 +35,23 @@ Ref Sphinx rst docs:
     2) call the link by: ``:ref:`ref1```
 - Today's date in text ``|today|``
 - Section underline: Section:``====``, Sub-Section ``----``, Sub-Sub-Section ``^^^^``
+- Bullets, there are a few not so intuitive conventions about bullets, see below:
+
+.. code-block:: text
+
+    - this is a bullet
+
+    - this is another bullet
+
+    - this is a bullet
+    on multi lines
+
+    1) this is a numbered bullet
+
+        1.1) this is a nested bullet
+        with multi lines
+
+        1.2) here is another nested bullet
 
 Sphinx toctree
 --------------
