@@ -30,6 +30,7 @@ General
 - To commit a change: ``git commit -m "msg with your commit"``
 - To push a commit to the cloud: ``git push``
 - To pull the latest data from the branch: ``git pull`` or explicitly ``git pull origin master`` (note that ``git fetch`` works similarly, however it does not merge the work with your local changes)
+- To completely overwrite local files with server files: ``git reset --hard origin/master``
 
 Status
 
