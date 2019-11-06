@@ -1,4 +1,4 @@
-excel - cell split
+excel - Cell Split
 ==================
 Surprisingly excel does not have a ``split`` function builtin. Ever run into a issue where
 you would like to pull out a part of a result based on common delimiters? Here is a function to

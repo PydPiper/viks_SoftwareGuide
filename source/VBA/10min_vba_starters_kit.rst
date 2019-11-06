@@ -21,7 +21,7 @@ The majority of this guide will cover VBA in Excel, but feel free to explore the
     Go to ``View > Toolbars > Edit`` and then drag it to the top where the rest of the toolbar lives.
     
 Running your first script
----------------------
+-------------------------
 VBA code can be stored in Application Objects (eg. Sheet1, Sheet2, Sheet3, ThisWorkbook), 
 Userforms, Modules, or Class Modules.  The most general place to add code is within a basic Module.
 
@@ -43,7 +43,7 @@ Userforms, Modules, or Class Modules.  The most general place to add code is wit
 
 
 Introduction to Data Variables
--------------------------
+------------------------------
 Data Variable Types
 +++++++++++++++++++
 
