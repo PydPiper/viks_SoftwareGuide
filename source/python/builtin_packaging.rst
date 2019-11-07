@@ -4,13 +4,36 @@ Managing imports can be quite a challenge in python at first. There are builtin 
 packages, packages you install (through pip), and your own files that can all be imported into your project.
 This section will hopefully shine some light on how imports work in python, and give you an idea on how
 to setup your own package/library. Note that folks use library and package in python interchangeably. We
-will use package since that is how python folder system calls them.
+will use "packages" since that is how python folder system calls them.
 
 Level Setting Imports
 ---------------------
 
-- Site-Package Import are accessible to the python interpreter no matter where your current working
-  directory may be (see in more detail :ref:`builtin_packages_ref1`).
+Importing syntax and meaning
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+1.) Import everything under a package (this can be slow and not preferable since it is not explicit)
+
+.. code-block:: python
+
+    import unittest
+
+    # now use it via
+    mycase = unittest.TestCase
+
+2.) Import specifics (preferred option because it is explicit)
+
+.. code-block:: python
+
+    from unittest import TestCase
+
+    # now use it via
+    mycase = TestCase
+
+Importing Global Site-Packages
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+Site-packages are accessible to the python interpreter no matter where your current working
+directory may be (see in more detail :ref:`builtin_packages_ref1`).
 
 .. code-block:: python
 
@@ -18,30 +41,61 @@ Level Setting Imports
     import csv # under Python/Lib as a module file
     import pandas # under Python/Lib/site-packages as a module folder (if pandas is pip installed)
 
-- Importing in different ways
 
-    1.) Import everything under a package (this can be slow and not preferable since it is not explicit)
+Importing your own files in a working directory.
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
-        .. code-block:: python
+::
 
-            import unittest
+    Folder structure:
 
-            # now use it via
-            mycase = unittest.TestCase
+        folder1
+        |-file1.py
+        |-file2.py
+        |-folder2
+            |-file3.py
 
-    2.) Import specifics (preferred option because it is explicit)
+1.) files in the same folder as your original script
 
-    .. code-block:: python
+.. code-block:: python
 
-        from unittest import TestCase
+    # this code is in file1.py
 
-        # now use it via
-        mycase = TestCase
+    # we dont need to type ".py" at the end of the file names
+    import file2
 
-- Importing your own files in a working directory. TBD finish later
+    # to use a function "foo" that is in file2.py
+    file2.foo()
+
+2.) import files from a sub-directory
+
+.. code-block:: python
+
+    # this code is in file1.py
+
+    # sub-folders are handled by "." instead of "/" in python imports
+    import folder2.file3
+
+    # to use a function "foo" that is in file3
+    folder2.file3.foo()
+
+3.) import files from a directory above
+
+.. note:: You can only import files on the same directory level as your starting script file!
+   Never higher! You will get an ``ValueError: attempted relative import beyond top-level package``
 
 
-.. note:: You can only import files on the same directory level as your starting script file! Never higher! See example below.
+.. code-block:: python
+
+    # this code is in file3.py
+
+    # the following works if we launch our original script: python file1.py
+    #  in file1.py the same code exists as in bullet 2) that then calls file3.py
+    # note: this works because file1.py (top level directory file was launched)
+    #  if you tried to run file3.py by itself: python file3.py it will fail because of the note above
+    from file2 import foo
+
+    foo()
 
 
 .. _builtin_packages_ref1:
@@ -104,8 +158,8 @@ instance)
 
 6.) TBD more on __all__
 
-How to make a your accessible to your python instances
-------------------------------------------------------
+How to make your package accessible to your python instances
+------------------------------------------------------------
 TBD, spin-off on site-package example
 
 How to structure your own package

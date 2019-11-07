@@ -1,17 +1,23 @@
 lib - virtualenv
 ====================
 
-1) pip install virtualenv (version 16.1.0 for win10 build compatibility)
+1) pip install virtualenv (version 16.1.0 for win10 build compatibility) in your global site-packages
 
 .. code-block:: shell
 
     pip install virtualenv==16.1.0
 
-2) Create your virtualenv from terminal:
+2) Create your git repo online and clone it down (see :doc:`tool_git`)
+
+2) Browse into your git repo and create your virtualenv from terminal:
 
 .. code-block:: shell
 
-    python -m virtualenv foldername --no-site-packages
+    python -m virtualenv venv_projectname --no-site-packages
+
+Note as a convention, I recommend placing the venv inside your git repo folder so that everything is together.
+This setup integrates really nicely with Editors like PyCharm where the project recognizes that you created a
+virtualenv inside your git repo folder.
 
 This will create you a folder with bear minimum python packages (this is nice if you would like to
 pyinstaller package up your work that ONLY use the packages required for your project). The folder created
@@ -24,7 +30,7 @@ has a bunch of folders.
 
 .. code-block:: shell
 
-    source foldername/Scripts/activate
+    source venv_projectname/Scripts/activate
 
 4) Deactive
 
@@ -32,8 +38,8 @@ has a bunch of folders.
 
     deactivate
 
-5) As a convention, place a 00_project folder within the virtualenv, and this is where you would git initialize.
-To create a .gitignore (from terminal: ``touch .gitignore`` and you will most likely want the following in it:
+5) To ensure we are not pushing unnecessary items to our git repo, we can create a ``.gitignore`` file.
+Create a ``.gitignore`` (from terminal: ``touch .gitignore`` and you will most likely want the following in it:
 
 ::
 
@@ -47,3 +53,4 @@ To create a .gitignore (from terminal: ``touch .gitignore`` and you will most li
 
     build
     dist
+    venv_projectname
