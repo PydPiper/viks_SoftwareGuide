@@ -1,15 +1,15 @@
 builtin - Logic Loops
----------------------
+=====================
 
 True False
-++++++++++
+----------
 In VBA, the following all evaluate to True:
 
 - -1=True
 - 0=False
 
 If ElseIf Else
-++++++++++++++
+--------------
 
 .. code-block:: vbscript
 
@@ -26,7 +26,7 @@ If ElseIf Else
 
 
 Select Case
-+++++++++++
+-----------
 
 .. code-block:: vbscript
   
@@ -44,7 +44,7 @@ Select Case
 
 
 For Loops
-+++++++++
+---------
   
 .. code-block:: vbscript
 
@@ -80,7 +80,7 @@ For Loops
     
     
 Do Loops
-++++++++
+--------
 There are two forms of the Do While/Do Until Loops.  The difference is that one will evaluate the criteria 
 before entering the loop while the other won't evaluate the criteria until at the end of the loop.
 In the example script below, try changing the value of x at the start of each loop to 5 and see what happens.
@@ -119,7 +119,7 @@ In the example script below, try changing the value of x at the start of each lo
   
   
 Looping Through Files in a Folder
-+++++++++++++++++++++++++++++++++
+---------------------------------
 This is a method of looping through files in a folder using the ``Dir()`` function.
 
 .. code-block:: vbscript
