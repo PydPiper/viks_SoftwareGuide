@@ -1,5 +1,5 @@
-Subroutines and Functions
--------------------------
+builtin - Subroutines and Functions
+===================================
 The main difference between a subroutine and function is that a function returns a value while a subroutine does not.
 When calling one subroutine from another, you would use the ``Call`` command (Note: the code can run without using ``Call``, 
 but it's much easier to understand what's happening when its there).  To use a function you created, just assign it
@@ -19,7 +19,7 @@ to a variable like any other function.
     End Function
     
 Input Arguments
-+++++++++++++++
+---------------
 Both subroutines and functions can take in any number of arguments.  These can either be passed by value (``ByVal``)
 or by reference (``ByRef``).  ``ByVal`` will send the value of the variable while ``ByRef`` will send the variable itself.
 In both cases, you should also define the type of variable being passed.
@@ -29,10 +29,10 @@ In both cases, you should also define the type of variable being passed.
     Sub Main()
         Dim x As Integer
         x = 3
-        Debug.Print TripleByVal(x)
-        Debug.Print x
-        Debug.Print TripleByRef(x)
-        Debug.Print x
+        Debug.Print TripleByVal(x) ' this return 3*3=9
+        Debug.Print x              ' this returns the original x=3
+        Debug.Print TripleByRef(x) ' this return 3*3=9, but...
+        Debug.Print x              ' it ByRef also returns any changes to variable, hence x=9
     End Sub
     Function TripleByVal(ByVal x As Integer) AS Integer
         x = x * 3
@@ -48,7 +48,7 @@ You can see how passing ``ByRef`` passed the variable itself so it retains any c
 By default, VBA will pass arguments ``ByRef`` so be sure to use ``ByVal`` if you don't want that behavior.
 
 Optional Arguments
-++++++++++++++++++
+------------------
 You can define arguments as optional if you don't always need it.  It is usually a good idea to define a default value
 to use if the argument is ommited.  If you don't, VBA will apply it's own default value (usually an empty string or 0).
 

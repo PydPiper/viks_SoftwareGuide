@@ -98,6 +98,24 @@ Importing your own files in a working directory.
     foo()
 
 
+How to make your package accessible to your python instances
+------------------------------------------------------------
+Let's say we wrote a piece of python code that we want to reuse. We have a few very annoying options to
+directly call this python file from any directory:
+
+- we can brute force copy the file from one directory to the next so we that we can locally import it (terrible
+  option, never do this)
+- we can absolute/relative path import it into our other project (not good solution since folder paths
+  change all the time)
+- we can add our python script location to our system environment PATH. This can be done by either editing
+  our windows account environment PATHs or within python using ``sys.path``. (now we are getting warmer but
+  this solution still depends on file paths that again might change)
+
+.. note:: The best solution is to add your python file/package to your ``Python/Lib/site-packages`` folder.
+          All site-package scripts and packages are available to any python instance you may spin up and
+          importing is just as easy as any other site-package import (ex: ``import mycustompackage``)
+
+
 .. _builtin_packages_ref1:
 
 How Do Site-packages (builtin or pip installed packages) Import
@@ -156,11 +174,20 @@ instance)
     # now use it by...
     mytestcase = TestCase
 
-6.) TBD more on __all__
+6.) Before closing out this site-package example, let's take a look at ``__all__``.
 
-How to make your package accessible to your python instances
-------------------------------------------------------------
-TBD, spin-off on site-package example
+    6.1) By default python a general import call: ``import unittest`` will import all
+    functions/classes/modules that are listed in the ``__init__.py`` file.
+
+    6.2) ``__all__`` will prevent the user from importing anything that is not explicitly stated in
+    the ``__all__ = [...]`` list. Note, this is only true if the user uses the explicit import
+    form ``from unittest import *``.
+
+.. note:: ``__all__`` does not exempt the user from directly importing a hidden function. For example lets
+            suppose there is a function under unittest called ``hiddenfunc`` we could bypass the ``__all__``
+            restriction by directly importing the function name ``from unittest import hiddenfunc`` or
+            simply just using the general import ``import unittest`` that import everything in the ``__init__.py``
+
 
 How to structure your own package
 ---------------------------------

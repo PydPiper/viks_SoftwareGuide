@@ -1,5 +1,5 @@
-Create Outlook Email
---------------------
+office - Create Outlook Email
+=============================
 This macro can be used in any office application to generate an email in Outlook.  
 Subject and HTMLBody are required arugments while the rest are optional.  
 The ``fSend`` argument controls whether the email is automatically sent or displayed at the end (default is display).
