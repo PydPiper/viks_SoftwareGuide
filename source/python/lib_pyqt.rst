@@ -1,8 +1,15 @@
 lib - PyQt5 (GUI)
 =================
+Qt framework is a very powerful cross-platform GUI builder. It is written in C++ and it was ported,
+over to python as pyqt. The python documentation is nearly non-existent since it would sort of be
+a duplicate of the Qt C++ docs (https://doc.bccnsoft.com/docs/PyQt5/). This package has a very steep
+learning curve, so take it slow and try to get used to reading the C++ docs.
 
 Installation
 ------------
+Note if you get a ``Could not find a version that satisfies the requirements`` during a pip install,
+then your current python version is not supported by pyqt.
+
 .. code-block:: shell
 
     pip install pyqt5 pyqt5-tools
@@ -34,6 +41,7 @@ into the logic modules.
 
     from form import Ui_MainWindow
     from PyQt5 import QtWidgets, QtCore, QtGui
+    import sys
 
     class Ui(QtWidgets.QMainWindow, Ui_MainWindow):
         def __init__(self, *args, **kwargs):
@@ -45,11 +53,18 @@ into the logic modules.
 
         # overwrite the Qt event method
         def eventFilter(self, source, event):
+            # first check if a key was pressed, then check if that event matches ctrl+c
+            #  which is already built into qt as QKeySequence.Copy
             if (event.type() == QtCore.QEvent.KeyPress and
                     event.matches(QtGui.QKeySequence.Copy)):
                 # now pipe the event to any method to logic handling
                 self.customcopy()
-            # exp TBD
+
+            # lets see how we setup a custom key event
+            if (event.type() == QtCore.QEvent.KeyPress and
+                    event.key() == QtCore.Qt.Key_A:
+                print('you presses either the "A" key')
+
             return super(Ui, self).eventFilter(source, event)
 
         def customcopy(self):
