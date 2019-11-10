@@ -81,7 +81,7 @@ exported ``form.py`` designer exported python code.
         def eventFilter(self, source, event):
             # lets see how we setup a custom key event
             if (event.type() == QtCore.QEvent.KeyPress and
-                    event.key() == QtCore.Qt.Key_A:
+                    event.key() == QtCore.Qt.Key_A):
                 print('you presses the "A" key')
 
             # first check if a key was pressed, then check if that event matches ctrl+c
@@ -108,6 +108,80 @@ exported ``form.py`` designer exported python code.
         # app.exce_() runs the mainloop, and returns 0 for no error, 1 for error
         sys.exit(app.exec_())
 
+
+Events
+------
+
+- paintEvent
+
+- resizeEvent
+
+- keyPressEvent and keyReleaseEvent
+
+- contextMenuEvent
+
+- mouseMoveEvent and mouseReleaseEvent and mouseDoubleClickEvent
+
+Custom Signal/Connect/Emit Setup
+--------------------------------
+Signals are a great way to jump in and out of function when a certain event or condition was satisfied.
+As with any problem, this what a signal does can also be achieved without ever using signals but signals
+can make more of a logical sense. There are 4 pieces to a signal setup/use:
+
+1) Signal: Class Attribute; Defines the signal name, and sets up argument types (types must be setup)
+
+2) Define Slot: Class Method; Defines the method that is called when a signal is emitted
+
+3) Connect: Inside __init__; Connects the Signal Class Attribute to the Class Method
+
+4) Emit: A Call; Emit a signal
+
+.. code-block:: python
+
+    # form.py is the designer exported python code
+    from form import Ui_MainWindow
+    from PyQt5 import QtWidgets, QtCore, QtGui
+    import sys
+
+    class Ui(QtWidgets.QMainWindow, Ui_MainWindow):
+        # STEP 1: Define a "SIGNAL", and define the type or argument that is being passed
+        #  in this example: we can pass a bool and str argument when a emit occurs
+        a_key_pressed = QtCore.pyqtSignal(bool,str)
+
+
+        def __init__(self, *args, **kwargs):
+            QtWidgets.QMainWindow.__init__(self, *args, **kwargs)
+            self.setupUi(self)
+            self.installEventFilter(self)
+
+            # STEP 3: "CONNECT" a signal to a "SLOT"
+            a_key_pressed.connect(self.slot_a_key_pressed)
+
+
+        # overwrite the Qt event filtering method
+        #   (by default it is empty so we edit it to handle key presses
+        def eventFilter(self, source, event):
+            # lets see how we setup a custom key event
+            if (event.type() == QtCore.QEvent.KeyPress and
+                    event.key() == QtCore.Qt.Key_A):
+                print('you presses the "A" key')
+                # STEP 4: "EMIT" the signal in practice
+                a_key_pressed.emit(True,"emitted signal A")
+
+        # STEP 2: define a "SLOT" that handle what happens when the signal is emitted
+        def slot_a_key_pressed(self,arg1,arg2):
+            print(f"It is {arg1} that we {arg2}")
+
+
+     if __name__ == "__main__":
+        # create an instance of Qt (pass in sys.argv allows args to be passed it from terminal)
+        app = QtWidgets.QApplication(sys.argv)
+        # initialize the MainWindow
+        gui = Ui()
+        # shown the MainWindow
+        gui.show()
+        # app.exce_() runs the mainloop, and returns 0 for no error, 1 for error
+        sys.exit(app.exec_())
 
 
 Tables
@@ -162,7 +236,7 @@ Tables
 
     # to paste to table
     def pasteSelection(self):
-        # notethis is tablename specific (table name = "table")
+        # note this is table name specific (table widget name = "table")
         selection = self.table.selectedIndexes()
         model = self.table.model()
 
