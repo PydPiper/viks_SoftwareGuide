@@ -5,8 +5,11 @@ VBA Guide
     :maxdepth: 2
 
     10min_vba_starters_kit
+    builtin_enumerations
+    builtin_events
     builtin_logic_loops
     builtin_passing_arguments
+    builtin_tips_and_tricks
     excel_cat
     excel_cell_split
     excel_csv_buffer
