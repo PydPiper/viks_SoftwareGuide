@@ -2,7 +2,7 @@ lib - PyQt5 (GUI)
 =================
 Qt framework is a very powerful cross-platform GUI builder. It is written in C++ and it was ported,
 over to python as pyqt. The python documentation is nearly non-existent since it would sort of be
-a duplicate of the Qt C++ docs (`PyQt5 <https://doc.bccnsoft.com/docs/PyQt5/>`_ and `Qt <https://doc.qt.io/qt-5/modules-cpp.html>`_).
+a duplicate of the Qt C++ docs (`PyQt4 if PyQt5 data is missing <https://www.riverbankcomputing.com/static/Docs/PyQt4/modules.html>`_, `PyQt5 <https://doc.bccnsoft.com/docs/PyQt5/>`_ and `Qt <https://doc.qt.io/qt-5/modules-cpp.html>`_).
 This package has a very steep learning curve, so take it slow and try to get used to reading the C++ docs.
 
 Installation
@@ -122,6 +122,71 @@ Events
 
 - mouseMoveEvent and mouseReleaseEvent and mouseDoubleClickEvent
 
+Using Builtin Signals
+---------------------
+Qt widgets already come with a ton of handy signals already coded up that handle events for you. See the
+Custom Signal/Connect/Emit Setup section to get a in depth walkthrough on how a signal works but in short,
+a signal is already hocked up event handler for a widget action (like the press of a button). You only
+have to connect up what happens when a specific signal is emitted (an event happens like pressing a button)
+and the rest is taken care of for you (for builtin signals). Lets see how to hock up a builtin signal from
+``QLineEdit`` text filed to a ``QLabel`` text when the "Enter" is pressed from the ``QLineEdit`` widget:
+
+.. code-block:: python
+    :emphasize-lines: 28,29,36-40
+
+    from PyQt5 import QtCore, QtGui, QtWidgets
+
+
+    class Ui_MainWindow(object):
+        def setupUi(self, MainWindow):
+            MainWindow.setObjectName("MainWindow")
+            MainWindow.resize(207, 102)
+            self.centralwidget = QtWidgets.QWidget(MainWindow)
+            self.centralwidget.setObjectName("centralwidget")
+            self.lineEdit = QtWidgets.QLineEdit(self.centralwidget)
+            self.lineEdit.setGeometry(QtCore.QRect(40, 10, 113, 20))
+            self.lineEdit.setObjectName("lineEdit")
+            self.label = QtWidgets.QLabel(self.centralwidget)
+            self.label.setGeometry(QtCore.QRect(70, 40, 47, 13))
+            self.label.setObjectName("label")
+            MainWindow.setCentralWidget(self.centralwidget)
+            self.menubar = QtWidgets.QMenuBar(MainWindow)
+            self.menubar.setGeometry(QtCore.QRect(0, 0, 207, 21))
+            self.menubar.setObjectName("menubar")
+            MainWindow.setMenuBar(self.menubar)
+            self.statusbar = QtWidgets.QStatusBar(MainWindow)
+            self.statusbar.setObjectName("statusbar")
+            MainWindow.setStatusBar(self.statusbar)
+
+            self.retranslateUi(MainWindow)
+            QtCore.QMetaObject.connectSlotsByName(MainWindow)
+
+            # setup the connection from our QLineEdit widget to our method
+            self.lineEdit.returnPressed.connect(self.custom_method_pipe)
+
+        def retranslateUi(self, MainWindow):
+            _translate = QtCore.QCoreApplication.translate
+            MainWindow.setWindowTitle(_translate("MainWindow", "MainWindow"))
+            self.label.setText(_translate("MainWindow", "TextLabel"))
+
+        # our custom method
+        def custom_method_pipe(self):
+            # grab the text from the text field
+            text = self.lineEdit.text()
+            self.label.setText(text)
+
+
+    if __name__ == "__main__":
+        import sys
+        app = QtWidgets.QApplication(sys.argv)
+        MainWindow = QtWidgets.QMainWindow()
+        ui = Ui_MainWindow()
+        ui.setupUi(MainWindow)
+        MainWindow.show()
+        sys.exit(app.exec_())
+
+
+
 Custom Signal/Connect/Emit Setup
 --------------------------------
 Signals are a great way to jump in and out of function when a certain event or condition was satisfied.
@@ -184,8 +249,86 @@ can make more of a logical sense. There are 4 pieces to a signal setup/use:
         sys.exit(app.exec_())
 
 
-Tables
-------
+
+Path File Browser
+-----------------
+
+.. code-block:: python
+
+    # NOTE: this is another method to the example shown above under "Designer to Python code setup"
+
+    def getpath(self):
+        path = QtWidgets.QFileDialog.getExistingDirectory(self, 'Select Directory')
+        return path
+
+
+MessageBox Popup
+----------------
+
+.. code-block:: python
+
+    # NOTE: this is another method to the example shown above under "Designer to Python code setup"
+
+    # the following is useful as error handling popup
+    try:
+        # some code
+    except Exception as e:
+        msgbox = QtWidgets.QErrorMessage(self)
+        msgbox.showMessage(str(e))
+
+
+
+
+Common Widgets And A Short Description
+--------------------------------------
+
+QLabel
+^^^^^^
+A un-editable text field has the following methods
+
+- ``setText()`` assign text to the Label
+- ``clear()`` clear the text from the Label
+
+
+QLineEdit
+^^^^^^^^^
+An editable text field has the following methods
+
+- ``setEchoMode(int)`` possible inputs:
+
+    - 0: Normal, what you type is what you see
+
+    - 1: NoEcho, you cannot see what you type but the text is still stored
+
+    - 2: Password, each character types is instead replaced by "*"
+
+    - 3: PasswordEchoOnEdit,it displays the characters while typing but is then "*" out afterwards
+
+- ``maxLength()`` specify how many characters can be typed into the text field
+
+- ``setText()`` set a default text
+
+- ``text()`` get the text out of the text field
+
+- ``clear()`` clears text field
+
+- ``setReadOnly()`` text field cannot be edited but it can be copied
+
+- ``setEnabled()`` by default = ``True`` but can be passed a ``False`` to disable from edit/copy
+
+- Signals:
+
+    - ``QLineEdit.textChanged.connect(custom_method_pipe)`` when text is changed
+
+    - ``QLineEdit.returnPressed.connect(custom_method_pipe)`` when enter is pressed from textbox
+
+
+QPushButton
+^^^^^^^^^^^
+Simple on/off button that emits a signal when clicked, with the following
+
+QTableWidget
+^^^^^^^^^^^^
 
 .. code-block:: python
 
@@ -257,37 +400,8 @@ Tables
                     model.setData(model.index(index.row(), index.column()), arr[row][column])
 
 
-
-
-Path File Browser
------------------
-
-.. code-block:: python
-
-    # NOTE: this is another method to the example shown above under "Designer to Python code setup"
-
-    def getpath(self):
-        path = QtWidgets.QFileDialog.getExistingDirectory(self, 'Select Directory')
-        return path
-
-
-MessageBox Popup
-----------------
-
-.. code-block:: python
-
-    # NOTE: this is another method to the example shown above under "Designer to Python code setup"
-
-    # the following is useful as error handling popup
-    try:
-        # some code
-    except Exception as e:
-        msgbox = QtWidgets.QErrorMessage(self)
-        msgbox.showMessage(str(e))
-
-
-tabWidget Indexing
-------------------
+Indexing A QTabWdiget
+^^^^^^^^^^^^^^^^^^^^^
 
 .. code-block:: python
 
@@ -296,6 +410,7 @@ tabWidget Indexing
             print('you are on the first tab')
         elif self.yourtabwidgetname.currentIndex() == 1:
             print('you are on the second tab')
+
 
 
 
