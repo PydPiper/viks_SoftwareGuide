@@ -4,10 +4,14 @@ lib - Sphinx (code documentation)
 1) Create a virtualenv, see :doc:`lib_virtualenv`
 2) Active virtualenv and add sphinx ``pip install sphinx``
 3) Change dir to your 00_project folder
-4) Run sphinx-quickstart (you will want to separate source and build for a cleaner structure)
+4) Run ``sphinx-quickstart`` from the terminal (you will want to separate source and build for a cleaner structure)
 5) To install a custom sphinx theme: ``pip install sphinx_rtd_theme``
-6) Edit theme on your source/conf.py file to be "sphinx_rtd_theme"
+6) Edit theme on your ``source/conf.py`` file to be ``sphinx_rtd_theme``
 7) Create your docs
+
+    7.1) Make sure your files have headers (line 1: header text, line2: =======)
+    7.2) Make sure you add each filename to your index.rst otherwise it is not going to show up as an index
+
 8) To create your html files ``./make.bat html``
 9) To clean up your builds before git push ``./make.bat clean``
 10) Push your docs to your git (make sure you do a ``pip freeze > requirements.txt`` because readthedocs might fail for
@@ -25,7 +29,6 @@ Ref Sphinx rst docs:
 - To italicize text: ``*text*``
 - To bold text: ``**text**``
 - Subscript/Superscript: ``:sub:`yourtext``` or ``:sup:`yourtext```
-- Bullets: numbered "1)" dashed "-" (note that next line text of the same bullet must align with the text above!)
 - To in-text code highlight: ````text````
 - Important messages: ``.. note::`` ``.. warning::`` ``.. deprecated::`` ``.. seealso::``
 - Internal Links: ``:doc:`filename```
@@ -36,6 +39,23 @@ Ref Sphinx rst docs:
     2) call the link by: ``:ref:`ref1```
 - Today's date in text ``|today|``
 - Section underline: Section:``====``, Sub-Section ``----``, Sub-Sub-Section ``^^^^``
+- Bullets, there are a few not so intuitive conventions about bullets, see below:
+
+.. code-block:: text
+
+    - this is a bullet
+
+    - this is another bullet
+
+    - this is a bullet
+    on multi lines
+
+    1) this is a numbered bullet
+
+        1.1) this is a nested bullet
+        with multi lines
+
+        1.2) here is another nested bullet
 
 Sphinx toctree
 --------------

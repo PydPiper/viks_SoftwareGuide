@@ -1,8 +1,15 @@
 lib - PyQt5 (GUI)
 =================
+Qt framework is a very powerful cross-platform GUI builder. It is written in C++ and it was ported,
+over to python as pyqt. The python documentation is nearly non-existent since it would sort of be
+a duplicate of the Qt C++ docs (`PyQt4 if PyQt5 data is missing <https://www.riverbankcomputing.com/static/Docs/PyQt4/modules.html>`_, `PyQt5 <https://doc.bccnsoft.com/docs/PyQt5/>`_ and `Qt <https://doc.qt.io/qt-5/modules-cpp.html>`_).
+This package has a very steep learning curve, so take it slow and try to get used to reading the C++ docs.
 
 Installation
 ------------
+Note if you get a ``Could not find a version that satisfies the requirements`` during a pip install,
+then your current python version is not supported by pyqt.
+
 .. code-block:: shell
 
     pip install pyqt5 pyqt5-tools
@@ -27,47 +34,329 @@ The tool (and all other pyqt .exe) will be placed in:
 
 Designer to Python code setup
 -----------------------------
-An efficient way to use Qt Designer is export out the widget code then without alterations import it
-into the logic modules.
+An efficient way to use Qt Designer is export out the widget code then without alterations of your
+designer created code we import it into the logic modules. This will save a lot of time when we have to
+go back to designer and adjust something or add a new widget. We simply re-export out the python code
+and the import takes care of the rest. The following example is a good starter code that handles the
+exported ``form.py`` designer exported python code.
+
+- QtWidgets: App > MainWindow > all widgets `QtWidgets <https://doc.qt.io/qt-5/qtwidgets-module.html>`_
+- QtCore: brains of qt `QtCore <https://doc.qt.io/qt-5/qtcore-module.html>`_
+
+    - Qt: misc qt library items(ex: keys, mouse) `Qt <https://doc.qt.io/qt-5/qt.html>`_
+
+        - Keys: `QKey <https://doc.qt.io/qt-5/qt.html#Key-enum>`_
+        - Mouse Keys: `QMouseButton <https://doc.qt.io/qt-5/qt.html#MouseButton-enum>`_
+
+    - QPoint: hold point properties (ex: position) `Qpoint <https://doc.qt.io/qt-5/qpoint.html>`_
+    - QEvent: all event types, but not sensor (ex: KeyPress) `QEvent <https://doc.qt.io/qt-5/qevent.html>`_
+
+- QtGui: event sensors and graphical editor (ex: colors, fonts etc) `QGui <https://doc.qt.io/qt-5/qtgui-module.html>`_
+
+
 
 .. code-block:: python
 
+    # form.py is the designer exported python code
     from form import Ui_MainWindow
+    # QtWidgets is the collection of all Qt windows (QApplication > QMainWindow > widgets, events)
+    # QtCore is the collection of keyboard/mouse/event types
+    # QtGui is the collection of event sensors and graphical editors like color/font
     from PyQt5 import QtWidgets, QtCore, QtGui
+    # sys is call to handle any arguments passed in from the terminal (optional)
+    import sys
 
     class Ui(QtWidgets.QMainWindow, Ui_MainWindow):
         def __init__(self, *args, **kwargs):
+            # initializes QMainWindow object (so that we can call: MainWindow.attribute)
             QtWidgets.QMainWindow.__init__(self, *args, **kwargs)
+            # sets up the Designer widgets that we imported
             self.setupUi(self)
 
-            # to enable event handling
+            # to enable event handling (if this not stated python will garbage collect all events)
             self.installEventFilter(self)
 
-        # overwrite the Qt event method
+        # overwrite the Qt event filtering method
+        #   (by default it is empty so we edit it to handle key presses
         def eventFilter(self, source, event):
+            # lets see how we setup a custom key event
+            if (event.type() == QtCore.QEvent.KeyPress and
+                    event.key() == QtCore.Qt.Key_A):
+                print('you presses the "A" key')
+
+            # first check if a key was pressed, then check if that event matches ctrl+c
+            #  which is already built into qt as QKeySequence.Copy
             if (event.type() == QtCore.QEvent.KeyPress and
                     event.matches(QtGui.QKeySequence.Copy)):
                 # now pipe the event to any method to logic handling
                 self.customcopy()
-            # exp TBD
+
+            # this is to overwrite the existing event filter method
             return super(Ui, self).eventFilter(source, event)
 
+        # our custom method to handle what happens when we hit ctrl+c
         def customcopy(self):
-            pass
+            print("you hit ctrl+c")
 
     if __name__ == "__main__":
         # create an instance of Qt (pass in sys.argv allows args to be passed it from terminal)
         app = QtWidgets.QApplication(sys.argv)
-
+        # initialize the MainWindow
         gui = Ui()
+        # shown the MainWindow
+        gui.show()
+        # app.exce_() runs the mainloop, and returns 0 for no error, 1 for error
+        sys.exit(app.exec_())
+
+
+Events
+------
+
+- paintEvent
+
+- resizeEvent
+
+- keyPressEvent and keyReleaseEvent
+
+- contextMenuEvent
+
+- mouseMoveEvent and mouseReleaseEvent and mouseDoubleClickEvent
+
+Using Builtin Signals
+---------------------
+Qt widgets already come with a ton of handy signals already coded up that handle events for you. See the
+Custom Signal/Connect/Emit Setup section to get a in depth walkthrough on how a signal works but in short,
+a signal is already hocked up event handler for a widget action (like the press of a button). You only
+have to connect up what happens when a specific signal is emitted (an event happens like pressing a button)
+and the rest is taken care of for you (for builtin signals). Lets see how to hock up a builtin signal from
+``QLineEdit`` text filed to a ``QLabel`` text when the "Enter" is pressed from the ``QLineEdit`` widget:
+
+.. code-block:: python
+    :emphasize-lines: 28,29,36-40
+
+    from PyQt5 import QtCore, QtGui, QtWidgets
+
+
+    class Ui_MainWindow(object):
+        def setupUi(self, MainWindow):
+            MainWindow.setObjectName("MainWindow")
+            MainWindow.resize(207, 102)
+            self.centralwidget = QtWidgets.QWidget(MainWindow)
+            self.centralwidget.setObjectName("centralwidget")
+            self.lineEdit = QtWidgets.QLineEdit(self.centralwidget)
+            self.lineEdit.setGeometry(QtCore.QRect(40, 10, 113, 20))
+            self.lineEdit.setObjectName("lineEdit")
+            self.label = QtWidgets.QLabel(self.centralwidget)
+            self.label.setGeometry(QtCore.QRect(70, 40, 47, 13))
+            self.label.setObjectName("label")
+            MainWindow.setCentralWidget(self.centralwidget)
+            self.menubar = QtWidgets.QMenuBar(MainWindow)
+            self.menubar.setGeometry(QtCore.QRect(0, 0, 207, 21))
+            self.menubar.setObjectName("menubar")
+            MainWindow.setMenuBar(self.menubar)
+            self.statusbar = QtWidgets.QStatusBar(MainWindow)
+            self.statusbar.setObjectName("statusbar")
+            MainWindow.setStatusBar(self.statusbar)
+
+            self.retranslateUi(MainWindow)
+            QtCore.QMetaObject.connectSlotsByName(MainWindow)
+
+            # setup the connection from our QLineEdit widget to our method
+            self.lineEdit.returnPressed.connect(self.CustomMethod)
+
+        def retranslateUi(self, MainWindow):
+            _translate = QtCore.QCoreApplication.translate
+            MainWindow.setWindowTitle(_translate("MainWindow", "MainWindow"))
+            self.label.setText(_translate("MainWindow", "TextLabel"))
+
+        # our custom method
+        def CustomMethod(self):
+            # grab the text from the text field
+            text = self.lineEdit.text()
+            self.label.setText(text)
+
+
+    if __name__ == "__main__":
+        import sys
+        app = QtWidgets.QApplication(sys.argv)
+        MainWindow = QtWidgets.QMainWindow()
+        ui = Ui_MainWindow()
+        ui.setupUi(MainWindow)
+        MainWindow.show()
+        sys.exit(app.exec_())
+
+We can also have Qt Design create the ``self.lineEdit.returnPressed.connect()`` line for us but it doesn't
+really save much time. Note that we will have to replace the method name since pyqt Designer does not
+allow us to type ``self.Here are the steps:
+
+.. figure:: pyqt_designer_signal_1.png
+
+    :scale: 100%
+    :align: center
+
+.. figure:: pyqt_designer_signal_2.png
+
+    :scale: 100%
+    :align: center
+
+.. figure:: pyqt_designer_signal_3.png
+
+    :scale: 100%
+    :align: center
+
+
+
+Custom Signal/Connect/Emit Setup
+--------------------------------
+Signals are a great way to jump in and out of function when a certain event or condition was satisfied.
+As with any problem, this what a signal does can also be achieved without ever using signals but signals
+can make more of a logical sense. There are 4 pieces to a signal setup/use:
+
+1) Signal: Class Attribute; Defines the signal name, and sets up argument types (types must be setup)
+
+2) Define Slot: Class Method; Defines the method that is called when a signal is emitted
+
+3) Connect: Inside __init__; Connects the Signal Class Attribute to the Class Method
+
+4) Emit: A Call; Emit a signal
+
+.. code-block:: python
+
+    # form.py is the designer exported python code
+    from form import Ui_MainWindow
+    from PyQt5 import QtWidgets, QtCore, QtGui
+    import sys
+
+    class Ui(QtWidgets.QMainWindow, Ui_MainWindow):
+        # STEP 1: Define a "SIGNAL", and define the type or argument that is being passed
+        #  in this example: we can pass a bool and str argument when a emit occurs
+        a_key_pressed = QtCore.pyqtSignal(bool,str)
+
+
+        def __init__(self, *args, **kwargs):
+            QtWidgets.QMainWindow.__init__(self, *args, **kwargs)
+            self.setupUi(self)
+            self.installEventFilter(self)
+
+            # STEP 3: "CONNECT" a signal to a "SLOT"
+            a_key_pressed.connect(self.slot_a_key_pressed)
+
+
+        # overwrite the Qt event filtering method
+        #   (by default it is empty so we edit it to handle key presses
+        def eventFilter(self, source, event):
+            # lets see how we setup a custom key event
+            if (event.type() == QtCore.QEvent.KeyPress and
+                    event.key() == QtCore.Qt.Key_A):
+                print('you presses the "A" key')
+                # STEP 4: "EMIT" the signal in practice
+                a_key_pressed.emit(True,"emitted signal A")
+
+        # STEP 2: define a "SLOT" that handle what happens when the signal is emitted
+        def slot_a_key_pressed(self,arg1,arg2):
+            print(f"It is {arg1} that we {arg2}")
+
+
+     if __name__ == "__main__":
+        # create an instance of Qt (pass in sys.argv allows args to be passed it from terminal)
+        app = QtWidgets.QApplication(sys.argv)
+        # initialize the MainWindow
+        gui = Ui()
+        # shown the MainWindow
         gui.show()
         # app.exce_() runs the mainloop, and returns 0 for no error, 1 for error
         sys.exit(app.exec_())
 
 
 
-Tables
-------
+Path File Browser
+-----------------
+
+.. code-block:: python
+
+    # NOTE: this is another method to the example shown above under "Designer to Python code setup"
+
+    def getpath(self):
+        path = QtWidgets.QFileDialog.getExistingDirectory(self, 'Select Directory')
+        return path
+
+
+MessageBox Popup
+----------------
+
+.. code-block:: python
+
+    # NOTE: this is another method to the example shown above under "Designer to Python code setup"
+
+    # the following is useful as error handling popup
+    try:
+        # some code
+    except Exception as e:
+        msgbox = QtWidgets.QErrorMessage(self)
+        msgbox.showMessage(str(e))
+
+
+
+
+Common Widgets And A Short Description
+--------------------------------------
+
+QLabel
+^^^^^^
+A un-editable text field has the following methods
+
+- ``setText()`` assign text to the Label
+- ``clear()`` clear the text from the Label
+
+
+QLineEdit
+^^^^^^^^^
+An editable text field has the following methods
+
+- ``setEchoMode(int)`` possible inputs:
+
+    - 0: Normal, what you type is what you see
+
+    - 1: NoEcho, you cannot see what you type but the text is still stored
+
+    - 2: Password, each character types is instead replaced by "*"
+
+    - 3: PasswordEchoOnEdit,it displays the characters while typing but is then "*" out afterwards
+
+- ``maxLength()`` specify how many characters can be typed into the text field
+
+- ``setText()`` set a default text
+
+- ``text()`` get the text out of the text field
+
+- ``clear()`` clears text field
+
+- ``setReadOnly()`` text field cannot be edited but it can be copied
+
+- ``setEnabled()`` by default = ``True`` but can be passed a ``False`` to disable from edit/copy
+
+- Signals:
+
+    - ``QLineEdit.textChanged.connect(custom_method_pipe)`` when text is changed
+
+    - ``QLineEdit.returnPressed.connect(custom_method_pipe)`` when enter is pressed from textbox
+
+
+QPushButton
+^^^^^^^^^^^
+Simple on/off button that emits a signal when clicked, with the following
+
+QTableWidget
+^^^^^^^^^^^^
+
+- ``setRowCount()`` redefine how many rows there are in the table (similar for column)
+
+- ``rowCount()`` returns the number of rows in the table (similar for column) note this is not the row
+  that contain data, but all rows
+
+- ``clear()`` clears all content from the entire table
+
+- ``setItem(row,col,QtWidgets.QTableWidgeItem(data))`` where row and column are ``int`` and ``data`` is a ``str``
 
 .. code-block:: python
 
@@ -118,7 +407,7 @@ Tables
 
     # to paste to table
     def pasteSelection(self):
-        # notethis is tablename specific (table name = "table")
+        # note this is table name specific (table widget name = "table")
         selection = self.table.selectedIndexes()
         model = self.table.model()
 
@@ -139,37 +428,8 @@ Tables
                     model.setData(model.index(index.row(), index.column()), arr[row][column])
 
 
-
-
-Path File Browser
------------------
-
-.. code-block:: python
-
-    # NOTE: this is another method to the example shown above under "Designer to Python code setup"
-
-    def getpath(self):
-        path = QtWidgets.QFileDialog.getExistingDirectory(self, 'Select Directory')
-        return path
-
-
-MessageBox Popup
-----------------
-
-.. code-block:: python
-
-    # NOTE: this is another method to the example shown above under "Designer to Python code setup"
-
-    # the following is useful as error handling popup
-    try:
-        # some code
-    except Exception as e:
-        msgbox = QtWidgets.QErrorMessage(self)
-        msgbox.showMessage(str(e))
-
-
-tabWidget Indexing
-------------------
+Indexing A QTabWdiget
+^^^^^^^^^^^^^^^^^^^^^
 
 .. code-block:: python
 
@@ -181,9 +441,11 @@ tabWidget Indexing
 
 
 
+
 PyInstaller Packing TroubleShooting
 -----------------------------------
 Dealing with "ImportError: unable to find QtCore.dll on PATH"
+
 - Run on pyinstaller 3.5 and PyQt5 5.12.3 (`PyInstaller Link <https://pyinstaller.readthedocs.io/en/stable/man/pyi-makespec.html>`_)
 - Create spec file via (pyi-makespec filename.py)
 - Add to gui.spec datas=[('fullpath/site-packages/PyQt5/Qt/bin/*','PyQt5/Qt/bin')]

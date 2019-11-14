@@ -12,14 +12,43 @@ tool - Git
 
 Setup
 -----
-- Set in your username in the terminal ``git config --global user.name "Viktor Kis"``
+- Set up your username in the terminal ``git config --global user.name "Viktor Kis"``
 - Set your email address: ``git config --global user.email name@example.com``
 - Set your editor: ``git config --global core.editor vim``
 - Check your user setttings: ``git config --list``
 
+Step-by-Step GitHub Repo
+------------------------
+
+1) Create a free github account at: github.com
+
+2) On the top right click your ``user icon`` and a drop-down should appear > Click ``Your repositories``
+
+3) On your ``Repositories`` tab towards the right, there should a green ``New`` icon, click it.
+
+4) Give your new repo a name and hit ``Create repository``
+
+5) Go back to the ``Repositories`` tab and select your new repo. On your repo page, towards the right there
+   there should be a green ``Clone or download`` button, click it and copy the http link.
+
+6) On your local machine, open up a terminal and type ``git clone http-for-your-repo``
+
+7) You now have a successful link up to your online repo from your local. Let's step through a basic upload
+
+    7.1) Add a new file to your repo folder (inside your project folder that was cloned down)
+
+    7.2) Add it to queue: ``git add .``
+
+    7.3) Add a commit message: ``git commit -m "initial demo upload"``
+
+    7.4) Push it to the github: ``git push``
+
+
 Commands
 --------
+
 General
+^^^^^^^
 
 - To initialize a folder: ``git init`` or clone an existing repo ``git clone url``
 
@@ -30,24 +59,29 @@ General
 - To commit a change: ``git commit -m "msg with your commit"``
 - To push a commit to the cloud: ``git push``
 - To pull the latest data from the branch: ``git pull`` or explicitly ``git pull origin master`` (note that ``git fetch`` works similarly, however it does not merge the work with your local changes)
+- To completely overwrite local files with server files: ``git reset --hard origin/master``
 
 Status
+^^^^^^
 
 - To check change status: ``git status``
 - To check the past commit logs: ``git log --graph`` to limit the log ``git log --since=2.weeks``
 
 Branches
+^^^^^^^^
 
 - To create a new branch: ``git checkout -b branchname``
 - To switch between branches: ``git checkout branchname``
 - To merge a branch onto another: ``git merge``
 
 Ignore Files
+^^^^^^^^^^^^
 
 - To create an ignore files/file-types, create a .gitignore: ``touch .gitignore``
 - By practice developers should only commit source files (no binaries, no .pyc files, no config files and etc.) ex; ``*.pyc``
 
 Remote
+^^^^^^
 
 - To add a remote link ``git remote add user_defined_remote_name url``
 
@@ -68,6 +102,7 @@ Remote
     git pull fork_vik master
 
 Branch
+^^^^^^
 
 - To create a branch: ``git branch branch_name``
 - To work/change your current branch: ``git checkout branch_name``

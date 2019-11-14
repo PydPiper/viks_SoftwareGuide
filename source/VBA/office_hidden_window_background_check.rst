@@ -1,8 +1,11 @@
+office - Hidden Window Background Check
+=======================================
+
 Many times, when automating Microsoft Office, you'll want to keep the application window hidden from the user.
 If your code breaks when this happens, the application will be left open in the background.  
 Here is some code to 1) check if any application instances are open in the background and then 2) kill those instances.
 
-.. code-block:: vba
+.. code-block:: vbscript
 
     Public Enum msAppType
         msAppAccess

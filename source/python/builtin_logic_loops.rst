@@ -24,28 +24,36 @@ General "and" "or" "not" "any" "all"
 .. code-block:: python
 
     2 == 5 or 10 == 10
-    True
+    >>> True
 
     2 == 5 and 10 == 10
-    False
+    >>> False
 
     2 != 5 and 10 == 10
-    True
+    >>> True
     # in a alternate form
     not 2 == 5 and 10 == 10
-    True
+    >>> True
 
     # "any" is powerful with list comprehensions:
     any(i == 4 for i in [3,4,5])
-    True
+    >>> True
     any(i == 10 for i in [3,4,5])
-    False
+    >>> False
 
     # "all" works similar to "any" but all instances of the iterable must eval to True
     all(i%2 == 0 for i in [4,6,8])
-    True # because all num/2 result with a remainder of 0 (the values are all even)
+    >>> True # because all num/2 result with a remainder of 0 (the values are all even)
     all(i%2 == 0 for i in [4,5,8])
-    False # this evals to True, False, True which is overall False
+    >>> False # this evals to True, False, True which is overall False
+
+    # there is one more that can be imported from builtin library "operator"
+    from operator import xor
+    # xor: one or the other true but not both
+    1 == 1 xor 2 == 1
+    >>> True
+
+
 
 if elif else
 ------------

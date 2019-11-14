@@ -21,3 +21,10 @@ Packaging
     # to install these packages on a server or another computer
     pip install -r requirements.txt
 
+TroubleShooting - Nothing happens when i type ``pip`` on terminal
+------------------------------------------------------------------
+
+1) Double check that you have your environment path setup correctly. It should be pointing to your
+   "Scripts" folder, see :doc:``10min_python_starters_kit``
+2) If simply ``pip`` doesnt work on your terminal, then typing out the command through python is a
+   good backup. ``python -m pip``

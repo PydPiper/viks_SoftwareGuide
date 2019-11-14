@@ -13,6 +13,7 @@ Python Guide
     builtin_IO
     builtin_logic_loops
     builtin_mutable
+    builtin_packaging
     builtin_strings
     builtin_user_inputs
     lib_pyinstaller

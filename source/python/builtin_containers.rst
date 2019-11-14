@@ -294,7 +294,7 @@ See :ref:`logic_loops_list_comprehensions` for dictionary comprehensions.
     >>> "key2 value2"
 
 
-Dict Trick - Handling nested dicts
+Trick - Handling nested dicts
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
 .. code-block:: python
@@ -306,7 +306,7 @@ Dict Trick - Handling nested dicts
     # lets pull out a sub-dict database for all color=blue people
     subdb = {ID: subdict for ID, subdict in database.items() if subdict['color'] == 'blue'}
 
-Dict Trick - Merging 2 dicts (shallow copy)
+Trick - Merging 2 dicts (shallow copy)
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 Note that a shallow copy will create a new dict ID but the key and value objects will still
 be the same object ID as the originals. (this is only an issue if the original dicts are defined
@@ -320,3 +320,67 @@ immutable.
 
     z = {**x, **y}
     >>> {'c': 4, 'a': 1, 'b': 3}
+
+Trick - Adding a custom attribute to dict
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+Ever wish that there was a cleaner attribute to a builtin object? I ran into this when
+trying to write a user-friendly API but did not want to force the users to necessarily
+know what a dict.keys() were, instead i wanted to write it out as something much more pythonic
+
+.. code-block:: python
+
+    # lets say we have a database class that holds IDs of items in a dictionary
+    class MyDB():
+        def __init__(self):
+            # we initialize an empty dictionary
+            self.items = {}
+
+        # define a method for adding items
+        def additem(self,ID,arg):
+            # we then update the dictionary storage
+            self.items.update({ID: arg})
+
+    # now to use it, we could say
+    db = MyDB()
+    db.additem(1,'apples')
+    db.additem(2,'oranges')
+
+    # we can display the item IDs by typing
+    db.items.keys()
+    # but the results are not very nice to read, nor is db.items.keys() intuitive for users
+    >>> dict_keys([1,2])
+
+- wouldnt it be nice if we could just type db.items.ids? Let's see how it's done
+
+.. code-block:: python
+
+    # same class as before, but self.items = a custom class now that extends dictionaries
+    class MyDB():
+        def __init__(self):
+            # we initialize an empty dictionary
+            self.items = ExtDict()
+
+        # define a method for adding items
+        def additem(self,ID,arg):
+            # we then update the dictionary storage
+            self.items.update({ID: arg})
+
+
+    # a custom class to extend dictionaries
+    #  inherit from dict all the builtin attributes of a dictionary
+    class ExtDict(dict):
+        @property
+        def ids(self):
+            return list(self.keys())
+
+
+    # now let's use it
+    db = MyDB()
+    db.additem(1,'apples')
+    db.additem(2,'oranges')
+
+    # lets get the existing IDs a more user-friendly way
+    db.items.ids    # easy to read/use
+    >>> [1,2]       # easy to read/use
+
+

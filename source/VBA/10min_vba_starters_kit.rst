@@ -21,7 +21,7 @@ The majority of this guide will cover VBA in Excel, but feel free to explore the
     Go to ``View > Toolbars > Edit`` and then drag it to the top where the rest of the toolbar lives.
     
 Running your first script
----------------------
+-------------------------
 VBA code can be stored in Application Objects (eg. Sheet1, Sheet2, Sheet3, ThisWorkbook), 
 Userforms, Modules, or Class Modules.  The most general place to add code is within a basic Module.
 
@@ -29,7 +29,7 @@ Userforms, Modules, or Class Modules.  The most general place to add code is wit
     Let's change the name of this Module by using the ``Properties Window`` to change ``(Name)`` from 'Module1' to 'MyFirstScript'.
 2)  Now click in the main window and type in:
 
-.. code-block:: vba
+.. code-block:: vbscript
 
   Sub HelloWorld()
     Debug.Print "Hello World!"
@@ -43,7 +43,7 @@ Userforms, Modules, or Class Modules.  The most general place to add code is wit
 
 
 Introduction to Data Variables
--------------------------
+------------------------------
 Data Variable Types
 +++++++++++++++++++
 
@@ -65,7 +65,8 @@ There are three ways to declare a variable (each defining a different level of s
 -   ``Private``: Module level variable.  Visible to any procedure within the module.  Must be declared at the top of the module.
 -   ``Public``: Global level variable.  Visible to any module within the project.  Must be declared at the top of the module.
 
-.. code-block:: vba
+.. code-block:: vbscript
+
     Public gMyPublicVar As Variant
     Public mMyPrivateVar As Variant
     Sub MyProcedure()
@@ -79,7 +80,7 @@ Let's now build upon our first script to apply what we've learned about variable
 1)  Let's add a comment and a string variable to hold our message.  Comments are initiated by a single quote.
     Unfortunately, the concept of Comment Blocks do not exist in VBA.
 
-.. code-block:: vba
+.. code-block:: vbscript
 
   Sub HelloWorld()
     'This was my very first VBA script!
@@ -91,18 +92,21 @@ Let's now build upon our first script to apply what we've learned about variable
 
 2)  Let's try out some debugging techniques.  
     
-    2.1)  Click on the grey bar to the left of ``Debug.Print msg`` to add a breakpoint.
-          Alternatively, click on that line and hit ``F9``.  Now run your script and 
-          it will stop right before executing that line of code (it will be highlighted yellow and nothing would have printed).
-    2.2)  In your ``Immediate Window``, type in ``?msg`` and hit enter.  This will return the value stored in your variable ``msg``.
-          You could also hover your mouse over ``msg`` in your script and a tooltip will appear showing it's value.
-    2.3)  Now in your ``Immediate Window``, type ``msg = "Bonjour World!"``.  This reassigns the value stored in your variable.  If you allow the script to finish executing by hitting Play or ``F5``, it will print the new value we just assigned.
+    2.1) Click on the grey bar to the left of ``Debug.Print msg`` to add a breakpoint.
+    Alternatively, click on that line and hit ``F9``.  Now run your script and
+    it will stop right before executing that line of code (it will be highlighted yellow and nothing would have printed).
+
+    2.2) In your ``Immediate Window``, type in ``?msg`` and hit enter.  This will return the value stored in your variable ``msg``.
+    You could also hover your mouse over ``msg`` in your script and a tooltip will appear showing it's value.
+
+    2.3) Now in your ``Immediate Window``, type ``msg = "Bonjour World!"``.  This reassigns the value stored in your variable.
+    If you allow the script to finish executing by hitting Play or ``F5``, it will print the new value we just assigned.
 
 3)  Let's now grab some info from our user to make our greeting a little more personalized.  
     To do this, we'll also need to concatinate our strings together using ``&``.
     Finally, we're also going to have the message pop up instead of print out.
 
-.. code-block:: vba
+.. code-block:: vbscript
 
   Sub HelloWorld()
     'This was my very first VBA script!
@@ -157,7 +161,8 @@ Object Variables
 Object variables allow you to store a reference to any object.  The main difference in using an object variable as opposed to a
 data variable is that you need to use the word ``Set`` to assign something to it.
 
-.. code-block:: vba
+.. code-block:: vbscript
+
     Sub MyProcedure()
         Dim xlSht As Excel.Worksheet
         Dim sheetName As String
@@ -174,7 +179,7 @@ Expanding on your first script (Pt. 2)
 --------------------------------------
 Let's build upon our first script one last time to practice using Objects, Properties, and Methods.  First, we're going to read the user's name from the ``Value Property`` of the ``Range Object`` for Cell A1 and then we'll execute the object's ``ClearContents Method`` to clear out their name before displaying the message.  
 
-.. code-block:: vba
+.. code-block:: vbscript
 
   Sub HelloWorld()
     'This was my very first VBA script!

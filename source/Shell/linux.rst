@@ -4,6 +4,9 @@ Linux Quick Start Guide
 General
 -------
 
+- To clear terminal window text: ``clear``
+- To copy text from terminal: simply highlight the text
+- To paste text into terminal: ``Shift`` + ``Insert``
 - To change directories: ``cd folder1/folder2``
 - To back out a directory: ``cd ..`` then back out 2 and so on: ``cd ../..``
 - To back out to home directory: ``cd ~``

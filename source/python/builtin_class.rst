@@ -253,6 +253,35 @@ Double underscore methods (dunder)
             print(args)
             return "this is a call on the class, " + len(args)*"{},".format(*args)
 
+        # ADD: defines what to do with a "+" operator
+        #  note: operators always work from left, ie: Circle + 10
+        #        the "+" operator is actually calling __add__ on Circle
+        def __add__(self, arg):
+            print("you tried to add to class Circle")
+            return arg + self.radius
+
+        def __subtract__(self, arg):
+            return "you tried to subtract from class Circle"
+
+        def __mul__(self, arg):
+            return "you tried to multiply class Circle"
+
+        def __truediv__(self, arg):
+            return "you tried to divide class Circle"
+
+        # you can have the operator read from the right as well, this is useful if you
+        #  tried to add: 10 + Circle, by default python will try to read from left but
+        #  has no idea how to add a "int" + "class" so then it will look to the right and
+        #  see if it has a "radd" definition, the "r" can be defined for all other math operators
+        def __radd__(self, arg):
+            print("addition with right operator")
+            return arg + self.radius
+
+        # to evaluate Circle[arg] sequence
+        def __getitem__(self, arg):
+            return [self.radius]
+
+
 - call/use ``__init__`` (class instance initialization)
 
 .. code-block:: python
@@ -264,6 +293,7 @@ Double underscore methods (dunder)
 
 .. code-block:: python
 
+    circle1 = Circle(radius=5)
     # REPR call/use
     circle1
     >>> "Circle Class"
@@ -275,12 +305,27 @@ Double underscore methods (dunder)
 
 .. code-block:: python
 
+    circle1 = Circle(radius=5)
     # CALL call/use
-    circle()
+    circle1()
     >>> "this is a call on the class, ,"
-    circle(1,2)
+    circle1(1,2)
     >>> "this is a call on the class, 1,2"
 
+- call/use ``__add__`` and other math dunder's
+
+.. code-block:: python
+
+    circle1 = Circle(radius=5)
+    # ADD call/use
+    circle1 + 5 # here __add__ gets called
+    >>> "you tried to add to class Circle"
+    >>> 10 # radius + 5
+
+    # now a right operation, since int doesnt know how to add Circle, but Circle does
+    5 + circle1 # int + Circle returns an error, then python tried from right: __radd__ gets called
+    >>> "addition with right operator"
+    >>> 10
 
 Subclassing - to extend functionality of a class
 -------------------------------------------------
@@ -371,6 +416,55 @@ Trick - Access a class's attribute by its string name
         self.attr1 = []
 
     getattr(A,'attr1')
+
+
+Trick - How to create multiple levels of attributes
+---------------------------------------------------------
+There are a lot of lessons on object oriented programming that talk about the big concepts,
+then you go to create something in practice and realize that you are still missing some fundamentals.
+For me, this was the case on nested attributes for a long time. How do I create a class with multiple
+levels of attributes?
+
+- Lets say we want have a database class (storage class), and each time is index by an ``ID``
+  but under each ``ID`` we would like to call more attributes, ie: ``db.ID[1].att1``. Let's see how
+  that can be done:
+
+.. code-block:: python
+
+    # database class
+    class Database():
+        def __init__(self):
+            # initialize the ID container as a dictionary
+            self.ID = {}
+
+        # create a method of adding new items to the database
+        def additem(self,ID,att1,att2):
+            # update database dictionary by calling another class "Attributes"
+            #  this says: Database.ID[#] returns the class Attributes,
+            #  that can then be called for it's attributes ".att1", ".att2"
+            self.ID.update({ID: Attributes(att1,att2)})
+
+
+    # 2nd level nested attributes class
+    class Attributes():
+        def __init__(self,att1,att2):
+            self.att1 = att1
+            self.att2 = att2
+
+
+    # lets see how it works in pratice
+
+    # define a instance of the database
+    db = Database()
+    # add a few items
+    db.additem(1,'att1 from ID1', 'att2 from ID1')
+    db.additem(2,'att1 from ID2', 'att2 from ID2')
+    # now to call it nested
+    db.ID[1].att1
+    >>> 'att1 from ID1'
+    db.ID[2].att2
+    >>> 'att2 from ID2'
+
 
 
 Trick - Create multiple instances of a class based on initial input
