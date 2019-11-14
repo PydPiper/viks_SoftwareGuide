@@ -162,7 +162,7 @@ and the rest is taken care of for you (for builtin signals). Lets see how to hoc
             QtCore.QMetaObject.connectSlotsByName(MainWindow)
 
             # setup the connection from our QLineEdit widget to our method
-            self.lineEdit.returnPressed.connect(self.custom_method_pipe)
+            self.lineEdit.returnPressed.connect(self.CustomMethod)
 
         def retranslateUi(self, MainWindow):
             _translate = QtCore.QCoreApplication.translate
@@ -170,7 +170,7 @@ and the rest is taken care of for you (for builtin signals). Lets see how to hoc
             self.label.setText(_translate("MainWindow", "TextLabel"))
 
         # our custom method
-        def custom_method_pipe(self):
+        def CustomMethod(self):
             # grab the text from the text field
             text = self.lineEdit.text()
             self.label.setText(text)
@@ -184,6 +184,25 @@ and the rest is taken care of for you (for builtin signals). Lets see how to hoc
         ui.setupUi(MainWindow)
         MainWindow.show()
         sys.exit(app.exec_())
+
+We can also have Qt Design create the ``self.lineEdit.returnPressed.connect()`` line for us but it doesn't
+really save much time. Note that we will have to replace the method name since pyqt Designer does not
+allow us to type ``self.Here are the steps:
+
+.. figure:: pyqt_designer_signal_1.png
+
+    :scale: 100%
+    :align: center
+
+.. figure:: pyqt_designer_signal_2.png
+
+    :scale: 100%
+    :align: center
+
+.. figure:: pyqt_designer_signal_3.png
+
+    :scale: 100%
+    :align: center
 
 
 
@@ -329,6 +348,15 @@ Simple on/off button that emits a signal when clicked, with the following
 
 QTableWidget
 ^^^^^^^^^^^^
+
+- ``setRowCount()`` redefine how many rows there are in the table (similar for column)
+
+- ``rowCount()`` returns the number of rows in the table (similar for column) note this is not the row
+  that contain data, but all rows
+
+- ``clear()`` clears all content from the entire table
+
+- ``setItem(row,col,QtWidgets.QTableWidgeItem(data))`` where row and column are ``int`` and ``data`` is a ``str``
 
 .. code-block:: python
 
