@@ -271,6 +271,9 @@ can make more of a logical sense. There are 4 pieces to a signal setup/use:
 
 Path File Browser
 -----------------
+There are several file/folder browser dialogs available to the user:
+
+- ``QFileDialog.getExistingDirectory(self, title, path, filter)`` where filter: "Images (*.png *.jpg);; Text(.txt)"
 
 .. code-block:: python
 
@@ -280,6 +283,29 @@ Path File Browser
         path = QtWidgets.QFileDialog.getExistingDirectory(self, 'Select Directory')
         return path
 
+
+- ``QFileDialog.getOpenFileName(self, title, path, filter)`` similar to directory expect this opens the file for streaming
+  this can return a returns a list no matter what, if a single file was selected or multiple.
+
+.. code-block:: python
+
+    # NOTE: this is another method to the example shown above under "Designer to Python code setup"
+    def openfile(self):
+        filename = QtWidgets.QFileDialog.getOpenFileName(self, 'Select File')
+        if filename[0]:
+            with open(filename[0], 'r') as f:
+                data = f.read()
+
+- ``QFileDialog.getSaveFileName(self, title, path, filter)`` similar to file expect this opens the file for streaming
+
+.. code-block:: python
+
+    # NOTE: this is another method to the example shown above under "Designer to Python code setup"
+    def openfile(self):
+        filename = QtWidgets.QFileDialog.getSaveFileName(self, 'Select File to Save')
+        if filename[0]:
+            with open(filename[0], 'w') as f:
+                f.write(data)
 
 MessageBox Popup
 ----------------
@@ -453,5 +479,74 @@ Dealing with "ImportError: unable to find QtCore.dll on PATH"
 
 GUI Lockup - Multithreading
 ---------------------------
-Execute a second window without locking up the first
-- QWidgets.QApplication.processEvents()
+Execute multiple tasks without locking up the GUI. Threading has a few parts:
+
+- class initialization and class instance: where we feed information to the thread class, like the GUI window
+- class run method and class start(): ``threadname.start()`` calls the ``run`` method from the thread class
+- threads join: join all of the threads together
+
+.. code-block:: python
+
+    # Qt Designer Output of 2 progress bars
+    from PyQt5 import QtCore, QtGui, QtWidgets
+
+
+    class Ui_Dialog(object):
+        def setupUi(self, Dialog):
+            Dialog.setObjectName("Dialog")
+            Dialog.resize(400, 300)
+            self.progressBar = QtWidgets.QProgressBar(Dialog)
+            self.progressBar.setGeometry(QtCore.QRect(130, 80, 118, 23))
+            self.progressBar.setProperty("value", 0)
+            self.progressBar.setObjectName("progressBar")
+            self.progressBar_2 = QtWidgets.QProgressBar(Dialog)
+            self.progressBar_2.setGeometry(QtCore.QRect(140, 160, 118, 23))
+            self.progressBar_2.setProperty("value", 0)
+            self.progressBar_2.setObjectName("progressBar_2")
+
+            self.retranslateUi(Dialog)
+            QtCore.QMetaObject.connectSlotsByName(Dialog)
+
+        def retranslateUi(self, Dialog):
+            _translate = QtCore.QCoreApplication.translate
+            Dialog.setWindowTitle(_translate("Dialog", "Dialog"))
+
+    # our code for threading on 2 progress bars without locking up the GUI
+    import sys
+    import threading
+    import time
+    from PyQt5.QtWidgets import QDialog, QApplication
+
+    class GUI(QDialog):
+        def __init__(self):
+            super().__init__()
+            self.ui = Ui_Dialog()
+            self.ui.setupUi(self)
+            self.show()
+    class aThread (threading.Thread):
+        counter=0
+        def __init__(self, gui, ProgressBar, steps):
+            threading.Thread.__init__(self)
+            self.gui=gui
+            self.counter=0
+            self.steps = steps
+            self.progreassBar=ProgressBar
+        def run(self):
+            print ("Starting " + self.name)
+            while self.counter <=100:
+                time.sleep(0.5)
+                self.progreassBar.setValue(self.counter)
+                self.counter+=self.steps
+            print ("Exiting " + self.name)
+
+    if __name__=="__main__":
+        app = QApplication(sys.argv)
+        gui = GUI()
+        thread1 = aThread(gui, gui.ui.progressBar)
+        thread2 = aThread(gui, gui.ui.progressBar_2)
+        thread1.start() # to start the thread (calls .run())
+        thread2.start() # to start thread2 (calls .run())
+        gui.exec()  # this is to keep the gui window responsive
+        thread1.join()  # bring back the tread and merge data
+        thread2.join()
+        sys.exit(app.exec_())
