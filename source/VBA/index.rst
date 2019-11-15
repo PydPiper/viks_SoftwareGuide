@@ -5,6 +5,7 @@ VBA Guide
     :maxdepth: 2
 
     10min_vba_starters_kit
+    builtin_class_modules
     builtin_enumerations
     builtin_events
     builtin_logic_loops
