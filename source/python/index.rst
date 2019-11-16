@@ -16,6 +16,7 @@ Python Guide
     builtin_packaging
     builtin_strings
     builtin_user_inputs
+    lib_django
     lib_pyinstaller
     lib_pyqt
     lib_pytest
