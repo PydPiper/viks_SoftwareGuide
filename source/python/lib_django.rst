@@ -156,15 +156,52 @@ names for keys/variables (we would not do this in practice, for simplicity name 
         </p>
     </body>
 
+- For Loops with variables
+
+.. code-block:: html
+
+    <body>
+        <p>
+            Here are items from a list:
+            {% for item in data_key.var2 %}
+                <li>{{ item }}</li>
+            {% endfor %}
+        </p>
+    </body>
+
+- If, elif, else
+
+.. code-block:: html
+
+    <body>
+        <p>
+            {% if item data_key.var1 == 1 %}
+                variable is equal to 1
+            {% elif == 2 %}
+                variable is equal to 2
+            {% else %}
+                variable is not equal to anything
+            {% endif %}
+        </p>
+    </body>
+
 Setting Up Project Wide Templates
 ---------------------------------
 To get the same formatting on all your app pages. Anywhere from same layout, fonts, colors etc.
 
-1.) Create a ``templates`` folder within the project folder and create a ``base.html`` file within it that contains the following
+1.) Create a ``templates`` folder within the project folder and create a ``base.html`` file within it
+that contains any HTML that is the same for all templates
 
 .. code-block:: html
 
+    <html>
+    <head>
+        <title> This is a constant title across all html templates </title>
+    </head>
+
     {% block page_content %}{% endblock %}
+
+    </html>
 
 2.) Add the templates HTML file to your django project ``settings.py``
 
@@ -197,6 +234,49 @@ To get the same formatting on all your app pages. Anywhere from same layout, fon
     {% block page_content %}
     <h1>Hello World!</h1>
     {% endblock %}
+
+Setting Up Static Files
+-----------------------
+Django uses a folder name ``static`` to look for any static files you may have within your project. These
+can be HTML code blocks used for your ``base.html``, images, etc. Here are the steps in setting it up:
+
+1.) Create a ``static`` folder within your project and for this example let's create a subfolder images with a image file
+
+::
+
+    git_repo
+       |
+       |-projectname
+       |  |
+       |  |-templates
+       |  |  |-base.html
+       |  |-__init__.py
+       |  |-settings.py
+       |  |-urls.py
+       |  |-wsgi.py
+       |-manage.py
+       |-static
+          |-images
+             |-myimage.png
+
+2.) Add the static file path to your ``setting.py`` file
+
+.. code-block:: python
+
+    STATIC_URL = '/static/'
+
+    STATICFILES_DIRS = [
+        os.path.join(BASE_DIR, 'static'),
+    ]
+
+3.) Start using the static files within your HTML. The following file is our ``base.html`` but the same
+rules applies to all other html files you want to use static files in
+
+.. code-block:: html
+
+    {% load static %}
+
+    <img src="{% static 'image/myimage.png' %}">
 
 Setting Up Databases
 --------------------
