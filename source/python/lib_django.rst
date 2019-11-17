@@ -1,4 +1,4 @@
-lib - django (web framework)
+lib - Django (web framework)
 ============================
 Django is one of many web frameworks out there available for use by python developers. Django is by far
 one of the most popular frameworks out there because it is easy to use yet it has a lot of depth to it
@@ -238,7 +238,7 @@ that contains any HTML that is the same for all templates
 Setting Up Static Files
 -----------------------
 Django uses a folder name ``static`` to look for any static files you may have within your project. These
-can be HTML code blocks used for your ``base.html``, images, etc. Here are the steps in setting it up:
+can be CSS code blocks used for your ``base.html``, images, etc. Here are the steps in setting it up:
 
 1.) Create a ``static`` folder within your project and for this example let's create a subfolder images with a image file
 
@@ -278,6 +278,32 @@ rules applies to all other html files you want to use static files in
 
     <img src="{% static 'image/myimage.png' %}">
 
+Setting Up Admin
+----------------
+Django sets up a lot of really nice boiler plate website/user/group and more editing via the Admin site.
+In order to log into the ``localhost/admin`` site we need the step through the following:
+
+1.) If ``makemigrations`` has not been run to setup a database where users can be stored:
+
+.. code-block:: shell
+
+    python manage.py makemigrations
+
+2.) Makemigrations only prepares the the necessary settings for django, to implement them we need to:
+
+.. code-block:: shell
+
+    python manage.py migrate
+
+3.) Now that the database is setup we can create a superuser
+
+.. code-block:: shell
+
+    python manage.py createsuperuser
+
+4.) To use the superuser, run the server ``python manage.py runserver`` and navigate to ``localhost/admin/``
+and log in with your user ID and password
+
 Setting Up Databases
 --------------------
 To store any kind of data on your website you have to go through a database.  Django uses Structured Query Language (SQL)
@@ -291,11 +317,11 @@ Here is a list of field types for django: `Field Types <https://docs.djangoproje
 
     from django.db import models
 
-    class Project(models.Model):
+    class BlogData(models.Model):
         title = models.CharField(max_length=100)
-        description = models.TextField()
-        technology = models.CharField(max_length=20)
-        image = models.FilePathField(path="/img")
+        desc = models.TextField()
+        group = models.CharField(max_length=20)
+        img = models.FilePathField(path="/img")
 
 2.) Using Django's to restructure your ``model.py`` classes into the format it needs to write our SQL code of
 the data structure you specified in python code. Note if you get an error: ``No installed app with label 'appname'.``
@@ -304,5 +330,55 @@ then you need to add your app to the project TEMPLATES list in the ``settings.py
 - To setup migrations (note you will also need to migrate after this command): ``python manage.py makemigarations appname``
 - All subsequent migrations: ``python manage.py migrate appname``
 
+3.) How to add data to our database from django shell
 
+    3.1) Start Django shell: ``python manage.py shell``
 
+    3.2) Import your Database Class and edit/save
+
+    .. code-block:: python
+
+        # where "blog" is the app folder name that has a "models.py" where we defined our "BlogData"
+        from blog.models import BlogData
+
+        # create a instance of our Class BlogData
+        post1 = BlogData(
+            title = 'first title',
+            desc = 'first description'
+            group = 'group1'
+            img = 'img/pic1.png'
+        )
+        # save it to the database class
+        post1.save()
+
+        post2 = BlogData(
+            title = 'second title',
+            desc = 'second description'
+            group = 'group2'
+            img = 'img/pic2.png'
+        )
+        post2.save()
+
+4.) How to access data from our database (be sure to ``python manage.py migrate``) before trying to access
+data that you just saved from step 3.
+
+.. code-block:: python
+
+    # to access the database we first need to import it
+    from blog.models import BlogData
+
+    # then we can get all items stored
+    all_posts = BlogData.objects.all()
+
+    # query just a single post by primarykey (pk)
+    post = BlogData.objects.get(pk=1)
+
+    # query by any other file name that we specified
+    post = BlogData.objects.get(title='first title')
+
+    # access data from the post
+    post.title
+    >>> 'first title'
+    post.pk # this is the primarykey
+    >>> 1
+    post.id # this is the primarykey as well

@@ -1,5 +1,5 @@
-Events
-======
+builtin - Events
+================
 Events allow you to have code triggered by specific actions.  In Excel, these could be:
 
 - Sheet Level Events

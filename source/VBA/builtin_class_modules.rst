@@ -1,5 +1,5 @@
-Class Modules
-=============
+builtin - Class Modules
+=======================
 Class Modules allow you to create your own objects in VBA.  Similar to built-in objects like the Workbook, Worksheet, or Range object, 
 Class Module objects can have their own set of properties and methods.
 
