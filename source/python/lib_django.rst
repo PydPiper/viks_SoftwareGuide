@@ -113,8 +113,8 @@ It is the directory name of the app that is to be added to the apps list
 
 13.) check that the initial setup was successful ``python manage.py runserver``
 
-Passing Variables to HTML via context
------------------------------------------
+How to Pass Variables to HTML (via context)
+-------------------------------------------
 The templating code that Django uses within ``HTML`` is very similar to ``JINJA2``
 (see more at `Django Docs <https://docs.djangoproject.com/en/2.2/ref/templates/language//>`_. We can access data
 we passed through our ``context dictionary`` like so:
@@ -184,6 +184,56 @@ names for keys/variables (we would not do this in practice, for simplicity name 
             {% endif %}
         </p>
     </body>
+
+How to Pass Variables via URL address
+-------------------------------------
+Passing variables as URL address names has many different use cases. One such case can be template reuse.
+Image creating a HTML template that displays data to the user, like a blog post. A we don't want to create
+a copy of that HTML template for each blog post we write, but we also dont want to just overwrite the same
+template with new blog post data (because what if we want to link a blog post to a friend, we need a permanent
+URL link). How do we go about achieving such structure? The answer is URL variables:
+
+1.) Setup the app's ``url.py`` file with the address as a variable name:
+
+.. code-block:: python
+
+    # file: url.py within the app folder
+
+    # general django path function
+    from django.urls import path
+
+    # your custom URLs (views.py is already created when the app was setup)
+    from projects import views
+
+    # here we define our website to take the address after the index site name as a variable "pk"
+    #   localhost:8000/blog/1 would mean pk=1
+    #   localhost:8000/blog/2 would mean pk=2
+    # note that the declaration format is "<type:VariableName>/"
+    urlpatterns = [
+    path('',views.blog_index, name='blog_index'),
+    path('<int:pk>/',views.blog_detail, name='blog_post'),
+    ]
+
+2.) Setup the corresponding views method. Note that ``blog_detail`` take a argument ``pk`` that corresponds
+to the ``url.py`` URL variable name
+
+.. code-block:: python
+
+    def blog_index(request):
+        posts = Posts.objects.all()
+        context = {
+            'posts': posts
+        }
+        return render(request, 'blog_index.html', context)
+
+    def blog_detail(request, pk):
+        # now we can query the database for the post's contents and pass that to our HTML for rendering
+        post = Posts.objects.get(pk=pk)
+        context = {
+            'post': post
+        }
+        return render(request, 'blog_post.html', context)
+
 
 Setting Up Project Wide Templates
 ---------------------------------
