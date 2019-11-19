@@ -37,7 +37,7 @@ and sort their data.  All of these interactions with the UI are translated into 
 in the UI, and then go to ``SQL View`` to see the resulting SQL.  The important thing to remember is just that anything you can do
 with a query, you can do by executing SQL.  Therefore, any automation of data in Acces using VBA involves executing SQL.
 
-For the rest of the tutorial, we'll be using the following ``Customers`` dataset:
+For the rest of the tutorial, we'll be using the following ``Customers`` table dataset:
 
 +------------+------------+-----------+-----------+-----------+
 | ID         | Name       | State     | Date      | Sale      |
