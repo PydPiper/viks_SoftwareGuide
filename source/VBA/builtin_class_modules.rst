@@ -1,5 +1,5 @@
-Class Modules
--------------
+builtin - Class Modules
+=======================
 Class Modules allow you to create your own objects in VBA.  Similar to built-in objects like the Workbook, Worksheet, or Range object, 
 Class Module objects can have their own set of properties and methods.
 
@@ -13,7 +13,7 @@ There are four different items in a class module:
 To start, let's create a new Class Module in a workbook named ``clsClient``.  Let's also create a new regular Module so we can test things.
 
 Member Variables
-++++++++++++++++
+----------------
 Member Variables are dimensioned using ``Private`` or ``Public`` within your Class Module.  If they are dimensioned using ``Public``,
 they can be accessed and manipulated from outside the Class Module.
 
@@ -40,7 +40,7 @@ they can be accessed and manipulated from outside the Class Module.
 It is usually best practice, however, to use ``Private`` Member Variables and then use Class Properties to set and get information.
 
 Properties
-++++++++++
+----------
 The three commands for using properties in a Class Module are:
 
 - Get: Returns an object or value
@@ -105,7 +105,7 @@ You can create ReadOnly properties by just using Get without Let.
     End Sub
 
 Methods
-+++++++
+-------
 Class Methods are ``Subs`` or ``Functions`` in a Class Module.
 
 .. code-block:: vbscript
@@ -155,7 +155,7 @@ Class Methods are ``Subs`` or ``Functions`` in a Class Module.
     End Sub
     
 Events
-++++++
+------
 A Class Module has two events:
 
 - Initialize: Triggered when new object of class is created

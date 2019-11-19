@@ -1,5 +1,5 @@
-Enumerations
-============
+builtin - Enumerations
+======================
 Enumerations are constants which represent a set of possible values.  
 Microsoft has a number of built-in enumerations so that we developers can remember the names instead of numbers.
 The following are all examples of built-in enumerations:
