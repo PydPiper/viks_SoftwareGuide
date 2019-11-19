@@ -8,6 +8,7 @@ VBA Guide
     builtin_class_modules
     builtin_enumerations
     builtin_events
+    builtin_interapplication_control
     builtin_logic_loops
     builtin_passing_arguments
     builtin_tips_and_tricks

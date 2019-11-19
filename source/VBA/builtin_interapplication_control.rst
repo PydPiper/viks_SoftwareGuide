@@ -1,12 +1,12 @@
-Interapplication Control
-------------------------
+builtin- Interapplication Control
+=================================
 One of the best things about VBA is that it's the common language used by all Microsoft Office Applications.  
 If you master VBA in Excel, you could easily learn VBA for Access, Word, Outlook, Powerpoint, Visio, or Projects.
 They each have their own libraries and differ only in terms of the Objects being manipulated, but the core language and
 coding structure is exactly the same.  This also makes controlling one Office Application from another incredibly trivial.
 
 Early Binding vs. Late Binding
-++++++++++++++++++++++++++++++
+------------------------------
 
 The process of assigning an object to an object variable is called "binding".  In Early Binding (Static Binding), this occurs during
 compile time.  In Late Binding (Dynamic Binding) , this doesn't happen until runtime. 
@@ -52,7 +52,7 @@ with just ``Object`` and then replace your enumerations with it's value before r
 You can check the value of an enumeration by typing in "?" followed by the enumeration in your immediate window (``?olMailItem`` = 0).
 
 Setting An Application Instance
-+++++++++++++++++++++++++++++++
+-------------------------------
 The first thing you need to do to control another application is grab an instance of it.  
 There are two ways to do this:
 
@@ -72,7 +72,7 @@ the application in the end, your user may end up with a number of open applicati
 Once you have the Application instance, you can access all of the Objects within that Application by drilling down into it's members!
 
 Example #1: Sending an Outlook Email
-++++++++++++++++++++++++++++++++++++
+------------------------------------
 This code can be used from any Office Application to create an email in Outlook.
 
 .. code-block:: vbscript
@@ -108,7 +108,7 @@ This code can be used from any Office Application to create an email in Outlook.
     End Sub
     
 Example #2: Exporting an Access Table or Query to Excel
-+++++++++++++++++++++++++++++++++++++++++++++++++++++++
+-------------------------------------------------------
 This code can be used from an Access Database to export the contents of a table to query into an Excel spreadsheet.
 Note: This is not the only way to export data from Access to Excel!
 
