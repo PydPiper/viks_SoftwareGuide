@@ -29,13 +29,14 @@ There are four main Access Objects.
 
 Tables and Queries are similar in that they both represent data.  Forms and Reports are similar in that they both represent a UI.
 As such, Tables and Queries share similar properties and methods as do Forms and Reports.  For this tutorial, we will only be
-focusing on data manipulation (Queries).  
+focusing on data retrieval and manipulation (Queries).  
 
 Queries are just stored pieces of SQL.  When a query is opened, it presents the user with the results of the SQL execution.
 The query builder UI in Access allows users to drag and drop tables/queries, create joins, select fields, apply criteria, 
 and sort their data.  All of these interactions with the UI are translated into SQL behind the scenes.  You can create a query
-in the UI, and then go to ``SQL View`` to see the resulting SQL.  The important thing to remember is just that anything you can do
-with a query, you can do by executing SQL.  Therefore, any automation of data in Acces using VBA involves executing SQL.
+in the UI, and then go to ``SQL View`` to see the resulting SQL.  The main thing to remember is that anything you can do
+with a query, you can do by executing SQL.  Therefore, any automation of data in Access using VBA involves 
+generating SQL strings and executing them.
 
 For the rest of the tutorial, we'll be using the following ``Customers`` table dataset:
 
@@ -56,8 +57,7 @@ Recordsets
 The main object that you'll use in Access VBA are recordsets.  These are digital representations of data that you can use to
 iterate through, add/modify records, or grab values to use in variables for the rest of your code.  
 
-A recordset is created using the ``OpenRecordset`` method.  You can open a recordset as ReadOnly using ``dbOpenSnapshot``.
-If you plan to make edits to the data, use ``dbOpenDynaset``.
+A recordset is created using the ``OpenRecordset`` method of the ``Database`` object.  You can open a recordset as ReadOnly using ``dbOpenSnapshot``.  If you plan to make edits to the data, use ``dbOpenDynaset``.
 
 Some important properties and methods for recordsets are listed below:
 
