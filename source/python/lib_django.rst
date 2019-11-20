@@ -434,3 +434,19 @@ data that you just saved from step 3.
     post.pk # this is the primarykey
     >>> 1
     post.id # this is the primarykey as well
+
+5.) How to add database models to the admin page by adding it to the app's ``admin.py``:
+
+.. code-block:: python
+
+
+    # import the models
+    from blog.models import BlogData
+
+
+    # create a dummy django class for it
+    class AdminBlogData(admin.ModelAdmin):
+        pass
+
+    # add it to the admin page
+    admin.site.register(BlogData, AdminBlogData)
