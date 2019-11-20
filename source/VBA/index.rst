@@ -12,6 +12,7 @@ VBA Guide
     builtin_logic_loops
     builtin_passing_arguments
     builtin_tips_and_tricks
+    access_sql_and_vba
     excel_cat
     excel_cell_split
     excel_csv_buffer

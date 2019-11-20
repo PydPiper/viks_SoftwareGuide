@@ -31,7 +31,9 @@ Quick Setup Guide
 
 6.) Check that the initial setup was successful, locally launch the site: ``python manage.py runserver``
 
-7.) Create a new app ``python manage.py startapp appname``
+7.) Create a new app ``python manage.py startapp appname`` NOTE: you have to do this step (step 7) before
+step 8. You will get a "ModuleNotFoundError" if you try to run a ``startapp`` that is already part of the
+``INSTALLED_APPS`` list.
 
     7.1) ``admin.py`` is your django admin settings
 
