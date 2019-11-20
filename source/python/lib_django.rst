@@ -31,7 +31,9 @@ Quick Setup Guide
 
 6.) Check that the initial setup was successful, locally launch the site: ``python manage.py runserver``
 
-7.) Create a new app ``python manage.py startapp appname``
+7.) Create a new app ``python manage.py startapp appname`` NOTE: you have to do this step (step 7) before
+step 8. You will get a "ModuleNotFoundError" if you try to run a ``startapp`` that is already part of the
+``INSTALLED_APPS`` list.
 
     7.1) ``admin.py`` is your django admin settings
 
@@ -432,3 +434,19 @@ data that you just saved from step 3.
     post.pk # this is the primarykey
     >>> 1
     post.id # this is the primarykey as well
+
+5.) How to add database models to the admin page by adding it to the app's ``admin.py``:
+
+.. code-block:: python
+
+
+    # import the models
+    from blog.models import BlogData
+
+
+    # create a dummy django class for it
+    class AdminBlogData(admin.ModelAdmin):
+        pass
+
+    # add it to the admin page
+    admin.site.register(BlogData, AdminBlogData)
