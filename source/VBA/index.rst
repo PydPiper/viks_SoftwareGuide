@@ -7,6 +7,7 @@ VBA Guide
     10min_vba_starters_kit
     builtin_class_modules
     builtin_enumerations
+    builtin_error_handling
     builtin_events
     builtin_interapplication_control
     builtin_logic_loops

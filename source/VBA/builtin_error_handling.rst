@@ -1,5 +1,5 @@
-Runtime Errors
---------------
+builtin - Runtime Errors
+========================
 By default, VBA will throw a dialog box with an error number and description when it encounters a runtime error.  
 The user is asked to either end the code execution or debug the error themselves by going to the line where it broke.
 This behavior can be changed using the command ``On Error``.

@@ -412,7 +412,9 @@ then you need to add your app to the project TEMPLATES list in the ``settings.py
         post2.save()
 
 4.) How to access data from our database (be sure to ``python manage.py migrate``) before trying to access
-data that you just saved from step 3.
+data that you just saved from step 3. The full list of database querys are listed
+here: `Django query <https://docs.djangoproject.com/en/2.1/ref/models/querysets/#field-lookups>`_ /
+`Django filters <https://docs.djangoproject.com/en/2.1/topics/db/queries/#lookups-that-span-relationships>`_
 
 .. code-block:: python
 
