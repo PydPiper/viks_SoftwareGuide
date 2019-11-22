@@ -57,6 +57,16 @@ Ref Sphinx rst docs:
 
         1.2) here is another nested bullet
 
+Header Types
+------------
+
+- Title: ###
+- Section: ===
+- SubSection: ---
+- 2SubSection: ^^^
+- 3SubSection: """
+
+
 Sphinx toctree
 --------------
 1) The ``.. toctree::`` must be present in your top level index.rst file. The links will show up on both your page and
