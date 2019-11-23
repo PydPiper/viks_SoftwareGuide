@@ -38,7 +38,6 @@ Ref Sphinx rst docs:
     1) put a ``.. _ref1:`` above the header you want to ref (make sure there is an empty line between the header and _ref1)
     2) call the link by: ``:ref:`ref1```
 - Today's date in text ``|today|``
-- Section underline: Section:``====``, Sub-Section ``----``, Sub-Sub-Section ``^^^^``
 - Bullets, there are a few not so intuitive conventions about bullets, see below:
 
 .. code-block:: text

@@ -9,6 +9,8 @@ General
 - To change max character line: File > Settings > Editor > Code Style > Right Margin (columns) 120 default
 - To search PyCharm commands: ``ctrl + shift + a``
 - To close file tabs: ``ctrl + F4``
+- Expand/Contract Code Blocks for a single code block: ``ctrl + +`` and ``ctrl + -`` (courser within code block)
+- Expand/Contract Code Blocks for a all code block: ``ctrl + shift + +`` and ``ctrl + shift + -``
 
 New Project Setup
 -----------------
