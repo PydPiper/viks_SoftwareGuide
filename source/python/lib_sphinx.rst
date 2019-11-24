@@ -37,6 +37,7 @@ Ref Sphinx rst docs:
 
     1) put a ``.. _ref1:`` above the header you want to ref (make sure there is an empty line between the header and _ref1)
     2) call the link by: ``:ref:`ref1```
+- Citations: to define it ``.. [refname1] Title`` then to use it in text: ``[refname1]_``
 - Today's date in text ``|today|``
 - Bullets, there are a few not so intuitive conventions about bullets, see below:
 
