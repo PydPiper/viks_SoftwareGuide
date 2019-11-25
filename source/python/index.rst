@@ -5,6 +5,7 @@ Python Guide
     :maxdepth: 2
 
     10min_python_starters_kit
+    awesome_list
     builtin_class
     builtin_containers
     builtin_context_manager
