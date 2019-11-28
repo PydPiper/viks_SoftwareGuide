@@ -21,6 +21,12 @@ Importing syntax and meaning
     # now use it via
     mycase = unittest.TestCase
 
+    # we can also use our own custom shortname for an import via:
+    import unittest as ut
+
+    # now use it via
+    mycase = ut.TestCase
+
 2.) Import specifics (preferred option because it is explicit)
 
 .. code-block:: python
@@ -143,8 +149,8 @@ folder contains a ``__init__.py``. Open up ``Python/Lib/unittest`` and convince 
 in fact true.
 
 5.) Now we are faced with another question. What in the world is a ``__init__.py`` file?
-A ``__init__.py`` converts a folder into a module that can be imported by python, and when imported
-all functions/classes within ``__init__.py`` are imported (in this case ``unittest.TestCase`` for
+A ``__init__.py`` is referred to as a constructor, it converts a folder into a module that can be imported
+by python, and when imported all functions/classes within ``__init__.py`` are imported (in this case ``unittest.TestCase`` for
 instance)
 
 .. code-block:: python
