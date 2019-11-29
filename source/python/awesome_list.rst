@@ -20,4 +20,9 @@ Educational Books
 - `Functional Python Programming <http://file.allitebooks.com/20160708/Functional%20Python%20Programming.pdf>`_: (free)
   Python topics explained from a functional programming stand point
 
+Current Events
+--------------
+- `Talk Python Podcast <https://talkpython.fm/>`_ Michael Kennedy's python podcast. Michael interviews folks from all
+  background; software developers, mathematicians, scientists, business, and more on how they have enriched their lives
+  with python.
 
