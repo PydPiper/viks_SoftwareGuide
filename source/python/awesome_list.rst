@@ -25,4 +25,5 @@ Current Events
 - `Talk Python Podcast <https://talkpython.fm/>`_ Michael Kennedy's python podcast. Michael interviews folks from all
   background; software developers, mathematicians, scientists, business, and more on how they have enriched their lives
   with python.
+- `Pycascades Conference <https://2020.pycascades.com/>`_ Pacific north west conference all about python.
 
