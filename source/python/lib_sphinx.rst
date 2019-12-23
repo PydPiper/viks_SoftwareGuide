@@ -10,6 +10,7 @@ lib - Sphinx (code documentation)
 7) Create your docs
 
     7.1) Make sure your files have headers (line 1: header text, line2: =======)
+
     7.2) Make sure you add each filename to your index.rst otherwise it is not going to show up as an index
 
 8) To create your html files ``./make.bat html``
