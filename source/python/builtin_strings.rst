@@ -13,6 +13,14 @@ Syntax
     # benefit for double quotes: ability to use the apostrophe (')
     "it's a nice day"
 
+    # string literals (interpret string as a string without special character interpretation)
+    "this is with a new line\n"
+    r"this is without a new line\n"
+    # note that the "r" signifies string literal and the "\n" will not be interpreted as a LFCR
+
+    # binary string
+    b"this is binary"
+
 .. code-block:: python
 
     # multi-line string

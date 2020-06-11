@@ -26,7 +26,8 @@ Installation - Windows Guide Only
 
     4.5) Hit ``OK`` on both windows and you are good to go!
 
-5) Running python: pull up a terminal (start menu > cmd > enter) and type ``python`` or ``python -i`` where -i is interactive
+5) Running python: pull up a terminal (start menu > cmd > enter) and type ``python``. If the terminal
+   hangs on windows try ``python -i`` where -i is interactive, or ``winpty python``
 
 **Things you should know about**:
 
