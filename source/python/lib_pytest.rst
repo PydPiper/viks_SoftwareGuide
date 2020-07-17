@@ -69,6 +69,7 @@ the code base nice and clean.
 
 .. code-block:: shell
 
+    python -m pip install pytest pytest-cov coverage
     python -m pytest
 
 - The output will look something like:
