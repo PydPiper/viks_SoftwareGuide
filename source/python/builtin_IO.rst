@@ -31,3 +31,21 @@ Open file object modes:
 - ``a``: append to existing file
 - ``b``: binary mode (this is combined with ``r`` or ``w``
 - ``+``: open for updating (reading/writing)
+
+
+Working with directories
+------------------------
+
+.. code-block:: python
+    import os
+    from pathlib import Path
+
+    # returns a list of files/folders in current working dir
+    os.listdir()
+    >>> ['file1.txt', 'file2.txt', 'folder']
+    # or feed it a subdir path
+    os.listdir('./folder')
+    >>> ['subfile1.txt', 'subfile2.txt']
+
+    os.path.isfile('file1.txt')
+    >>> True

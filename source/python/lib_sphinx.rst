@@ -128,6 +128,11 @@ Code-Auto-Doc
     .. automodule::
         :members: foo, bar
 
+    .. autoclass::
+        :members:
+
+    .. autofunction:: folder.file.functionname
+
 Figures
 -------
 
