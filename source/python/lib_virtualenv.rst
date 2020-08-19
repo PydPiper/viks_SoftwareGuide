@@ -1,5 +1,15 @@
 lib - virtualenv
-====================
+================
+Developers use virtual environments for 2 main reasons:
+
+- Isolating different projects on 1 machine and managing their dependencies
+- Supporting various versions of python and/or other 3rd party libraries for a single project
+
+There are a few options out there for virtual environments:
+- venv: comes with python and it is very basic
+- virtualenv: pip installed library, i feel like i had better success using pyinstaller with virtualenv vs venv
+- pipenv: pip installed library, gives better dependency descriptions and git-branch description
+- conda: shipped with anadonda, very similar to virtualenv
 
 1) pip install virtualenv (version 16.1.0 for win10 build compatibility) in your global site-packages
 
