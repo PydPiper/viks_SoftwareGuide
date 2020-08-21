@@ -69,8 +69,8 @@ the code base nice and clean.
 
 .. code-block:: shell
 
-    python -m pip install pytest pytest-cov coverage
-    python -m pytest
+    python -m pip install pytest pytest-cov
+    python -m pytest --cov-report=html --cov='.'
 
 - The output will look something like:
 
@@ -112,7 +112,14 @@ Code test coverage writes out a detailed report on what percent of your code the
 
 .. code-block:: shell
 
-    python -m pytest --cov
+    python -m pytest --cov-report=html --cov='.'
+
+You can also write out a single ``xml`` coverage file. This is useful for CI (continuous integration)
+since you only have to point your upload/file to 1 file.
+
+.. code-block:: shell
+
+    python -m pytest --cov-report=xml --cov='.'
 
 To mock file-read without an actual file
 ----------------------------------------

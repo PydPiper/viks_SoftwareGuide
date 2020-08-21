@@ -6,10 +6,13 @@ Developers use virtual environments for 2 main reasons:
 - Supporting various versions of python and/or other 3rd party libraries for a single project
 
 There are a few options out there for virtual environments:
+
 - venv: comes with python and it is very basic
 - virtualenv: pip installed library, i feel like i had better success using pyinstaller with virtualenv vs venv
 - pipenv: pip installed library, gives better dependency descriptions and git-branch description
 - conda: shipped with anadonda, very similar to virtualenv
+
+###
 
 1) pip install virtualenv (version 16.1.0 for win10 build compatibility) in your global site-packages
 
@@ -23,7 +26,7 @@ There are a few options out there for virtual environments:
 
 .. code-block:: shell
 
-    python -m virtualenv venv_projectname --no-site-packages
+    python -m virtualenv venv38
 
 Note as a convention, I recommend placing the venv inside your git repo folder so that everything is together.
 This setup integrates really nicely with Editors like PyCharm where the project recognizes that you created a
@@ -64,3 +67,4 @@ Create a ``.gitignore`` (from terminal: ``touch .gitignore`` and you will most l
     build
     dist
     venv_projectname
+
