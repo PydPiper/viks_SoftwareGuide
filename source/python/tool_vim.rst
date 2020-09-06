@@ -8,8 +8,8 @@ Why use vim?
 - How to start vim on terminal: ``vim`` or ``vim filename``
 - By default vim opens in ``command mode`` **you cannot edit the file from this mode**
    to enter ``insert mode`` press ``i`` or ``insert`` key. To get back to ``commad mode`` press ``esc``
-- command window - save and close: ``:w``
-- command window - close without saving: ``:
+- command window - write to file and quit: ``:wq``
+- command window - quit without saving: ``q!``:
 - command window - increase font size: ``ctrl`` + ``=``
 - command window - decrease font size: ``ctrl`` + ``-``
 - command window - add syntax highlighting ``syntax on`` ``syntax off``
@@ -19,7 +19,9 @@ Why use vim?
 - command window - undo last command ``u``
 - insert mode - increase indent: ``ctrl`` + ``t``
 - insert mode - decrease indent: ``ctrl`` + ``d``
-- in
+
+
+In addition you can launch a vim tutorial in your terminal by typing ``vimtutor`` in your terminal
 
 searching
 ---------
