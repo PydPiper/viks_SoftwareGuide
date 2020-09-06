@@ -27,6 +27,7 @@ Python Guide
     tool_git
     tool_pip
     tool_pycharm
+    tool_vim
     devops_ci
 
 
