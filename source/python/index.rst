@@ -17,6 +17,7 @@ Python Guide
     builtin_packaging
     builtin_strings
     builtin_user_inputs
+    builtin_pdb
     lib_django
     lib_pyinstaller
     lib_pyqt
@@ -27,6 +28,7 @@ Python Guide
     tool_git
     tool_pip
     tool_pycharm
+    tool_vscode
     tool_vim
     devops_ci
 
