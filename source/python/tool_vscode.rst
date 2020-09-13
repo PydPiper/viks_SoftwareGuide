@@ -9,6 +9,7 @@ Light weight, simple IDE built by microsoft.
 - redefined keybindings (settings - the gear in bottom left corner - keyboard shortcuts):
 
     - copy line down: ``ctrl + d``
+    - delete line: ``ctrl + y``
     - fold (collapse code): ``ctrl + -``
     - fold-all (collapse code): ``ctrl + shift + -``
     - unfold (collapse code): ``ctrl + =``

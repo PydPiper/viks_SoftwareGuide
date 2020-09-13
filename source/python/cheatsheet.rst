@@ -11,3 +11,4 @@ Files
 -----
 To compile .py to .pyc: ``python -m py_compile file.py``
 To decompile a .pyc to .py: ``pip install decompyle6`` then ``decompyle6 file.pyc > file.py``
+To change path to the current python file path: ``os.chdir(pathlib.Path(__file__).parent.absolute())``
