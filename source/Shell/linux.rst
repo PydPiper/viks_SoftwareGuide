@@ -1,6 +1,16 @@
 Linux Quick Start Guide
 =======================
 
+Setup
+-----
+
+- To add python to PATH: ``export PATH="/C/Users\vkisf\AppData\Local\Programs\Python\Python38:$PATH"``
+- To add python scripts (pytest etc.) to PATH: ``export PATH="/C/Users\vkisf\AppData\Local\Programs\Python\Python38\Scripts:$PATH"``
+- To add java to PATH: ``export PATH="/C/Users/vkisf/AppData/Local/Programs/AdoptOpenJDK/jdk-11.0.8.10-hotspot/bin:$PATH"``
+- To set an alias: ``alias python38="winpty /C/Users\vkisf\AppData\Local\Programs\Python\Python38\python.exe"
+- To ssh: ``alias ssh_server1="ssh username@servername.com"``
+
+
 General
 -------
 

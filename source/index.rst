@@ -26,10 +26,11 @@ Feel free to drop a comment on the github page: https://github.com/PydPiper/viks
     :numbered:
     :maxdepth: 2
 
-
+    Shell/index
     python/index
     VBA/index
-    Shell/index
+    java/index
+
 
 
 
